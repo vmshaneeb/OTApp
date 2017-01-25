@@ -1,0 +1,104 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.CreateOT">
+	<App id="change">
+		<Page id="idCreate" showHeader="true" title="{i18n>title2}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange" enableScrolling="true">
+			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="{i18n>docn}"/>
+					<Input editable="true" width="120px"/>
+					<core:Title text=""/>
+					<Label text="{i18n>docdt}"/>
+					<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>
+				</f:content>
+			</f:SimpleForm>
+			<!--<ScrollContainer horizontal="true" vertical="true" focusable="true" height="525px">-->
+			<!--growingThreshold="100" growingScrollToLoad="true" -->
+			<Toolbar class="myCustomHeader">
+				<content>
+					<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop" titleStyle="H4"/>
+					<ToolbarSpacer id="__spacer2" class="myCustomHeader"/>
+					<Button id="idRefreshRow" press="refreshItem" type="Emphasized" icon="sap-icon://refresh"/>
+				</content>
+			</Toolbar>
+			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete" items="{path: '{/Employee_dataSet}'}" delete="deleteItem">
+				<!--<headerToolbar class="sapUiVisibleOnlyOnDesktop">-->
+				<!--	<Title text="{i18n>OT}" level="H2"/>-->
+				<!--	<ToolbarSpacer id="__spacer2"/>-->
+				<!--	<Button id="idRefreshRow" press="refreshItem" type="Emphasized" icon="sap-icon://add"/>-->
+				<!--</headerToolbar>-->
+				<columns fixedLayout="false">
+					<Column demandPopin="true">
+						<Text text="{i18n>MID}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpName}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>OrgUnit}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Posn}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpGrp}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpSubGrp}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTDate}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Hrate}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>NoDays}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTAmt}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<!--<Input showValueHelp="true" valueLiveUpdate="true" value="{milno}"/>-->
+							<Text text="{milno}"/>
+							<Text text="{name}" wrapping="false"/>
+							<Text text="{orgunit}"/>
+							<Text text="{posn}"/>
+							<Text text="{empgrp}"/>
+							<Text text="{empsubgrp}"/>
+							<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy"/>
+							<!--<u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false"/>-->
+							<Text text="{hrate}"/>
+							<Text text="{otdays}"/>
+							<Text text="{amt}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--</ScrollContainer>-->
+			<Toolbar width="100%" id="__toolbar2">
+				<content>
+					<ToolbarSpacer id="__spacer1"/>
+					<Button id="idAddRow" press="addItem" type="Emphasized" icon="sap-icon://add">
+						<customData>
+							<core:CustomData key="multi" value="true"/>
+							<!--<core:CustomData key="remember" value="true"/>-->
+						</customData>
+					</Button>
+				</content>
+			</Toolbar>
+			<!--</ScrollContainer>-->
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="idSubmit_copy" text="{i18n>Submit}" press="OnPressSubmit" type="Accept" icon="sap-icon://accept"/>
+					<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
+					<content/>
+				</Toolbar>
+			</footer>
+			<!--<content/>-->
+		</Page>
+	</App>
+</mvc:View>

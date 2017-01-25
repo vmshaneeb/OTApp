@@ -1,0 +1,23 @@
+/* Enter your custom styles here */
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0.1rem;
+    line-height: 0.1rem;
+}
+
+.sapUiFormResGrid>div {
+    padding: 0.1rem 0.75rem;
+    /*box-sizing: border-box;*/
+}
+
+html.sap-phone .sapUiFormResGridCont {
+    padding-bottom: .1rem;
+}
+
+.myCustomHeader .sapUiSizeCompact .sapMTB {
+    height: 3rem;
+}
+
+.sapUiSizeCompact .sapMTB {
+    height: 3rem;
+}

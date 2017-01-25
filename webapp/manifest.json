@@ -1,0 +1,121 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "OTApp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{Title}}",
+		"description": "{{title2}}",
+		"dataSources": {
+			"ZHCM_OTAPP_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHCM_OTAPP_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_bluecrystal",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "OTApp.view.DisplayOT",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.24.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "OTApp.view",
+				"controlId": "display",
+				"controlAggregation": "pages",
+				"transition": "slide"
+			},
+			"routes": [
+				{
+					"pattern": "display",
+					"name": "display",
+					"target": "display"
+				},
+				{
+					"pattern": "create",
+					"name": "create",
+					"target": "create"
+				},
+				{
+					"pattern": "change",
+					"name": "change",
+					"target": "change"
+				}
+			],
+			"targets": {
+				"display": {
+					"viewName": "DisplayOT",
+					"viewLevel": 0
+				},
+				"create": {
+					"viewName": "CreateOT",
+					"viewLevel": 1
+				},
+				"change": {
+					"viewName": "ChangeOT",
+					"viewLevel": 2
+				}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "OTApp.i18n.i18n"
+				},
+				"uri": "i18n/i18n.properties"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zhcm_otapp/webapp",
+		"_version": "1.1.0"
+	}
+}

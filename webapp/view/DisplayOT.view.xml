@@ -1,0 +1,115 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="OTApp.controller.DisplayOT" displayBlock="true">
+	<App id="display">
+		<Page id="idDetails" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onPressDetailBack" enableScrolling="true">
+			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="{i18n>MID}"/>
+					<Input value="{MID}" showValueHelp="true" editable="true" width="120px"/>
+					<Label text="{i18n>docn}"/>
+					<Input value="{docno}" showValueHelp="true" editable="true" width="120px"/>
+					<core:Title text=""/>
+					<Label text="{i18n>Month}"/>
+					<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="MM" width="100px"/>
+					<Label text="{i18n>Year}"/>
+					<VBox>
+						<!--<Input value="{Year}" showValueHelp="true" editable="true" width="100px"/>-->
+						<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="yyyy" width="100px"/>
+						<Button id="idSearch" text="{i18n>Search}" press="OnPressSearch" icon="sap-icon://search" width="100px" type="Emphasized"/>
+					</VBox>
+					<!--<Button id="idClear" text="{i18n>Clear}" press="OnPressClrSearch" icon="sap-icon://clear-filter" width="100px"/>-->
+					<!--					<Label text="{i18n>Pernr}"/>
+					<Input value="{Pernr}" showValueHelp="true"/>
+					
+					<Label text="{i18n>OrgUnit}"/>
+					<Input value="{OrgUnit}" showValueHelp="true"/>
+					
+					<Label text="{i18n>Posn}"/>
+					<Input value="{Posn}" showValueHelp="true"/>
+					
+					<Label text="{i18n>EmpGrp}}"/>
+					<Input value="{EmpGrp}" showValueHelp="true"/>
+					
+					<Label text="{i18n>EmpSubGrp}"/>
+					<Input value="{EmpSubGrp}" showValueHelp="true"/>
+					
+					<Label text="{i18n>EmpName}"/>
+					<Input value="{EmpName}" showValueHelp="true"/>-->
+				</f:content>
+			</f:SimpleForm>
+			<Table id="idOTTable" inset="false" items="{path: '/'}" growing="true" growingScrollToLoad="true" mode="MultiSelect">
+				<headerToolbar class="sapUiVisibleOnlyOnDesktop">
+					<Toolbar class="sapUiVisibleOnlyOnDesktop">
+						<Title text="{i18n>OT}" level="H2"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns fixedLayout="false">
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>MID}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>EmpName}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OrgUnit}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>Posn}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>EmpGrp}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>EmpSubGrp}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>docn}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>docdt}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTDate}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>Hrate}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>NoDays}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTAmt}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{MID}"/>
+							<Text text="{Name}" wrapping="false"/>
+							<Text text="{Orgunit}"/>
+							<Text text="{Position}"/>
+							<Text text="{EmpGrp}"/>
+							<Text text="{Empsubgrp}"/>
+							<Text text="{docn}"/>
+							<Text text="{docdt}"/>
+							<Text text="{OTdate}"/>
+							<Text text="{hrate}"/>
+							<Text text="{nodays}"/>
+							<Text text="{OTAmt}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="idNew" text="{i18n>NewRequest}" press="onChngBtn" type="Accept" icon="sap-icon://create"/>
+					<Button id="idChange" text="{i18n>change}" press="onEditBtn" type="Emphasized" icon="sap-icon://edit"/>
+					<Button text="{i18n>Cancel}" press="OnPressCancel" type="Transparent" icon="sap-icon://sys-cancel"/>
+					<content/>
+				</Toolbar>
+			</footer>
+			<content/>
+		</Page>
+	</App>
+</mvc:View>
