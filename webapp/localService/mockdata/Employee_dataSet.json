@@ -1,0 +1,91 @@
+[{
+	"Mid": "Mid 1",
+	"Dept": "Dept 1",
+	"Hrdate": "/Date(1460261041000)/",
+	"Pernr": "Pernr 1",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%201')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 2",
+	"Dept": "Dept 2",
+	"Hrdate": "/Date(1141877041000)/",
+	"Pernr": "Pernr 2",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%202')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 3",
+	"Dept": "Dept 3",
+	"Hrdate": "/Date(1015128241000)/",
+	"Pernr": "Pernr 3",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%203')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 4",
+	"Dept": "Dept 4",
+	"Hrdate": "/Date(1025496241000)/",
+	"Pernr": "Pernr 4",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%204')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 5",
+	"Dept": "Dept 5",
+	"Hrdate": "/Date(1183867441000)/",
+	"Pernr": "Pernr 5",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%205')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 6",
+	"Dept": "Dept 6",
+	"Hrdate": "/Date(1525406641000)/",
+	"Pernr": "Pernr 6",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%206')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 7",
+	"Dept": "Dept 7",
+	"Hrdate": "/Date(1476590641000)/",
+	"Pernr": "Pernr 7",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%207')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 8",
+	"Dept": "Dept 8",
+	"Hrdate": "/Date(1117685041000)/",
+	"Pernr": "Pernr 8",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%208')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 9",
+	"Dept": "Dept 9",
+	"Hrdate": "/Date(1521000241000)/",
+	"Pernr": "Pernr 9",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%209')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}, {
+	"Mid": "Mid 10",
+	"Dept": "Dept 10",
+	"Hrdate": "/Date(1059365041000)/",
+	"Pernr": "Pernr 10",
+	"__metadata": {
+		"uri": "Employee_dataSet('Mid%2010')",
+		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	}
+}]

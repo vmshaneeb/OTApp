@@ -1,6 +1,8 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.CreateOT">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.CreateOT">
 	<App id="change">
-		<Page id="idCreate" showHeader="true" title="{i18n>title2}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange" enableScrolling="true">
+		<Page id="idCreate" showHeader="true" title="{i18n>title2}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange"
+			enableScrolling="true">
 			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
 				<f:content>
 					<core:Title text=""/>

@@ -75,6 +75,7 @@ sap.ui.define([
 					"settings": {
 						"odataVersion": "2.0",
 						"localUri": "localService/metadata.xml"
+						// "disableHeadRequestForToken": true
 					}
 				}
 			}
