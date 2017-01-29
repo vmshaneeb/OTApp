@@ -71,9 +71,9 @@
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTDate}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>Hrate}"/>
-					</Column>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">-->
+					<!--	<Text text="{i18n>Hrate}"/>-->
+					<!--</Column>-->
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>NoDays}"/>
 					</Column>
@@ -93,7 +93,7 @@
 							<Text text="{docn}"/>
 							<Text text="{docdt}"/>
 							<Text text="{OTdate}"/>
-							<Text text="{hrate}"/>
+							<!--<Text text="{hrate}"/>-->
 							<Text text="{nodays}"/>
 							<Text text="{OTAmt}"/>
 						</cells>

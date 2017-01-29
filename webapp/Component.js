@@ -1,5 +1,3 @@
-var i18nModel;
-
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
@@ -7,6 +5,8 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
+
+	var i18nModel;
 
 	return UIComponent.extend("OTApp.Component", {
 
@@ -75,8 +75,17 @@ sap.ui.define([
 					"settings": {
 						"odataVersion": "2.0",
 						"localUri": "localService/metadata.xml"
-						// "disableHeadRequestForToken": true
+							// "disableHeadRequestForToken": true
 					}
+				}
+			},
+			"models": {
+				"i18n": {
+					"type": "sap.ui.model.resource.ResourceModel",
+					"settings": {
+						"bundleName": "OTApp.i18n.i18n"
+					},
+					"uri": "i18n/i18n.properties"
 				}
 			}
 		},
@@ -106,6 +115,7 @@ sap.ui.define([
 				bundleUrl: [rootPath, mConfig.resourceBundle].join("/")
 			});
 			this.setModel(i18nModel, "i18n");
+			// sap.ui.getCore().setModel(i18nModel, "i18n");
 
 			// this.getTargets().display("display");
 
@@ -113,6 +123,7 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 			oDeviceModel.setDefaultBindingMode("OneWay");
 			this.setModel(oDeviceModel, "device");
+			
 			// // set device model
 			// var deviceModel = new sap.ui.model.json.JSONModel({
 			// 	isTouch: sap.ui.Device.support.touch,

@@ -19,7 +19,7 @@
 				<content>
 					<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop" titleStyle="H4"/>
 					<ToolbarSpacer id="__spacer2" class="myCustomHeader"/>
-					<Button id="idRefreshRow" press="refreshItem" type="Emphasized" icon="sap-icon://refresh"/>
+					<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 				</content>
 			</Toolbar>
 			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete" items="{path: '{/Employee_dataSet}'}" delete="deleteItem">
@@ -50,9 +50,9 @@
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTDate}"/>
 					</Column>
-					<Column minScreenWidth="Tablet">
-						<Text text="{i18n>Hrate}"/>
-					</Column>
+					<!--<Column minScreenWidth="Tablet">-->
+					<!--	<Text text="{i18n>Hrate}"/>-->
+					<!--</Column>-->
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>NoDays}"/>
 					</Column>
@@ -72,7 +72,7 @@
 							<Text text="{empsubgrp}"/>
 							<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy"/>
 							<!--<u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false"/>-->
-							<Text text="{hrate}"/>
+							<!--<Text text="{hrate}"/>-->
 							<Text text="{otdays}"/>
 							<Text text="{amt}"/>
 						</cells>
