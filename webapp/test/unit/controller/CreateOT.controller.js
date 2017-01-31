@@ -10,20 +10,20 @@ sap.ui.define([
 	"use strict";
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
 	//proxy/http/172.16.76.134:50000
-	var oModel = new sap.ui.model.odata.ODataModel(url, true);
-	// var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
-	// 	useBatch: false
-	// });
+	// var oModel = new sap.ui.model.odata.ODataModel(url, true);
+	var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
+		// var oModel = new ODataModel(url, {
+		useBatch: false
+	});
 	// var oModel = new ODataModel(url, true);
 	var jModel = new JSONModel();
 	var result = {},
 		Pernr = "",
-		Mid = "";
+		Mid = "",
+		i18n;
 
 	// var i18nModel = sap.ui.getCore().getView().getModel("i18n");
-	
-	var me = this;
-	
+
 	return Controller.extend("OTApp.controller.CreateOT", {
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -31,7 +31,7 @@ sap.ui.define([
 		 * @memberOf OTApp.view.view.ChangeOT
 		 */
 		onInit: function() {
-			// i18n = this.getView().getModel("i18n");
+			i18n = this.getView().getModel("i18n");
 			// oModel.setDefaultBindingMode("TwoWay");
 			this.getView().setModel(oModel);
 			// oModel.read("/Employee_f4Set", null, null, false, function(oData, oResponse) {
@@ -43,11 +43,9 @@ sap.ui.define([
 				error: function(oError) {
 					// jQuery.sap.log.info("OData Read Error!!!");
 					// MessageToast.show("OData Read Error!!!");
-					MessageToast.show(i18nModel.getProperty('Oderr'));
+					// MessageToast.show(i18n.getProperty('Oderr'));
 				}
 			});
-			
-			me = this;
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -145,7 +143,6 @@ sap.ui.define([
 			var oSelectedItems = evt.getParameter("selectedItems"),
 				stmt = "",
 				uri = "";
-
 			if (oSelectedItems.length) {
 				for (var i = 0; i < oSelectedItems.length; i++) {
 					var item = oSelectedItems[i],
@@ -163,40 +160,18 @@ sap.ui.define([
 				oModel.read(uri, {
 					success: function(oData, oResponse) {
 						result.Employee_dataSet = oData.results;
-						jModel.setData(result);
-
-						me.getView().setModel(jModel);
-						// me.getView().byId("idOTTableChng").getModel().updateBindings();
-						
-						// this.getView().byId("idOTTableChng").setModel(jModel);
-						// this.getView().byId("idOTTableChng").getModel().refresh(true);
-						
+						// jModel.setData(result);
 					},
 					error: function(oError) {
 						// jQuery.sap.log.info("OData Read Error!!!");
 						// console.log("OData Read Error!!!");
-						MessageToast.show(i18nModel.getProperty('Oderr'));
+						// MessageToast.show(i18n.getProperty('Oderr'));
 					}
 				});
-				// var oFilter = new Filter("Mid", "EQ", "6014");
-
-				// oModel.read("/Employee_dataSet", {
-				// 	filter: oFilter,
-				// 	success: function(oData, oResponse) {
-				// 		result.Employee_dataSet = oData.results;
-				// 		// jModel.setData(result);
-				// 	},
-				// 	error: function(oError) {
-				// 		// jQuery.sap.log.info("OData Read Error!!!");
-				// 		// console.log("OData Read Error!!!");
-				// 		MessageToast.show(i18nModel.getProperty('Oderr'));
-				// 	}
-				// });
 			} else {
-				var msg = i18nModel.getProperty("SelEmp");
 				// var msg = i18n.getProperty("SelEmp");
 				// MessageToast.show(i18n.getProperty('SelEmp'));
-				MessageToast.show(msg);
+				// MessageToast.show("{i18n>SelEmp}");
 				// MessageToast.show("!!! Pls select an employee first !!!");
 			}
 			evt.getSource().getBinding("items").filter([]);

@@ -14,15 +14,18 @@
 		<!--sap_belize_plus-->
 		<!--sap_bluecrystal-->
 		
+		<!--data-sap-ui-appCacheBuster="./"-->
+		
+		<!--<script src="./test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>-->
+		
 		<script id="sap-ui-bootstrap"
-			src="/resources/sap-ui-core.js"
+			src="./resources/sap-ui-core.js"
 			data-sap-ui-libs="sap.m, sap.ui.layout, sap.ui.core, sap.ushell"
 			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-preload='async'
 			data-sap-ui-xx-bindingSyntax="complex"
-			data-sap-ui-appCacheBuster="./"
-			data-sap-ui-resourceroots='{"OTApp": "./"}'>
+			data-sap-ui-resourceroots='{"OTApp": "../"}'>
 		</script>
 <script>
 var bRunWithMock = true;
@@ -45,7 +48,7 @@ oMock.start();
 }
 </script>
 
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
 
 		<script>
 			sap.ui.getCore().attachInit(function() {

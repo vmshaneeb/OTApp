@@ -1,3 +1,5 @@
+var i18nModel;
+
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
@@ -6,7 +8,7 @@ sap.ui.define([
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
-	var i18nModel;
+	
 
 	return UIComponent.extend("OTApp.Component", {
 

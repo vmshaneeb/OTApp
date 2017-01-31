@@ -22,7 +22,7 @@
 					<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 				</content>
 			</Toolbar>
-			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete" items="{path: '{/Employee_dataSet}'}" delete="deleteItem">
+			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete" items="{/Employee_dataSet}" delete="deleteItem">
 				<!--<headerToolbar class="sapUiVisibleOnlyOnDesktop">-->
 				<!--	<Title text="{i18n>OT}" level="H2"/>-->
 				<!--	<ToolbarSpacer id="__spacer2"/>-->
@@ -64,7 +64,7 @@
 					<ColumnListItem vAlign="Middle">
 						<cells>
 							<!--<Input showValueHelp="true" valueLiveUpdate="true" value="{milno}"/>-->
-							<Text text="{milno}"/>
+							<Text text="{Mid}"/>
 							<Text text="{name}" wrapping="false"/>
 							<Text text="{orgunit}"/>
 							<Text text="{posn}"/>
