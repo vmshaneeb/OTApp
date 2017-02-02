@@ -26,7 +26,7 @@
 				<!--	<ToolbarSpacer id="__spacer2"/>-->
 				<!--	<Button id="idRefreshRow" press="refreshItem" type="Emphasized" icon="sap-icon://add"/>-->
 				<!--</headerToolbar>-->
-				<columns fixedLayout="false">
+				<columns>
 					<Column demandPopin="true">
 						<Text text="{i18n>MID}"/>
 					</Column>
@@ -59,7 +59,7 @@
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem vAlign="Middle">
+					<ColumnListItem>
 						<cells>
 							<!--<Input showValueHelp="true" valueLiveUpdate="true" value="{milno}"/>-->
 							<Text text="{Mid}"/>
@@ -68,7 +68,11 @@
 							<Text text="{Plstx}"/>
 							<Text text="{EmpgrpTxt}"/>
 							<Text text="{EmpsubgrpTxt}"/>
-							<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>
+							<!--<hbox>-->
+							<!--	<Text text="0 days"/>-->
+							<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates"/>
+							<!--</hbox>-->
+							<!--<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>-->
 							<!--<u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false"/>-->
 							<!--<Text text="{hrate}"/>-->
 							<Text text="{otdays}"/>

@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+	<!--<P13nDialog ok="handleOK" cancel="handleCancel" showReset="true" reset="handleReset" initialVisiblePanelType="sort">-->
+	<!--	<panels>-->
+	<!--		<P13nColumnsPanel visible="true" type="custom1">-->
+	<!--<content>-->
+	<!--			<items>-->
+	<!--				<u:Calendar id="calendar" secondaryCalendarType="Islamic" select="handleCalendarSelect" intervalSelection="flase" singleSelection="false"-->
+	<!--					nonWorkingDays="5,6"/>-->
+	<!--				<u:CalendarLegend id="legend1"/>-->
+	<!--			</items>-->
+	<!--</content>-->
+	<!--		</P13nColumnsPanel>-->
+	<!--	</panels>-->
+	<!--</P13nDialog>-->
+	<ResponsivePopover title="{Name}" class="sapUiPopupWithPadding" placement="Bottom">
+		<beginButton>
+			<Button press="handleRemoveSelection" text="Remove Dates"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="handleCloseButton"/>
+		</endButton>
+		<content>
+			<l:VerticalLayout>
+				<u:Calendar id="calendar" secondaryCalendarType="Islamic" select="handleCalendarSelect" intervalSelection="flase" singleSelection="false"
+					nonWorkingDays="5,6"/>
+				<u:CalendarLegend id="legend1"/>
+				<!--<List id="selectedDatesList" class="labelMarginLeft" noDataText="No Dates Selected" headerText="Selected Dates (yyyy-mm-dd)"-->
+				<!--	items="{/selectedDates}">-->
+				<!--	<StandardListItem title="{Date}"/>-->
+				<!--</List>-->
+			</l:VerticalLayout>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>
