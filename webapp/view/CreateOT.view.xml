@@ -64,10 +64,10 @@
 							<!--<Input showValueHelp="true" valueLiveUpdate="true" value="{milno}"/>-->
 							<Text text="{Mid}"/>
 							<Text text="{Ename}" wrapping="false"/>
-							<Text text="{Orgtx}"/>
-							<Text text="{Plstx}"/>
-							<Text text="{EmpgrpTxt}"/>
-							<Text text="{EmpsubgrpTxt}"/>
+							<Text text="{Orgtx}" textDirection="RTL"/>
+							<Text text="{Plstx}" textDirection="RTL"/>
+							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 							<!--<hbox>-->
 							<!--	<Text text="0 days"/>-->
 							<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates"/>
