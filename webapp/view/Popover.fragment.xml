@@ -14,10 +14,10 @@
 	<!--</P13nDialog>-->
 	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Bottom">
 		<beginButton>
-			<Button press="handleRemoveSelection" text="Remove Dates"/>
+			<Button press="handleRemoveSelection" text="{i18n>RemAll}"/>
 		</beginButton>
 		<endButton>
-			<Button text="Close" press="handleCloseButton"/>
+			<Button text="{i18n>Close}" press="handleCloseButton"/>
 		</endButton>
 		<content>
 			<!--<l:VerticalLayout>-->
@@ -43,7 +43,7 @@
 					<Column>
 						<Text text="{i18n>OTDate}"/>
 					</Column>
-					<Column>
+					<Column hAlign="Center">
 						<Text text="{i18n>OTHrs}"/>
 					</Column>
 				</columns>
@@ -52,7 +52,7 @@
 						<cells>
 							<Text text="{MilNo}" visible="false"/>
 							<DatePicker dateValue="{Dates}" editable="false" displayFormat="dd.MM.yyyy"/>
-							<Input/>
+							<Input value="{Hrs}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

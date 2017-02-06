@@ -41,9 +41,9 @@
 						<!--<Column minScreenWidth="Tablet">-->
 						<!--	<Text text="{i18n>Hrate}"/>-->
 						<!--</Column>-->
-						<Column demandPopin="true" hAlign="Center">
-							<Text text="{i18n>NoDays}"/>
-						</Column>
+						<!--<Column demandPopin="true" hAlign="Center">-->
+						<!--	<Text text="{i18n>NoDays}"/>-->
+						<!--</Column>-->
 						<Column demandPopin="true" hAlign="Center">
 							<Text text="{i18n>OTAmt}"/>
 						</Column>
@@ -61,7 +61,7 @@
 								<Text text="{docdt}"/>
 								<Text text="{otdate}"/>
 								<!--<Text text="{hrate}"/>-->
-								<Input valueLiveUpdate="true"/>
+								<!--<Input valueLiveUpdate="true"/>-->
 								<Text text="{amt}"/>
 							</cells>
 						</ColumnListItem>
