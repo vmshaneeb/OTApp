@@ -7,7 +7,7 @@
 					<Label text="{i18n>MID}"/>
 					<Input value="{MID}" showValueHelp="true" editable="true" width="120px"/>
 					<Label text="{i18n>docn}"/>
-					<Input value="{docno}" showValueHelp="true" editable="true" width="120px" visible="false"/>
+					<Input value="{docno}" showValueHelp="true" editable="true" width="120px"/>
 					<core:Title text=""/>
 					<Label text="{i18n>Month}"/>
 					<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="MM" width="100px"/>

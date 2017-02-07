@@ -7,10 +7,10 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="{i18n>docn}"/>
-					<Input editable="true" width="120px"/>
+					<Input id="docno" editable="true" width="120px"/>
 					<core:Title text=""/>
 					<Label text="{i18n>docdt}"/>
-					<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>
+					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy" width="120px"/>
 				</f:content>
 			</f:SimpleForm>
 			<!--<ScrollContainer horizontal="true" vertical="true" focusable="true" height="525px">-->
