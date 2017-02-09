@@ -297,16 +297,34 @@ sap.ui.define([
 			// }
 
 			if (aSelectedDates.length > 0) {
-				var seldt = aSelectedDates[aSelectedDates.length - 1].getStartDate();
+				result.TempDates = [];
 
-				var list = {
-					"MilNo": midSelect,
-					"Dates": seldt,
-					"Hrs": ""
-				};
+				for (var i = 0; i < aSelectedDates.length; i++) {
+					var seldt = aSelectedDates[i].getStartDate();
 
-				result.TempDates.push(list);
+					var list = {
+						"MilNo": midSelect,
+						"Dates": seldt,
+						"Hrs": ""
+					};
+
+					result.TempDates.push(list);
+				}
+			} else {
+				result.TempDates = [];
 			}
+
+			// if (aSelectedDates.length > 0) {
+			// 	var seldt = aSelectedDates[aSelectedDates.length - 1].getStartDate();
+
+			// 	var list = {
+			// 		"MilNo": midSelect,
+			// 		"Dates": seldt,
+			// 		"Hrs": ""
+			// 	};
+
+			// 	result.TempDates.push(list);
+			// }
 
 			jModel.setData(result);
 			this.getView().setModel(jModel);
