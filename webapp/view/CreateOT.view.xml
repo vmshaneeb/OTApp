@@ -10,7 +10,7 @@
 					<Input id="docno" editable="true" width="120px"/>
 					<core:Title text=""/>
 					<Label text="{i18n>docdt}"/>
-					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy" width="120px"/>
+					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>
 				</f:content>
 			</f:SimpleForm>
 			<!--<ScrollContainer horizontal="true" vertical="true" focusable="true" height="525px">-->
@@ -51,11 +51,11 @@
 						<Text text="{i18n>OTDate}"/>
 					</Column>
 					<!--<Column minScreenWidth="Tablet">-->
-					<!--	<Text text="{i18n>Hrate}"/>-->
+						<!--<Text text="{i18n>Hrate}"/>-->
 					<!--</Column>-->
-					<!--<Column demandPopin="true" hAlign="Center">-->
-					<!--	<Text text="{i18n>NoDays}"/>-->
-					<!--</Column>-->
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTHrs}"/>
+					</Column>
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTAmt}"/>
 					</Column>
@@ -71,13 +71,12 @@
 							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 							<!--<hbox>-->
-							<!--	<Text text="0 days"/>-->
 							<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates">
 								<customData>
 									<core:CustomData key="Mid" value="{Mid}"/>
-									<!--<core:CustomData key="remember" value="true"/>-->
 								</customData>
 							</Button>
+							<Text text="{Hrs}"/>
 							<!--</hbox>-->
 							<!--<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>-->
 							<!--<u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false"/>-->

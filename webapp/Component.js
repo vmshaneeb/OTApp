@@ -75,7 +75,7 @@ sap.ui.define([
 					"uri": "/sap/opu/odata/sap/ZHCM_OTAPP_SRV/",
 					"type": "OData",
 					"settings": {
-						"odataVersion": "2.0",
+						"odataVersion": "1.0",
 						"localUri": "localService/metadata.xml"
 							// "disableHeadRequestForToken": true
 					}
