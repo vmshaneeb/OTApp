@@ -291,23 +291,45 @@ sap.ui.define([
 
 		handleCalendarSelect: function(oEvent) {
 			var aSelectedDates = oEvent.getSource().getSelectedDates();
+			var tmp = [],
+				list = [],
+				OTemp = [];
 
 			// if (aSelectedDates.length !== result.TempDates.length) {
 			// 	result.TempDates = [];
 			// }
 
 			if (aSelectedDates.length > 0) {
+				tmp = result.TempDates;
 				result.TempDates = [];
 
 				for (var i = 0; i < aSelectedDates.length; i++) {
 					var seldt = aSelectedDates[i].getStartDate();
 
-					var list = {
-						"MilNo": midSelect,
-						"Dates": seldt,
-						"Hrs": ""
-					};
-
+					if (tmp.length !== 0) {
+						OTemp = $(tmp).filter(function(i, n) {
+							return n.Dates === seldt;
+						});
+						if (OTemp.length !== 0) {
+							list = {
+								"MilNo": midSelect,
+								"Dates": seldt,
+								"Hrs": OTemp[0].Hrs
+							};
+						} else {
+							list = {
+								"MilNo": midSelect,
+								"Dates": seldt,
+								"Hrs": ""
+							};
+						}
+					} else {
+						list = {
+							"MilNo": midSelect,
+							"Dates": seldt,
+							"Hrs": ""
+						};
+					}
 					result.TempDates.push(list);
 				}
 			} else {

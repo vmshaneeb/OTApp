@@ -6,7 +6,7 @@
 			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
 				<f:content>
 					<core:Title text=""/>
-					<Label text="{i18n>docn}"/>
+					<Label text="{i18n>docn}" required="true"/>
 					<Input id="docno" editable="true" width="120px"/>
 					<core:Title text=""/>
 					<Label text="{i18n>docdt}"/>
@@ -51,7 +51,7 @@
 						<Text text="{i18n>OTDate}"/>
 					</Column>
 					<!--<Column minScreenWidth="Tablet">-->
-						<!--<Text text="{i18n>Hrate}"/>-->
+					<!--<Text text="{i18n>Hrate}"/>-->
 					<!--</Column>-->
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTHrs}"/>
