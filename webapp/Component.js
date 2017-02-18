@@ -8,8 +8,6 @@ sap.ui.define([
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
-	
-
 	return UIComponent.extend("OTApp.Component", {
 
 		metadata: {
@@ -75,11 +73,20 @@ sap.ui.define([
 					"uri": "/sap/opu/odata/sap/ZHCM_OTAPP_SRV/",
 					"type": "OData",
 					"settings": {
-						"odataVersion": "1.0",
+						"odataVersion": "2.0",
 						"localUri": "localService/metadata.xml"
 							// "disableHeadRequestForToken": true
 					}
+				},
+				"mainService": {
+					"uri": "/",
+					"type": "OData",
+					"settings": {
+						"odataVersion": "2.0",
+						"localUri": "localService/metadata.xml"
+					}
 				}
+
 			},
 			"models": {
 				"i18n": {
@@ -125,7 +132,7 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 			oDeviceModel.setDefaultBindingMode("OneWay");
 			this.setModel(oDeviceModel, "device");
-			
+
 			// // set device model
 			// var deviceModel = new sap.ui.model.json.JSONModel({
 			// 	isTouch: sap.ui.Device.support.touch,

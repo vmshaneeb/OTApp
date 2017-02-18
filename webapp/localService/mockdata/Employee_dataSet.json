@@ -1,91 +1,271 @@
 [{
+	"Ename": "Ename 1",
 	"Mid": "Mid 1",
-	"Dept": "Dept 1",
-	"Hrdate": "/Date(1460261041000)/",
+	"Orgunit": "Orgunit 1",
 	"Pernr": "Pernr 1",
+	"Orgtx": "Orgtx 1",
+	"Plstx": "Plstx 1",
+	"EmpgrpTxt": "EmpgrpTxt 1",
+	"Posn": "Posn 1",
+	"Empgrp": "Empgrp 1",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 1",
+	"Empsubgrp": "Empsubgrp 1",
+	"Docno": "Docno 1",
+	"Docdate": "/Date(1280859842000)/",
+	"Otamt": 7009.61,
+	"Ind": "Ind 1",
+	"QatarId": "QatarId 1",
+	"Endda": "/Date(1007231042000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%201')",
+		"uri": "Employee_dataSet(Mid='Mid%201',Pernr='Pernr%201')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%201',Pernr='Pernr%201')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 2",
 	"Mid": "Mid 2",
-	"Dept": "Dept 2",
-	"Hrdate": "/Date(1141877041000)/",
+	"Orgunit": "Orgunit 2",
 	"Pernr": "Pernr 2",
+	"Orgtx": "Orgtx 2",
+	"Plstx": "Plstx 2",
+	"EmpgrpTxt": "EmpgrpTxt 2",
+	"Posn": "Posn 2",
+	"Empgrp": "Empgrp 2",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 2",
+	"Empsubgrp": "Empsubgrp 2",
+	"Docno": "Docno 2",
+	"Docdate": "/Date(1540232642000)/",
+	"Otamt": 8253.14,
+	"Ind": "Ind 2",
+	"QatarId": "QatarId 2",
+	"Endda": "/Date(1292869442000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%202')",
+		"uri": "Employee_dataSet(Mid='Mid%202',Pernr='Pernr%202')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%202',Pernr='Pernr%202')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 3",
 	"Mid": "Mid 3",
-	"Dept": "Dept 3",
-	"Hrdate": "/Date(1015128241000)/",
+	"Orgunit": "Orgunit 3",
 	"Pernr": "Pernr 3",
+	"Orgtx": "Orgtx 3",
+	"Plstx": "Plstx 3",
+	"EmpgrpTxt": "EmpgrpTxt 3",
+	"Posn": "Posn 3",
+	"Empgrp": "Empgrp 3",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 3",
+	"Empsubgrp": "Empsubgrp 3",
+	"Docno": "Docno 3",
+	"Docdate": "/Date(1004725442000)/",
+	"Otamt": 5167.54,
+	"Ind": "Ind 3",
+	"QatarId": "QatarId 3",
+	"Endda": "/Date(1085077442000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%203')",
+		"uri": "Employee_dataSet(Mid='Mid%203',Pernr='Pernr%203')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%203',Pernr='Pernr%203')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 4",
 	"Mid": "Mid 4",
-	"Dept": "Dept 4",
-	"Hrdate": "/Date(1025496241000)/",
+	"Orgunit": "Orgunit 4",
 	"Pernr": "Pernr 4",
+	"Orgtx": "Orgtx 4",
+	"Plstx": "Plstx 4",
+	"EmpgrpTxt": "EmpgrpTxt 4",
+	"Posn": "Posn 4",
+	"Empgrp": "Empgrp 4",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 4",
+	"Empsubgrp": "Empsubgrp 4",
+	"Docno": "Docno 4",
+	"Docdate": "/Date(998936642000)/",
+	"Otamt": 7510.34,
+	"Ind": "Ind 4",
+	"QatarId": "QatarId 4",
+	"Endda": "/Date(1405362242000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%204')",
+		"uri": "Employee_dataSet(Mid='Mid%204',Pernr='Pernr%204')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%204',Pernr='Pernr%204')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 5",
 	"Mid": "Mid 5",
-	"Dept": "Dept 5",
-	"Hrdate": "/Date(1183867441000)/",
+	"Orgunit": "Orgunit 5",
 	"Pernr": "Pernr 5",
+	"Orgtx": "Orgtx 5",
+	"Plstx": "Plstx 5",
+	"EmpgrpTxt": "EmpgrpTxt 5",
+	"Posn": "Posn 5",
+	"Empgrp": "Empgrp 5",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 5",
+	"Empsubgrp": "Empsubgrp 5",
+	"Docno": "Docno 5",
+	"Docdate": "/Date(1452882242000)/",
+	"Otamt": 7406.71,
+	"Ind": "Ind 5",
+	"QatarId": "QatarId 5",
+	"Endda": "/Date(1192040642000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%205')",
+		"uri": "Employee_dataSet(Mid='Mid%205',Pernr='Pernr%205')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%205',Pernr='Pernr%205')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 6",
 	"Mid": "Mid 6",
-	"Dept": "Dept 6",
-	"Hrdate": "/Date(1525406641000)/",
+	"Orgunit": "Orgunit 6",
 	"Pernr": "Pernr 6",
+	"Orgtx": "Orgtx 6",
+	"Plstx": "Plstx 6",
+	"EmpgrpTxt": "EmpgrpTxt 6",
+	"Posn": "Posn 6",
+	"Empgrp": "Empgrp 6",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 6",
+	"Empsubgrp": "Empsubgrp 6",
+	"Docno": "Docno 6",
+	"Docdate": "/Date(1498587842000)/",
+	"Otamt": 8295.12,
+	"Ind": "Ind 6",
+	"QatarId": "QatarId 6",
+	"Endda": "/Date(1161195842000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%206')",
+		"uri": "Employee_dataSet(Mid='Mid%206',Pernr='Pernr%206')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%206',Pernr='Pernr%206')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 7",
 	"Mid": "Mid 7",
-	"Dept": "Dept 7",
-	"Hrdate": "/Date(1476590641000)/",
+	"Orgunit": "Orgunit 7",
 	"Pernr": "Pernr 7",
+	"Orgtx": "Orgtx 7",
+	"Plstx": "Plstx 7",
+	"EmpgrpTxt": "EmpgrpTxt 7",
+	"Posn": "Posn 7",
+	"Empgrp": "Empgrp 7",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 7",
+	"Empsubgrp": "Empsubgrp 7",
+	"Docno": "Docno 7",
+	"Docdate": "/Date(1418149442000)/",
+	"Otamt": 1927.77,
+	"Ind": "Ind 7",
+	"QatarId": "QatarId 7",
+	"Endda": "/Date(1149618242000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%207')",
+		"uri": "Employee_dataSet(Mid='Mid%207',Pernr='Pernr%207')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%207',Pernr='Pernr%207')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 8",
 	"Mid": "Mid 8",
-	"Dept": "Dept 8",
-	"Hrdate": "/Date(1117685041000)/",
+	"Orgunit": "Orgunit 8",
 	"Pernr": "Pernr 8",
+	"Orgtx": "Orgtx 8",
+	"Plstx": "Plstx 8",
+	"EmpgrpTxt": "EmpgrpTxt 8",
+	"Posn": "Posn 8",
+	"Empgrp": "Empgrp 8",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 8",
+	"Empsubgrp": "Empsubgrp 8",
+	"Docno": "Docno 8",
+	"Docdate": "/Date(1336069442000)/",
+	"Otamt": 9978.7,
+	"Ind": "Ind 8",
+	"QatarId": "QatarId 8",
+	"Endda": "/Date(958242242000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%208')",
+		"uri": "Employee_dataSet(Mid='Mid%208',Pernr='Pernr%208')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%208',Pernr='Pernr%208')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 9",
 	"Mid": "Mid 9",
-	"Dept": "Dept 9",
-	"Hrdate": "/Date(1521000241000)/",
+	"Orgunit": "Orgunit 9",
 	"Pernr": "Pernr 9",
+	"Orgtx": "Orgtx 9",
+	"Plstx": "Plstx 9",
+	"EmpgrpTxt": "EmpgrpTxt 9",
+	"Posn": "Posn 9",
+	"Empgrp": "Empgrp 9",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 9",
+	"Empsubgrp": "Empsubgrp 9",
+	"Docno": "Docno 9",
+	"Docdate": "/Date(1516559042000)/",
+	"Otamt": 822.56,
+	"Ind": "Ind 9",
+	"QatarId": "QatarId 9",
+	"Endda": "/Date(1517768642000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%209')",
+		"uri": "Employee_dataSet(Mid='Mid%209',Pernr='Pernr%209')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%209',Pernr='Pernr%209')/Emp_OTDetails"
+		}
 	}
 }, {
+	"Ename": "Ename 10",
 	"Mid": "Mid 10",
-	"Dept": "Dept 10",
-	"Hrdate": "/Date(1059365041000)/",
+	"Orgunit": "Orgunit 10",
 	"Pernr": "Pernr 10",
+	"Orgtx": "Orgtx 10",
+	"Plstx": "Plstx 10",
+	"EmpgrpTxt": "EmpgrpTxt 10",
+	"Posn": "Posn 10",
+	"Empgrp": "Empgrp 10",
+	"EmpsubgrpTxt": "EmpsubgrpTxt 10",
+	"Empsubgrp": "Empsubgrp 10",
+	"Docno": "Docno 10",
+	"Docdate": "/Date(1190571842000)/",
+	"Otamt": 9060.82,
+	"Ind": "Ind 10",
+	"QatarId": "QatarId 10",
+	"Endda": "/Date(1515608642000)/",
 	"__metadata": {
-		"uri": "Employee_dataSet('Mid%2010')",
+		"uri": "Employee_dataSet(Mid='Mid%2010',Pernr='Pernr%2010')",
 		"type": "ZHCM_OTAPP_SRV.Employee_data"
+	},
+	"Emp_OTDetails": {
+		"__deferred": {
+			"uri": "Employee_dataSet(Mid='Mid%2010',Pernr='Pernr%2010')/Emp_OTDetails"
+		}
 	}
 }]

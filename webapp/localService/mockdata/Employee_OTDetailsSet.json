@@ -1,0 +1,141 @@
+[{
+	"MilNo": "Mid 1",
+	"Pernr": "Pernr 1",
+	"Dates": "/Date(1412619849000)/",
+	"Hrs": 6233.82,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%201')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%201')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 2",
+	"Pernr": "Pernr 2",
+	"Dates": "/Date(967746249000)/",
+	"Hrs": 8045.54,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%202')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%202')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 3",
+	"Pernr": "Pernr 3",
+	"Dates": "/Date(1001010249000)/",
+	"Hrs": 3893.6,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%203')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%203')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 4",
+	"Pernr": "Pernr 4",
+	"Dates": "/Date(1212949449000)/",
+	"Hrs": 1698.95,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%204')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%204')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 5",
+	"Pernr": "Pernr 5",
+	"Dates": "/Date(1410459849000)/",
+	"Hrs": 6373.22,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%205')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%205')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 6",
+	"Pernr": "Pernr 6",
+	"Dates": "/Date(1035570249000)/",
+	"Hrs": 2574.84,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%206')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%206')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 7",
+	"Pernr": "Pernr 7",
+	"Dates": "/Date(1278008649000)/",
+	"Hrs": 2731.2,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%207')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%207')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 8",
+	"Pernr": "Pernr 8",
+	"Dates": "/Date(1483467849000)/",
+	"Hrs": 5601.5,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%208')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%208')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 9",
+	"Pernr": "Pernr 9",
+	"Dates": "/Date(1209061449000)/",
+	"Hrs": 898.32,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%209')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%209')/Employee_OTDetails_Nav"
+		}
+	}
+}, {
+	"MilNo": "Mid 10",
+	"Pernr": "Pernr 10",
+	"Dates": "/Date(1399832649000)/",
+	"Hrs": 5861.22,
+	"__metadata": {
+		"uri": "Employee_OTDetailsSet('Mid%2010')",
+		"type": "ZHCM_OTAPP_SRV.Employee_OTDetails"
+	},
+	"Employee_OTDetails_Nav": {
+		"__deferred": {
+			"uri": "Employee_OTDetailsSet('Mid%2010')/Employee_OTDetails_Nav"
+		}
+	}
+}]

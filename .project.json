@@ -1,0 +1,9 @@
+{
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/ZHCM_OTAPP_SRV/",
+    "metadataFilePath": "localService/metadata.xml",
+    "mockRequestsFilePath": "",
+    "loadJSONFiles": true,
+    "loadCustomRequests": false
+  }
+}
