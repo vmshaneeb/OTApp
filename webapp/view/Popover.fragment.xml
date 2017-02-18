@@ -52,7 +52,7 @@
 						<cells>
 							<Text text="{MilNo}" visible="false"/>
 							<DatePicker dateValue="{Dates}" editable="false" displayFormat="dd.MM.yyyy"/>
-							<Input value="{Hrs}" width="40px"/>
+							<Input id="othrs" value="{Hrs}" width="40px" liveChange="checkOT"/>
 						</cells>
 					</ColumnListItem>
 				</items>

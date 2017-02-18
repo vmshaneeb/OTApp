@@ -21,7 +21,7 @@
 			<!--growingThreshold="100" growingScrollToLoad="true" -->
 			<Toolbar class="myCustomHeader">
 				<content>
-					<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop" titleStyle="H4"/>
+					<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop sapUiSmallMargin" titleStyle="H4"/>
 					<ToolbarSpacer id="__spacer2" class="myCustomHeader"/>
 					<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 				</content>
