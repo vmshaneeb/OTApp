@@ -1,60 +1,38 @@
-<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
-	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
-	<edmx:DataServices m:DataServiceVersion="2.0">
-		<Schema Namespace="ZHCM_OTAPP_SRV" xml:lang="en" sap:schema-version="0001" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-			<EntityType Name="Employee_data" sap:content-version="1">
-				<Key><PropertyRef Name="Mid"/><PropertyRef Name="Pernr"/></Key><Property Name="Ename" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Empl./Appl.Name" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mid" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Identity Number" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Orgunit" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Org. Unit" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Orgtx" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Org.Unit Short Text" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Plstx" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Position Short Text" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EmpgrpTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name of EE grp" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Posn" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Position" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Empgrp" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="EE group" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="EmpsubgrpTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name of EE SG" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Empsubgrp" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="EE subgroup" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Docno" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Document no." sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Docdate" Type="Edm.DateTime" Precision="7" sap:label="Start Date" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Otamt" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:label="Amount" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ind" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Indicator" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="QatarId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Identity Number" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:label="End Date" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Emp_OTDetails" Relationship="ZHCM_OTAPP_SRV.Emp_OTDetails_Asso" FromRole="FromRole_Emp_OTDetails_Asso"
-					ToRole="ToRole_Emp_OTDetails_Asso"/></EntityType>
-			<EntityType Name="Employee_f4" sap:content-version="1">
-				<Key><PropertyRef Name="Pernr"/></Key><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mid" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Empl./Appl.Name" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ind" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Indicator" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="QatarId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Identity Number" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:label="End Date" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/></EntityType>
-			<EntityType Name="Employee_OTDetails" sap:content-version="1">
-				<Key><PropertyRef Name="MilNo"/></Key><Property Name="MilNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Dates" Type="Edm.DateTime" Precision="7" sap:label="Start Date" sap:creatable="false" sap:updatable="false"
-					sap:sortable="false" sap:filterable="false"/><Property Name="Hrs" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="2" sap:label="Overtime hours" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Employee_OTDetails_Nav" Relationship="ZHCM_OTAPP_SRV.Emp_OTDetails_Asso" FromRole="ToRole_Emp_OTDetails_Asso"
-					ToRole="FromRole_Emp_OTDetails_Asso"/></EntityType>
-			<ComplexType Name="Otdetails"><Property Name="MilNo" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Mil No." sap:creatable="false" sap:updatable="false"
-				sap:sortable="false" sap:filterable="false"/><Property Name="Hrs" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="2" sap:label="OT Hrs" sap:creatable="false"
-				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Dates" Type="Edm.DateTime" Precision="7" sap:label="OT Dates" sap:creatable="false" sap:updatable="false"
-				sap:sortable="false" sap:filterable="false"/></ComplexType>
-			<Association Name="Emp_OTDetails_Asso" sap:content-version="1"><End Type="ZHCM_OTAPP_SRV.Employee_data" Multiplicity="1" Role="FromRole_Emp_OTDetails_Asso"/><End Type="ZHCM_OTAPP_SRV.Employee_OTDetails" Multiplicity="*" Role="ToRole_Emp_OTDetails_Asso"/>
-				<ReferentialConstraint>
-					<Principal Role="FromRole_Emp_OTDetails_Asso"><PropertyRef Name="Pernr"/><PropertyRef Name="Mid"/></Principal>
-					<Dependent Role="ToRole_Emp_OTDetails_Asso"><PropertyRef Name="Pernr"/><PropertyRef Name="MilNo"/></Dependent>
-				</ReferentialConstraint>
-			</Association>
-			<EntityContainer Name="ZHCM_OTAPP_SRV_Entities" m:IsDefaultEntityContainer="true"><EntitySet Name="Employee_dataSet" EntityType="ZHCM_OTAPP_SRV.Employee_data" sap:creatable="false" sap:updatable="false"
-				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="Employee_f4Set" EntityType="ZHCM_OTAPP_SRV.Employee_f4" sap:creatable="false" sap:updatable="false" sap:deletable="false"
-				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Employee_OTDetailsSet" EntityType="ZHCM_OTAPP_SRV.Employee_OTDetails" sap:creatable="false" sap:updatable="false"
-				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-				<AssociationSet Name="Emp_OTDetails_AssoSet" Association="ZHCM_OTAPP_SRV.Emp_OTDetails_Asso" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:content-version="1"><End EntitySet="Employee_dataSet" Role="FromRole_Emp_OTDetails_Asso"/><End EntitySet="Employee_OTDetailsSet" Role="ToRole_Emp_OTDetails_Asso"/></AssociationSet>
-			</EntityContainer><atom:link rel="self" href="http://HQ-SAPMDEV-01.QAG.GOV.QA:50000/sap/opu/odata/sap/ZHCM_OTAPP_SRV/$metadata"
-				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="http://HQ-SAPMDEV-01.QAG.GOV.QA:50000/sap/opu/odata/sap/ZHCM_OTAPP_SRV/$metadata"
-				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
-	</edmx:DataServices>
-</edmx:Edmx>
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHCM_OTAPP_SRV" xml:lang="en" sap:schema-version="0001">
+            <EntityType Name="Employee_data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mid"/>
+                </Key>
+                <Property Name="Mid" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Identity Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dept" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hrdate" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Employee_f4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mid" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Empl./Appl.Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ind" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QatarId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Identity Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Endda" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZHCM_OTAPP_SRV_Entities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Employee_dataSet" EntityType="ZHCM_OTAPP_SRV.Employee_data" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Employee_f4Set" EntityType="ZHCM_OTAPP_SRV.Employee_f4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHCM_OTAPP_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHCM_OTAPP_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

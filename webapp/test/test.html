@@ -19,7 +19,7 @@
 		<!--<script src="./test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>-->
 		
 		<script id="sap-ui-bootstrap"
-			src="./resources/sap-ui-core.js"
+			src="/resources/sap-ui-core.js"
 			data-sap-ui-libs="sap.m, sap.ui.layout, sap.ui.core, sap.ushell"
 			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-compatVersion="edge"
@@ -27,26 +27,6 @@
 			data-sap-ui-xx-bindingSyntax="complex"
 			data-sap-ui-resourceroots='{"OTApp": "../"}'>
 		</script>
-<script>
-var bRunWithMock = true;
-var sRunWithMock = jQuery.sap.getUriParameters().get('run-with-mock');
-if (sRunWithMock === 'false') {
-bRunWithMock = false;
-}
-if (bRunWithMock) {
-jQuery.sap.require('sap.ui.core.util.MockServer');
-var uri = '/sap/opu/odata/sap/ZHCM_OTAPP_SRV/';
-var oMock = new sap.ui.core.util.MockServer({rootUri : uri});
-var _sAppModulePath = "OTApp/";
-var sMetadataPath = "localService/metadata.xml";
-var sMetadataUrl = jQuery.sap.getModulePath(_sAppModulePath + sMetadataPath.replace(".xml", ""), ".xml");
-var sMockdataBaseUrlPath = sMetadataUrl.replace(/[^/]+$/, 'mockdata');
-oMock.simulate(sMetadataUrl, { sMockdataBaseUrl : sMockdataBaseUrlPath, bGenerateMissingMockData : true });
-oMock.start();
-	jQuery(document).ready(function($) {  sap.m.MessageToast.show('Running in demo mode with mock data.', {  duration : 4000 });
-});
-}
-</script>
 
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 
