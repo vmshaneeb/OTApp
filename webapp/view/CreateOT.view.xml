@@ -26,7 +26,8 @@
 					<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 				</content>
 			</Toolbar>
-			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete" items="{/Employee_dataSet}" delete="deleteItem" fixedLayout="false">
+			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete"
+				items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
 				<!--<headerToolbar class="sapUiVisibleOnlyOnDesktop">-->
 				<!--	<Title text="{i18n>OT}" level="H2"/>-->
 				<!--	<ToolbarSpacer id="__spacer2"/>-->
