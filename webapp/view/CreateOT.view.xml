@@ -106,9 +106,9 @@
 			</Toolbar>
 			<!--</ScrollContainer>-->
 			<footer>
-				<Toolbar>
+				<Toolbar press="onSubmitBtn">
 					<ToolbarSpacer/>
-					<Button id="idSubmit_copy" text="{i18n>Submit}" press="OnPressSubmit" type="Accept" icon="sap-icon://accept"/>
+					<Button id="idSubmit_copy" text="{i18n>Submit}" press="onSubmitBtn" type="Accept" icon="sap-icon://accept"/>
 					<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
 					<content/>
 				</Toolbar>
