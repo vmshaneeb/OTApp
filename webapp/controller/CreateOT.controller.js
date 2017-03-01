@@ -12,8 +12,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/odata/v2/ODataModel",
-	"OTApp/utils/Validator"
-], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator) {
+	"OTApp/utils/Validator",
+	"sap/m/MessageBox"
+], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator, MessageBox) {
 	"use strict";
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
 	//proxy/http/172.16.76.134:50000
@@ -166,12 +167,21 @@ sap.ui.define([
 			// var model = this.getView().getModel();
 			var model = tbl.getModel();
 			// var data = model.getData();
-			for (var j = result.AllDates.length - 1; j >= 0; j--) {
-				if (result.AllDates[j].MilNo === result.Employee_dataSet[index].Mid) {
-					result.AllDates.splice(j, 1);
+			if (result.AllDates !== undefined) {
+				for (var j = result.AllDates.length - 1; j >= 0; j--) {
+					if (result.AllDates[j].MilNo === result.Employee_dataSet[index].Mid) {
+						result.AllDates.splice(j, 1);
+					}
 				}
 			}
-			result.TempDates = [];
+			if (result.TempDates !== undefined) {
+				result.TempDates = [];
+			}
+
+			if (result.DocDetailsSet !== undefined) {
+				result.DocDetailsSet = [];
+			}
+
 			var data = model.getProperty("/Employee_dataSet");
 			data.splice(index, 1);
 			model.setProperty("/Employee_dataSet", data); // model.setData(data);
@@ -194,7 +204,7 @@ sap.ui.define([
 			var oSelectedItems = oEvent.getParameter("selectedItems"),
 				stmt = "",
 				uri = "";
-			if (oSelectedItems.length) {
+			if (oSelectedItems && oSelectedItems.length) {
 				for (var i = 0; i < oSelectedItems.length; i++) {
 					var item = oSelectedItems[i],
 						context = item.getBindingContext(),
@@ -203,7 +213,7 @@ sap.ui.define([
 					var OTemp = $(result.Employee_dataSet).filter(function(i, n) {
 						return n.Mid === obj.Mid;
 					});
-					if (OTemp.length === 0) {
+					if (OTemp && OTemp.length === 0) {
 						if (i === 0) {
 							stmt = obj.Mid;
 						} else {
@@ -280,7 +290,7 @@ sap.ui.define([
 				});
 				var cal = sap.ui.getCore().byId("calendar");
 				sap.ui.getCore().byId("calendar").removeAllSelectedDates();
-				if (OTemp.length > 0) {
+				if (OTemp && OTemp.length > 0) {
 					result.TempDates = [];
 					sap.ui.getCore().byId("calendar").removeAllSelectedDates();
 					for (var i = 0; i < OTemp.length; i++) {
@@ -308,16 +318,16 @@ sap.ui.define([
 			// if (aSelectedDates.length !== result.TempDates.length) {
 			// 	result.TempDates = [];
 			// }
-			if (aSelectedDates.length > 0) {
+			if (aSelectedDates && aSelectedDates.length > 0) {
 				tmp = result.TempDates;
 				result.TempDates = [];
 				for (var i = 0; i < aSelectedDates.length; i++) {
 					var seldt = aSelectedDates[i].getStartDate();
-					if (tmp.length !== 0) {
+					if (tmp && tmp.length !== 0) {
 						OTemp = $(tmp).filter(function(i, n) {
 							return n.Dates === seldt;
 						});
-						if (OTemp.length !== 0) {
+						if (OTemp && OTemp.length !== 0) {
 							list = {
 								"MilNo": midSelect,
 								"Dates": seldt,
@@ -409,10 +419,14 @@ sap.ui.define([
 			var dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 				pattern: "yyyy-MM-ddTKK:mm:ss"
 			});
-			docdt = dateFormat.format(docdt);
+
+			if (docdt && docdt.length !== 0) {
+				docdt = dateFormat.format(docdt);
+			}
+
 			if (docno === "") {
 				MessageToast.show(i18nModel.getProperty("DocnEmpt"));
-			} else if (docdt === "") {
+			} else if (docdt === "" || docdt === null) {
 				MessageToast.show(i18nModel.getProperty("DocdtEmpt"));
 			} else if (result.Employee_dataSet === undefined || result.Employee_dataSet.length === 0) {
 				MessageToast.show(i18nModel.getProperty("EmpEmpt"));
@@ -433,13 +447,15 @@ sap.ui.define([
 						Mid: result.Employee_dataSet[i].Mid,
 						Orgtx: result.Employee_dataSet[i].Orgtx,
 						Orgunit: result.Employee_dataSet[i].Orgunit,
+						Orgtx2: result.Employee_dataSet[i].Orgtx2,
+						Orgunit2: result.Employee_dataSet[i].Orgunit2,
 						Otamt: result.Employee_dataSet[i].Otamt,
 						Pernr: result.Employee_dataSet[i].Pernr,
 						Plstx: result.Employee_dataSet[i].Plstx,
 						Posn: result.Employee_dataSet[i].Posn
 					});
 				}
-				
+
 				var ot = [];
 				for (i = 0; i < result.AllDates.length; i++) {
 					if (result.AllDates[i].Hrs === "") {
@@ -516,13 +532,15 @@ sap.ui.define([
 						Hrs: result.Employee_dataSet[i].Hrs,
 						Orgtx: result.Employee_dataSet[i].Orgtx,
 						Orgunit: result.Employee_dataSet[i].Orgunit,
+						Orgtx2: result.Employee_dataSet[i].Orgtx2,
+						Orgunit2: result.Employee_dataSet[i].Orgunit2,
 						Otamt: result.Employee_dataSet[i].Otamt,
 						Pernr: result.Employee_dataSet[i].Pernr,
 						Plstx: result.Employee_dataSet[i].Plstx,
 						Posn: result.Employee_dataSet[i].Posn
 					});
 				}
-				
+
 				var ot = [];
 				for (i = 0; i < result.OtdetailsSet.length; i++) {
 					if (result.AllDates[i].Hrs === "") {
@@ -541,7 +559,7 @@ sap.ui.define([
 						});
 					}
 				}
-				
+
 				var data = {
 					"Flag": "X",
 					"Docno": docno,
@@ -552,6 +570,32 @@ sap.ui.define([
 
 				oModel.create("/DocDetailsSet", data, {
 					success: function(oData, oResponse) {
+						MessageToast.show(i18nModel.getProperty("reqSend"));
+						result.DocDetailsSet = oResponse.data;
+						result.Employee_dataSet = result.DocDetailsSet.EmpSet.results;
+						result.OtdetailsSet = result.DocDetailsSet.OtdetailsSet.results;
+						jModel.setData(result);
+
+						// result.Wids = [];
+
+						// for (i = 0; i < result.Employee_dataSet.length; i++) {
+						// 	result.Wids.push({
+						// 		"Mid": result.Employee_dataSet[i].Mid,
+						// 		"Wid": result.Employee_dataSet[i].Wid
+						// 	});
+						// }
+
+						// var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+
+						// MessageBox.show("Submit", {
+						// 	icon: MessageBox.Icon.SUCCESS,
+						// 	title: "Information",
+						// 	actions: [MessageBox.Action.OK],
+						// 	id: "messageBoxId1",
+						// 	defaultAction: MessageBox.Action.OK,
+						// 	details: result.Wids,
+						// 	styleClass: bCompact ? "sapUiSizeCompact" : ""
+						// });
 
 					},
 					error: function(oError) {

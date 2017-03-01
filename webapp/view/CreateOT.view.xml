@@ -7,7 +7,7 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="{i18n>docn}" required="true"/>
-					<Input id="docno" editable="true" width="120px"/>
+					<Input id="docno" editable="true" width="120px" maxLength="20"/>
 					<!--change="onDocChange"-->
 					<!--value="{type : 'sap.ui.model.type.String', path: '/text', constraints : { minLength : 1 }}"/>-->
 					<core:Title text=""/>
@@ -44,6 +44,9 @@
 						<Text text="{i18n>Dept}"/>
 					</Column>
 					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Dept2}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
 						<Text text="{i18n>Posn}"/>
 					</Column>
 					<Column minScreenWidth="Tablet">
@@ -72,6 +75,7 @@
 							<Text text="{Mid}"/>
 							<Text text="{Ename}" wrapping="false"/>
 							<Text text="{Orgtx}" textDirection="RTL"/>
+							<Text text="{Orgtx2}" textDirection="RTL"/>
 							<Text text="{Plstx}" textDirection="RTL"/>
 							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
