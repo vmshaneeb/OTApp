@@ -1,11 +1,13 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="OTApp.controller.DisplayOT" displayBlock="true">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="OTApp.controller.DisplayOT" displayBlock="true">
 	<App id="display">
-		<Page id="idDetails" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn" enableScrolling="true">
+		<Page id="idDetails" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn"
+			enableScrolling="true">
 			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="{i18n>MID}"/>
-					<Input value="{MID}" showValueHelp="true" editable="true" width="120px"/>
+					<Input value="{MID}" showValueHelp="true" editable="true" width="120px" change="handleMID" valueHelpRequest="handleValueHelp"/>
 					<Label text="{i18n>docn}"/>
 					<Input value="{docno}" showValueHelp="true" editable="true" width="120px"/>
 					<core:Title text=""/>
@@ -51,7 +53,10 @@
 						<Text text="{i18n>EmpName}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>OrgUnit}"/>
+						<Text text="{i18n>Dept}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>Dept2}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>Posn}"/>
@@ -71,12 +76,9 @@
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTDate}"/>
 					</Column>
-					<!--<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">-->
-					<!--	<Text text="{i18n>Hrate}"/>-->
-					<!--</Column>-->
-					<!--<Column demandPopin="true" hAlign="Center">-->
-					<!--	<Text text="{i18n>NoDays}"/>-->
-					<!--</Column>-->
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTHrs}"/>
+					</Column>
 					<Column demandPopin="true" hAlign="Center">
 						<Text text="{i18n>OTAmt}"/>
 					</Column>
@@ -84,18 +86,20 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Text text="{MID}"/>
-							<Text text="{Name}" wrapping="false"/>
-							<Text text="{Orgunit}"/>
-							<Text text="{Position}"/>
-							<Text text="{EmpGrp}"/>
-							<Text text="{Empsubgrp}"/>
-							<Text text="{docn}"/>
-							<Text text="{docdt}"/>
-							<Text text="{OTdate}"/>
-							<!--<Text text="{hrate}"/>-->
-							<!--<Text text="{nodays}"/>-->
-							<Text text="{OTAmt}"/>
+							<Text text="{Mid}"/>
+							<Text text="{Ename}" wrapping="false"/>
+							<Text text="{Orgtx}" textDirection="RTL"/>
+							<Text text="{Orgtx2}" textDirection="RTL"/>
+							<Text text="{Plstx}" textDirection="RTL"/>
+							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+							<Button id="idShowDates" type="Emphasized" icon="sap-icon://add" press="showDates">
+								<customData>
+									<core:CustomData key="Mid" value="{Mid}"/>
+								</customData>
+							</Button>
+							<Text text="{Hrs}"/>
+							<Text text="{Otamt}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

@@ -13,8 +13,13 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/odata/v2/ODataModel",
 	"OTApp/utils/Validator",
-	"sap/m/MessageBox"
-], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/m/Button",
+	"sap/m/Dialog",
+	"sap/m/List",
+	"sap/m/StandardListItem"
+], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator, MessageBox, Button, Dialog, List,
+	StandardListItem) {
 	"use strict";
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
 	//proxy/http/172.16.76.134:50000
@@ -60,6 +65,8 @@ sap.ui.define([
 				oEvent.getParameter("docno").setValueState(sap.ui.core.ValueState.None);
 			});
 			me = this;
+
+			// this.byId("docdt").setDateValue(new Date());
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -496,6 +503,9 @@ sap.ui.define([
 				});
 			}
 		},
+
+		pressDialog: null,
+
 		/**
 		 *@memberOf OTApp.controller.CreateOT
 		 */
@@ -568,6 +578,8 @@ sap.ui.define([
 					"OtdetailsSet": ot
 				};
 
+				var that = this;
+
 				oModel.create("/DocDetailsSet", data, {
 					success: function(oData, oResponse) {
 						MessageToast.show(i18nModel.getProperty("reqSend"));
@@ -576,27 +588,67 @@ sap.ui.define([
 						result.OtdetailsSet = result.DocDetailsSet.OtdetailsSet.results;
 						jModel.setData(result);
 
-						// result.Wids = [];
+						result.Wids = [];
 
-						// for (i = 0; i < result.Employee_dataSet.length; i++) {
-						// 	result.Wids.push({
-						// 		"Mid": result.Employee_dataSet[i].Mid,
-						// 		"Wid": result.Employee_dataSet[i].Wid
-						// 	});
-						// }
+						for (i = 0; i < result.Employee_dataSet.length; i++) {
+							result.Wids.push({
+								"Mid": result.Employee_dataSet[i].Mid,
+								"Wid": result.Employee_dataSet[i].Wid
+							});
+						}
 
-						// var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+						var oTable = new sap.m.Table({
+								fixedLayout: false
+							}),
 
-						// MessageBox.show("Submit", {
-						// 	icon: MessageBox.Icon.SUCCESS,
-						// 	title: "Information",
-						// 	actions: [MessageBox.Action.OK],
-						// 	id: "messageBoxId1",
-						// 	defaultAction: MessageBox.Action.OK,
-						// 	details: result.Wids,
-						// 	styleClass: bCompact ? "sapUiSizeCompact" : ""
-						// });
+							oModel2 = new JSONModel(result.Wids);
 
+						oTable.addColumn(new sap.m.Column({
+							header: new sap.m.Label({
+								text: i18nModel.getProperty("MID")
+							})
+						}));
+
+						oTable.addColumn(new sap.m.Column({
+							header: new sap.m.Label({
+								text: i18nModel.getProperty("WID")
+							})
+						}));
+
+						var oTemplate = new sap.m.ColumnListItem({
+							type: sap.m.ListType.Active,
+							cells: [
+								new sap.m.Label({
+									text: "{Mid}"
+								}),
+								new sap.m.Label({
+									text: "{Wid}"
+								})
+							]
+						});
+
+						oTable.setModel(oModel2);
+						oTable.bindAggregation("items", "/", oTemplate);
+
+						var tit = i18nModel.getProperty("witems");
+
+						if (!that.pressDialog) {
+							that.pressDialog = new Dialog({
+								title: tit,
+								content: oTable,
+								beginButton: new Button({
+									text: 'Close',
+									press: function() {
+										that.pressDialog.close();
+									}
+								})
+							});
+
+							//to get access to the global model
+							that.getView().addDependent(that.pressDialog);
+						}
+
+						that.pressDialog.open();
 					},
 					error: function(oError) {
 						MessageToast.show(i18nModel.getProperty("Oderr"));
