@@ -21,7 +21,8 @@ sap.ui.define([
 		Mid = "",
 		midSelect = "",
 		i18nModel = i18nModel,
-		stmt = "";
+		stmt = "",
+		uri = "";
 
 	return Controller.extend("OTApp.controller.DisplayOT", {
 		/**
@@ -38,8 +39,6 @@ sap.ui.define([
 					jModel.setData(result);
 				},
 				error: function(oError) {
-					// jQuery.sap.log.info("OData Read Error!!!");
-					// MessageToast.show("OData Read Error!!!");
 					MessageToast.show(i18nModel.getProperty("Oderr"));
 				}
 			});
@@ -79,6 +78,9 @@ sap.ui.define([
 			}
 		},
 		//  For User Search help
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
 		handleValueHelp: function(oEvent) {
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("OTApp.view.User",
@@ -88,7 +90,7 @@ sap.ui.define([
 			this.getView().setModel(jModel);
 
 			// Multi-select if required
-			var bMultiSelect = !!oEvent.getSource().data("multi");
+			// var bMultiSelect = !!oEvent.getSource().data("multi");
 			this._oDialog.setMultiSelect(true);
 			// Remember selections if required
 			var bRemember = !!oEvent.getSource().data("remember");
@@ -105,6 +107,9 @@ sap.ui.define([
 
 			this._oDialog.open();
 		},
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
 		_handleValueHelpSearch: function(oEvent) {
 			var sValue = oEvent.getParameter("value");
 			var oFilter = new sap.ui.model.Filter("Mid", sap.ui.model.FilterOperator.Contains, sValue);
@@ -117,6 +122,9 @@ sap.ui.define([
 			], false);
 			oEvent.getSource().getBinding("items").filter(allfilter);
 		},
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
 		_handleValueHelpClose: function(oEvent) {
 			var oSelectedItems = oEvent.getParameter("selectedItems"),
 				// stmt = "",
@@ -150,29 +158,33 @@ sap.ui.define([
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
 		OnPressSearch: function() {
-			// if (stmt.length) {
-			// 	var me = this.
-			// 	uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "'&$expand=EmpSet,OtdetailsSet";
-			// 	oModel.read(uri, {
-			// 		success: function(oData, oResponse) {
-			// 			if (result.Employee_DispSet === undefined) {
-			// 				result.Employee_DispSet = [];
-			// 			}
-			// 			if (result.Employee_DispSet.length === 0) {
-			// 				result.Employee_DispSet = oData.results;
-			// 			} else {
-			// 				for (var j = 0; j < oData.results.length; j++) {
-			// 					result.Employee_DispSet.push(oData.results[j]);
-			// 				}
-			// 			}
-			// 			jModel.setData(result);
-			// 			me.getView().setModel(jModel);
-			// 		},
-			// 		error: function(oError) {
-			// 			MessageToast.show(i18nModel.getProperty("Oderr"));
-			// 		}
-			// 	});
-			// }
+			var me = this;
+			
+			if(stmt && stmt.length) {
+
+				uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "' &$expand=EmpSet,OtdetailsSet";
+				oModel.read(uri, {
+					success: function(oData, oResponse) {
+						if (result.Employee_DispSet === undefined) {
+							result.Employee_DispSet = [];
+						}
+						if (result.Employee_DispSet.length === 0) {
+							result.Employee_DispSet = oData.results;
+							// result.EmpSet = oData.results.EmpSet.results;
+							// result.OtdetailsSet = oData.results.OtdetailsSet.results;
+						} else {
+							for (var j = 0; j < oData.results.length; j++) {
+								result.Employee_DispSet.push(oData.results[j]);
+							}
+						}
+						jModel.setData(result);
+						me.getView().setModel(jModel);
+					},
+					error: function(oError) {
+						MessageToast.show(i18nModel.getProperty("Oderr"));
+					}
+				});
+			}
 		}
 	});
 });

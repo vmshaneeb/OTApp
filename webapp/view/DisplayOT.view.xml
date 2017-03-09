@@ -39,7 +39,10 @@
 					<Input value="{EmpName}" showValueHelp="true"/>-->
 				</f:content>
 			</f:SimpleForm>
-			<Table id="idOTTable" inset="false" items="{path: '/'}" growing="true" growingScrollToLoad="true" mode="MultiSelect">
+			<!--parameters:{expand : 'EmpSet'}-->
+			<Table id="idOTTable" inset="false"
+				items="{path: '/Employee_DispSet', parameters:{expand : 'EmpSet'}, sorter : { path : 'Mid', descending : false }}" growing="true"
+				growingScrollToLoad="true" mode="MultiSelect">
 				<headerToolbar class="sapUiVisibleOnlyOnDesktop">
 					<Toolbar class="sapUiVisibleOnlyOnDesktop">
 						<Title text="{i18n>OT}" level="H2"/>
@@ -93,7 +96,9 @@
 							<Text text="{Plstx}" textDirection="RTL"/>
 							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
-							<Button id="idShowDates" type="Emphasized" icon="sap-icon://add" press="showDates">
+							<Text text="{Docno}"/>
+							<Text text="{Docdate}"/>
+							<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
 								<customData>
 									<core:CustomData key="Mid" value="{Mid}"/>
 								</customData>
