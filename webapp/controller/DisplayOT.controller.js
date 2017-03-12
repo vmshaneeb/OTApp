@@ -6,8 +6,9 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"sap/m/MessageToast",
 	"sap/m/MessageBox",
-	"sap/ui/model/Filter"
-], function(Controller, JSONModel, ODataModel, ODataModelv2, Fragment, MessageToast, MessageBox, Filter) {
+	"sap/ui/model/Filter",
+	"OTApp/utils/Formatter"
+], function(Controller, JSONModel, ODataModel, ODataModelv2, Fragment, MessageToast, MessageBox, Filter, Formatter) {
 	"use strict";
 
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
@@ -20,6 +21,7 @@ sap.ui.define([
 		Pernr = "",
 		Mid = "",
 		midSelect = "",
+		docSelect = "",
 		i18nModel = i18nModel,
 		stmt = "",
 		uri = "";
@@ -93,8 +95,8 @@ sap.ui.define([
 			// var bMultiSelect = !!oEvent.getSource().data("multi");
 			this._oDialog.setMultiSelect(true);
 			// Remember selections if required
-			var bRemember = !!oEvent.getSource().data("remember");
-			this._oDialog.setRememberSelections(bRemember);
+			// var bRemember = !!oEvent.getSource().data("remember");
+			this._oDialog.setRememberSelections(true);
 
 			// clear the old search filter
 			this._oDialog.getBinding("items").filter([]);
@@ -135,7 +137,7 @@ sap.ui.define([
 						context = item.getBindingContext(),
 						obj = context.getProperty(null, context);
 
-					var OTemp = $(result.Employee_dataSet).filter(function(i, n) {
+					var OTemp = $(result.EmpSet).filter(function(i, n) {
 						return n.Mid === obj.Mid;
 					});
 					if (OTemp && OTemp.length === 0) {
@@ -157,10 +159,72 @@ sap.ui.define([
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
+		showDates: function(oEvent) {
+			if (!this._oPopover) {
+				this._oPopover = sap.ui.xmlfragment("OTApp.utils.PopoverDisp", this);
+				this.getView().addDependent(this._oPopover);
+			}
+
+			midSelect = oEvent.getSource().data("Mid");
+			docSelect = oEvent.getSource().data("Docno");
+
+			if (result.OtdetailsSet.length > 0) {
+				result.TempDates = [];
+				var OTemp = $(result.OtdetailsSet).filter(function(i, n) {
+					return n.MilNo === midSelect && n.Docno === docSelect;
+				});
+				var cal = sap.ui.getCore().byId("calendarDisp");
+				cal.removeAllSelectedDates();
+				if (OTemp && OTemp.length > 0) {
+					for (var i = 0; i < OTemp.length; i++) {
+						result.TempDates.push(OTemp[i]);
+						var dt = new Date(OTemp[i].Dates);
+						var dr = new sap.ui.unified.DateTypeRange({
+							startDate: dt
+						});
+						cal.addSelectedDate(dr);
+					}
+				} else {
+					result.TempDates = [];
+				}
+			} else {
+				result.TempDates = [];
+			}
+
+			jModel.setData(result);
+			this.getView().setModel(jModel);
+			this._oPopover.openBy(oEvent.getSource());
+		},
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
+		handleCloseButton: function() {
+			this._oPopover.close();
+		},
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
+		RemoveAll: function() {
+			result.TempDates = [];
+			result.Employee_DispSet = [];
+			result.EmpSet = [];
+			result.OtdetailsSet = [];
+			
+			jModel.setData(result);
+			this.getView().setModel(jModel);
+		},
+		/**
+		 *@memberOf OTApp.controller.DisplayOT
+		 */
 		OnPressSearch: function() {
 			var me = this;
-			
-			if(stmt && stmt.length) {
+
+			var milno = this.getView().byId("milno").getValue();
+			if (milno.length === 0 && result.EmpSet === undefined) {
+				stmt = " ";
+			}
+
+			if (stmt && stmt.length) {
 
 				uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "' &$expand=EmpSet,OtdetailsSet";
 				oModel.read(uri, {
@@ -168,15 +232,30 @@ sap.ui.define([
 						if (result.Employee_DispSet === undefined) {
 							result.Employee_DispSet = [];
 						}
+						if (result.EmpSet === undefined) {
+							result.EmpSet = [];
+						}
+						if (result.OtdetailsSet === undefined) {
+							result.OtdetailsSet = [];
+						}
 						if (result.Employee_DispSet.length === 0) {
 							result.Employee_DispSet = oData.results;
-							// result.EmpSet = oData.results.EmpSet.results;
-							// result.OtdetailsSet = oData.results.OtdetailsSet.results;
+						}
+						if (result.EmpSet === 0) {
+							result.EmpSet = oData.results[0].EmpSet.results;
 						} else {
-							for (var j = 0; j < oData.results.length; j++) {
-								result.Employee_DispSet.push(oData.results[j]);
+							for (var j = 0; j < oData.results[0].EmpSet.results.length; j++) {
+								result.EmpSet.push(oData.results[0].EmpSet.results[j]);
 							}
 						}
+						if (result.OtdetailsSet === 0) {
+							result.OtdetailsSet = oData.results[0].OtdetailsSet.results;
+						} else {
+							for (j = 0; j < oData.results[0].OtdetailsSet.results.length; j++) {
+								result.OtdetailsSet.push(oData.results[0].OtdetailsSet.results[j]);
+							}
+						}
+
 						jModel.setData(result);
 						me.getView().setModel(jModel);
 					},
@@ -184,6 +263,8 @@ sap.ui.define([
 						MessageToast.show(i18nModel.getProperty("Oderr"));
 					}
 				});
+
+				stmt = "";
 			}
 		}
 	});
