@@ -24,7 +24,8 @@ sap.ui.define([
 		docSelect = "",
 		i18nModel = i18nModel,
 		stmt = "",
-		uri = "";
+		uri = "",
+		selItems = [];
 
 	return Controller.extend("OTApp.controller.DisplayOT", {
 		/**
@@ -128,14 +129,17 @@ sap.ui.define([
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
 		_handleValueHelpClose: function(oEvent) {
-			var oSelectedItems = oEvent.getParameter("selectedItems"),
-				// stmt = "",
-				uri = "";
+			var oSelectedItems = oEvent.getParameter("selectedItems");
+			// stmt = "",
+			// var uri = "";
+			selItems = [];
 			if (oSelectedItems && oSelectedItems.length) {
 				for (var i = 0; i < oSelectedItems.length; i++) {
 					var item = oSelectedItems[i],
 						context = item.getBindingContext(),
 						obj = context.getProperty(null, context);
+
+					selItems.push(obj.Mid);
 
 					var OTemp = $(result.EmpSet).filter(function(i, n) {
 						return n.Mid === obj.Mid;
@@ -209,7 +213,7 @@ sap.ui.define([
 			result.Employee_DispSet = [];
 			result.EmpSet = [];
 			result.OtdetailsSet = [];
-			
+
 			jModel.setData(result);
 			this.getView().setModel(jModel);
 		},
@@ -217,16 +221,38 @@ sap.ui.define([
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
 		OnPressSearch: function() {
-			var me = this;
+			var me = this,
+				docno = "",
+				month = "",
+				year = "";
 
-			var milno = this.getView().byId("milno").getValue();
-			if (milno.length === 0 && result.EmpSet === undefined) {
+			// var dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+			// 	pattern: "yyyy-MM-ddTKK:mm:ss"
+			// });
+
+			docno = this.getView().byId("docno").getValue();
+
+			if (this.getView().byId("month").getDateValue() !== null) {
+				month = this.getView().byId("month").getDateValue().getMonth() + 1;
+			}
+			if (this.getView().byId("year").getDateValue() !== null) {
+				year = this.getView().byId("year").getDateValue().getFullYear();
+			}
+
+			// var milno = this.getView().byId("milno").getValue();
+			// if (milno.length === 0 && (result.EmpSet === undefined || result.EmpSet.length === 0)) {
+			// 	stmt = " ";
+			// }
+
+			if (stmt === "" && (result.EmpSet === undefined || result.EmpSet.length === 0)) {
 				stmt = " ";
 			}
 
 			if (stmt && stmt.length) {
 
-				uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "' &$expand=EmpSet,OtdetailsSet";
+				uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "'" + " and Docno eq '" + docno + "'" + " and Month eq '" + month + "'" +
+					" and Year eq '" + year + "'" + " &$expand=EmpSet,OtdetailsSet";
+				// uri = "/Employee_DispSet?$filter=Mid eq '" + stmt + "' &$expand=EmpSet,OtdetailsSet";
 				oModel.read(uri, {
 					success: function(oData, oResponse) {
 						if (result.Employee_DispSet === undefined) {
@@ -241,14 +267,14 @@ sap.ui.define([
 						if (result.Employee_DispSet.length === 0) {
 							result.Employee_DispSet = oData.results;
 						}
-						if (result.EmpSet === 0) {
+						if (result.EmpSet.length === 0) {
 							result.EmpSet = oData.results[0].EmpSet.results;
 						} else {
 							for (var j = 0; j < oData.results[0].EmpSet.results.length; j++) {
 								result.EmpSet.push(oData.results[0].EmpSet.results[j]);
 							}
 						}
-						if (result.OtdetailsSet === 0) {
+						if (result.OtdetailsSet.length === 0) {
 							result.OtdetailsSet = oData.results[0].OtdetailsSet.results;
 						} else {
 							for (j = 0; j < oData.results[0].OtdetailsSet.results.length; j++) {

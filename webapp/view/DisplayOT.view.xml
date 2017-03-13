@@ -1,20 +1,22 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="OTApp.controller.DisplayOT" displayBlock="true">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="OTApp.controller.DisplayOT" displayBlock="true">
 	<App id="display">
-		<Page id="idDetails" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn" enableScrolling="true">
+		<Page id="idDetails" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn"
+			enableScrolling="true">
 			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="{i18n>MID}"/>
-					<Input id="milno" value="{MID}" showValueHelp="true" editable="true" width="120px" change="handleMID" valueHelpRequest="handleValueHelp"/>
+					<Input id="milno" showValueHelp="true" editable="true" width="120px" change="handleMID" valueHelpRequest="handleValueHelp"/>
 					<Label text="{i18n>docn}"/>
-					<Input value="{docno}" showValueHelp="true" editable="true" width="120px"/>
+					<Input id="docno" editable="true" width="120px"/>
 					<core:Title text=""/>
 					<Label text="{i18n>Month}"/>
-					<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="MM" width="100px"/>
+					<DatePicker id="month" editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="MM" width="100px"/>
 					<Label text="{i18n>Year}"/>
 					<VBox>
 						<!--<Input value="{Year}" showValueHelp="true" editable="true" width="100px"/>-->
-						<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="yyyy" width="100px"/>
+						<DatePicker id="year" editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="yyyy" width="100px"/>
 						<Button id="idSearch" text="{i18n>Search}" press="OnPressSearch" icon="sap-icon://search" width="100px" type="Emphasized"/>
 					</VBox>
 					<!--<Button id="idClear" text="{i18n>Clear}" press="OnPressClrSearch" icon="sap-icon://clear-filter" width="100px"/>-->
@@ -37,7 +39,8 @@
 					<Input value="{EmpName}" showValueHelp="true"/>-->
 				</f:content>
 			</f:SimpleForm>
-			<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true" growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false">
+			<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
+				growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false">
 				<headerToolbar class="sapUiVisibleOnlyOnDesktop">
 					<Toolbar class="sapUiVisibleOnlyOnDesktop">
 						<Title text="{i18n>OT}" level="H2"/>
@@ -93,7 +96,8 @@
 							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 							<Text text="{Docno}"/>
 							<!--<Text text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatter: '.formatter.dateFormat'}"/>-->
-							<Text text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
+							<Text
+								text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
 							<!--<formatOptions: { pattern: 'dd.MM.yyyy' }}"-->
 							<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
 								<customData>
@@ -110,7 +114,7 @@
 			<Toolbar width="100%" id="__toolbar2">
 				<content>
 					<ToolbarSpacer id="__spacer1"/>
-					<Button id="idRemRows" press="RemoveAll" type="Reject" icon="sap-icon://reset">
+					<Button id="idRemRows" press="RemoveAll" type="Reject" icon="sap-icon://employee-rejections">
 						<customData>
 							<core:CustomData key="multi" value="true"/>
 							<!--<core:CustomData key="remember" value="true"/>-->

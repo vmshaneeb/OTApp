@@ -12,7 +12,7 @@
 	<!--		</P13nColumnsPanel>-->
 	<!--	</panels>-->
 	<!--</P13nDialog>-->
-	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Bottom">
+	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Auto">
 		<beginButton>
 			<Button press="handleRemoveSelection" text="{i18n>RemAll}"/>
 		</beginButton>
