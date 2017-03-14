@@ -92,6 +92,9 @@ sap.ui.define([
 			if (this._oDialog) {
 				this._oDialog.destroy();
 			}
+			if (this._oPopover) {
+				this._oPopover.destroy();
+			}
 		},
 		/**
 		 *@memberOf OTApp.controller.ChangeOT
@@ -275,6 +278,7 @@ sap.ui.define([
 				MessageToast.show(msg); // MessageToast.show("!!! Pls select an employee first !!!");
 			}
 			oEvent.getSource().getBinding("items").filter([]);
+			// this._oDialog.destroy();
 		},
 		/**
 		 *@memberOf OTApp.controller.CreateOT
@@ -397,9 +401,10 @@ sap.ui.define([
 					this.getView().setModel(jModel);
 				}
 				this._oPopover.close();
+				// this._oPopover.destroy();
 			} else {
-				MessageToast.show(i18nModel.getProperty("chkOTHrs"));
-			}
+				MessageToast.show(i18nModel.getProperty("chkOTHrs"));			}
+			
 		},
 		handleRemoveSelection: function(oEvent) {
 			result.TempDates = [];

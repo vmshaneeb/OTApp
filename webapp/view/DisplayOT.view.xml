@@ -7,7 +7,9 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="{i18n>MID}"/>
-					<Input id="milno" showValueHelp="true" editable="true" width="120px" change="handleMID" valueHelpRequest="handleValueHelp"/>
+					<!--<Input id="milno" showValueHelp="true" editable="true" width="120px" change="handleMID" valueHelpRequest="handleValueHelp"/>-->
+					<!--tokens="{ path: '/Employee_f4Set', sorter: { path: 'Mid' } }"-->
+					<MultiInput id="multiinput1" width="120px" enableMultiLineMode="true" valueHelpRequest="handleValueHelp"/>
 					<Label text="{i18n>docn}"/>
 					<Input id="docno" editable="true" width="120px"/>
 					<core:Title text=""/>
@@ -40,7 +42,7 @@
 				</f:content>
 			</f:SimpleForm>
 			<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
-				growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false">
+				growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
 				<headerToolbar class="sapUiVisibleOnlyOnDesktop">
 					<Toolbar class="sapUiVisibleOnlyOnDesktop">
 						<Title text="{i18n>OT}" level="H2"/>

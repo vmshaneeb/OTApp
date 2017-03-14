@@ -14,7 +14,7 @@ sap.ui.define([
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
 
 	var oModel = new ODataModel(url),
-		oModelv2 = new ODataModelv2(url),
+		// oModelv2 = new ODataModelv2(url),
 		jModel = new JSONModel();
 
 	var result = {},
@@ -25,7 +25,8 @@ sap.ui.define([
 		i18nModel = i18nModel,
 		stmt = "",
 		uri = "",
-		selItems = [];
+		selItems = [],
+		theTokenInput = "";
 
 	return Controller.extend("OTApp.controller.DisplayOT", {
 		/**
@@ -79,6 +80,9 @@ sap.ui.define([
 			if (this._oDialog) {
 				this._oDialog.destroy();
 			}
+			if (this._oPopover) {
+				this._oPopover.destroy();
+			}
 		},
 		//  For User Search help
 		/**
@@ -130,6 +134,7 @@ sap.ui.define([
 		 */
 		_handleValueHelpClose: function(oEvent) {
 			var oSelectedItems = oEvent.getParameter("selectedItems");
+			var aTokens = [];
 			// stmt = "",
 			// var uri = "";
 			selItems = [];
@@ -140,6 +145,18 @@ sap.ui.define([
 						obj = context.getProperty(null, context);
 
 					selItems.push(obj.Mid);
+
+					theTokenInput = this.getView().byId("multiinput1");
+
+					var token1 = new sap.m.Token({
+						key: obj.Mid,
+						text: obj.Mid,
+						editable: false
+					});
+
+					aTokens.push(token1);
+
+					theTokenInput.setTokens(aTokens);
 
 					var OTemp = $(result.EmpSet).filter(function(i, n) {
 						return n.Mid === obj.Mid;
@@ -159,6 +176,7 @@ sap.ui.define([
 			}
 
 			oEvent.getSource().getBinding("items").filter([]);
+			// this._oDialog.destroy();
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
@@ -204,6 +222,7 @@ sap.ui.define([
 		 */
 		handleCloseButton: function() {
 			this._oPopover.close();
+			// this._oPopover.destroy();
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT

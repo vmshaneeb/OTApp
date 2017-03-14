@@ -1,82 +1,87 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="OTApp.controller.ChangeOT"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="OTApp.controller.ChangeOT" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
-		<pages>
-			<Page title="{i18n>title3}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange">
-				<!--<content>-->
-				<Table id="idOTTableChng" inset="false" growing="true" items="{path: '/'}">
-					<headerToolbar class="sapUiVisibleOnlyOnDesktop">
-						<Toolbar class="sapUiVisibleOnlyOnDesktop">
-							<Title text="{i18n>OT}" level="H2"/>
-						</Toolbar>
-					</headerToolbar>
-					<columns fixedLayout="false">
-						<Column demandPopin="true">
-							<Text text="{i18n>MID}"/>
-						</Column>
-						<Column minScreenWidth="Tablet">
-							<Text text="{i18n>EmpName}"/>
-						</Column>
-						<Column minScreenWidth="Tablet">
-							<Text text="{i18n>OrgUnit}"/>
-						</Column>
-						<Column minScreenWidth="Tablet">
-							<Text text="{i18n>Posn}"/>
-						</Column>
-						<Column minScreenWidth="Tablet">
-							<Text text="{i18n>EmpGrp}"/>
-						</Column>
-						<Column minScreenWidth="Tablet">
-							<Text text="{i18n>EmpSubGrp}"/>
-						</Column>
-						<Column demandPopin="true" hAlign="Center">
-							<Text text="{i18n>docn}"/>
-						</Column>
-						<Column demandPopin="true" hAlign="Center">
-							<Text text="{i18n>docdt}"/>
-						</Column>
-						<Column demandPopin="true" hAlign="Center">
-							<Text text="{i18n>OTDate}"/>
-						</Column>
-						<!--<Column minScreenWidth="Tablet">-->
-						<!--	<Text text="{i18n>Hrate}"/>-->
-						<!--</Column>-->
-						<!--<Column demandPopin="true" hAlign="Center">-->
-						<!--	<Text text="{i18n>NoDays}"/>-->
-						<!--</Column>-->
-						<Column demandPopin="true" hAlign="Center">
-							<Text text="{i18n>OTAmt}"/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem vAlign="Middle">
-							<cells>
-								<Text text="{milno}"/>
-								<Text text="{name}" wrapping="false"/>
-								<Text text="{orgunit}"/>
-								<Text text="{posn}"/>
-								<Text text="{empgrp}"/>
-								<Text text="{empsubgrp}"/>
-								<Text text="{docn}"/>
-								<Text text="{docdt}"/>
-								<Text text="{otdate}"/>
-								<!--<Text text="{hrate}"/>-->
-								<!--<Input valueLiveUpdate="true"/>-->
-								<Text text="{amt}"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-				<footer>
-					<Toolbar>
-						<ToolbarSpacer/>
-						<Button id="idSubmit" text="{i18n>Submit}" press="OnPressSubmit" type="Accept" icon="sap-icon://accept"/>
-						<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
-						<content/>
-					</Toolbar>
-				</footer>
-				<!--</content>-->
-			</Page>
-		</pages>
+		<Page title="{i18n>title3}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange">
+			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="{i18n>docn}" required="true"/>
+					<Input id="docno" editable="true" width="120px" maxLength="20"/>
+					<core:Title text=""/>
+					<Label text="{i18n>docdt}" required="true"/>
+					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>
+				</f:content>
+			</f:SimpleForm>
+			<Toolbar class="myCustomHeader">
+				<content>
+					<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop sapUiSmallMargin" titleStyle="H4"/>
+					<ToolbarSpacer id="__spacer2" class="myCustomHeader"/>
+					<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
+				</content>
+			</Toolbar>
+			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete"
+				items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
+				<columns>
+					<Column demandPopin="true">
+						<Text text="{i18n>MID}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpName}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Dept}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Dept2}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>Posn}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpGrp}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>EmpSubGrp}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTDate}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTHrs}"/>
+					</Column>
+					<Column demandPopin="true" hAlign="Center">
+						<Text text="{i18n>OTAmt}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Mid}"/>
+							<Text text="{Ename}" wrapping="false"/>
+							<Text text="{Orgtx}" textDirection="RTL"/>
+							<Text text="{Orgtx2}" textDirection="RTL"/>
+							<Text text="{Plstx}" textDirection="RTL"/>
+							<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+							<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+							<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates">
+								<customData>
+									<core:CustomData key="Mid" value="{Mid}"/>
+								</customData>
+							</Button>
+							<Text text="{Hrs}"/>
+							<Text text="{Otamt}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="idSubmit" text="{i18n>Submit}" press="OnPressSubmit" type="Accept" icon="sap-icon://accept"/>
+					<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
+					<content/>
+				</Toolbar>
+			</footer>
+		</Page>
 	</App>
 </mvc:View>
