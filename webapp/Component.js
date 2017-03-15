@@ -8,8 +8,6 @@ sap.ui.define([
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
-	
-
 	return UIComponent.extend("OTApp.Component", {
 
 		metadata: {
@@ -25,13 +23,19 @@ sap.ui.define([
 			"includes": ["CSS/style.css"],
 			"config": {
 				resourceBundle: "i18n/i18n.properties",
-				"i18nBundle": "OTApp.i18n.i18n"
-					// "icon": "",
-					// "favIcon": "",
-					// "phone": "",
-					// "phone@2": "",
-					// "tablet": "",
-					// "tablet@2": ""
+				"i18nBundle": "OTApp.i18n.i18n",
+				"favicon": "icon/logo.ico",
+				"phone": "icon/logo_57px.png",
+				"phone@2": "icon/logo_114px.png",
+				"tablet": "icon/logo_72px.png",
+				"tablet@2": "icon/logo_144px.png"
+				// "icon": "",
+				// "favIcon": "/sap/public/bc/ui2/logon/img/favicon.ico"
+				// "https://mail.qag.gov.qa/owa/14.3.319.2/themes/resources/favicon.ico"
+				// "phone": "",
+				// "phone@2": "",
+				// "tablet": "",
+				// "tablet@2": ""
 			},
 			"routing": {
 				"config": {
@@ -88,6 +92,7 @@ sap.ui.define([
 						"bundleName": "OTApp.i18n.i18n"
 					},
 					"uri": "i18n/i18n.properties"
+						// "async": true
 				}
 			}
 		},
@@ -125,7 +130,7 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 			oDeviceModel.setDefaultBindingMode("OneWay");
 			this.setModel(oDeviceModel, "device");
-			
+
 			// // set device model
 			// var deviceModel = new sap.ui.model.json.JSONModel({
 			// 	isTouch: sap.ui.Device.support.touch,

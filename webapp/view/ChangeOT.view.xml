@@ -20,7 +20,7 @@
 				</content>
 			</Toolbar>
 			<Table id="idOTTableChng" inset="false" growing="true" mode="Delete"
-				items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
+				items="{path: '/EmpDet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
 				<columns>
 					<Column demandPopin="true">
 						<Text text="{i18n>MID}"/>
