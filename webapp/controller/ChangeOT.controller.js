@@ -93,12 +93,12 @@ sap.ui.define([
 		 * @memberOf OTApp.view.view.ChangeOT
 		 */
 		onExit: function() {
-			if (this._oDialog) {
-				this._oDialog.destroy();
-			}
-			if (this._oPopover) {
-				this._oPopover.destroy();
-			}
+			// if (this._oDialog) {
+			// 	this._oDialog.destroy();
+			// }
+			// if (this._oPopover) {
+			// 	this._oPopover.destroy();
+			// }
 		},
 		/**
 		 *@memberOf OTApp.controller.ChangeOT

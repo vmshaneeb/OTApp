@@ -38,6 +38,9 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf OTApp.view.view.DisplayOT
 		 */
+
+		_oDialog: null,
+
 		onInit: function() {
 
 			this.getView().setModel(oModel);
@@ -122,9 +125,9 @@ sap.ui.define([
 			if (this._oDialog) {
 				this._oDialog.destroy();
 			}
-			if (this._oPopover) {
-				this._oPopover.destroy();
-			}
+			// if (this._oPopover) {
+			// 	this._oPopover.destroy();
+			// }
 		},
 		//  For User Search help
 		/**
@@ -201,12 +204,19 @@ sap.ui.define([
 				MessageToast.show(msg);
 			}
 			oEvent.getSource().getBinding("items").filter([]); // this._oDialog.destroy();
+			// oEvent.getSource().destroy();
+			// this._oDialog.close();
+			// this._oDialog = null;
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
 		showDates: function(oEvent) {
+			// var oView = this.getView();
+			// var oPopover = oView.byId("PopoverDisp");
+			
 			if (!this._oPopover) {
+				// debugger;
 				this._oPopover = sap.ui.xmlfragment("OTApp.utils.PopoverDisp", this);
 				this.getView().addDependent(this._oPopover);
 			}
@@ -218,7 +228,9 @@ sap.ui.define([
 					return n.MilNo === midSelect && n.Docno === docSelect;
 				});
 				var cal = sap.ui.getCore().byId("calendarDisp");
-				cal.removeAllSelectedDates();
+				if (cal && cal.length) {
+					cal.removeAllSelectedDates();
+				}
 				if (OTemp && OTemp.length > 0) {
 					for (var i = 0; i < OTemp.length; i++) {
 						result.TempDates.push(OTemp[i]);
@@ -237,12 +249,15 @@ sap.ui.define([
 			jModel.setData(result);
 			this.getView().setModel(jModel);
 			this._oPopover.openBy(oEvent.getSource());
+			// oPopover.open();
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
 		handleCloseButton: function() {
-			this._oPopover.close(); // this._oPopover.destroy();
+			this._oPopover.close();
+			// this._oPopover.destroy();
+			// this._oPopover = null;// this._oPopover.destroy();
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
