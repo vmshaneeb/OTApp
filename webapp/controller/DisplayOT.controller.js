@@ -125,9 +125,9 @@ sap.ui.define([
 			if (this._oDialog) {
 				this._oDialog.destroy();
 			}
-			// if (this._oPopover) {
-			// 	this._oPopover.destroy();
-			// }
+			if (this._oPopover) {
+				this._oPopover.destroy();
+			}
 		},
 		//  For User Search help
 		/**
@@ -214,7 +214,7 @@ sap.ui.define([
 		showDates: function(oEvent) {
 			// var oView = this.getView();
 			// var oPopover = oView.byId("PopoverDisp");
-			
+
 			if (!this._oPopover) {
 				// debugger;
 				this._oPopover = sap.ui.xmlfragment("OTApp.utils.PopoverDisp", this);
@@ -254,7 +254,7 @@ sap.ui.define([
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
 		 */
-		handleCloseButton: function() {
+		handleCloseButtonDisp: function() {
 			this._oPopover.close();
 			// this._oPopover.destroy();
 			// this._oPopover = null;// this._oPopover.destroy();

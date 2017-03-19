@@ -14,7 +14,7 @@ sap.ui.define([
 			// manifest: "json"
 			"version": "1.0.0",
 			"rootView": {
-				viewName: "OTApp.view.DisplayOT",
+				viewName: "OTApp.view.CURD_OT",
 				type: sap.ui.core.mvc.ViewType.XML
 			},
 			"dependencies": {
@@ -29,20 +29,20 @@ sap.ui.define([
 				"phone@2": "icon/logo_114px.png",
 				"tablet": "icon/logo_72px.png",
 				"tablet@2": "icon/logo_144px.png"
-				// "icon": "",
-				// "favIcon": "/sap/public/bc/ui2/logon/img/favicon.ico"
-				// "https://mail.qag.gov.qa/owa/14.3.319.2/themes/resources/favicon.ico"
-				// "phone": "",
-				// "phone@2": "",
-				// "tablet": "",
-				// "tablet@2": ""
+					// "icon": "",
+					// "favIcon": "/sap/public/bc/ui2/logon/img/favicon.ico"
+					// "https://mail.qag.gov.qa/owa/14.3.319.2/themes/resources/favicon.ico"
+					// "phone": "",
+					// "phone@2": "",
+					// "tablet": "",
+					// "tablet@2": ""
 			},
 			"routing": {
 				"config": {
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
 					"viewPath": "OTApp.view",
-					"controlId": "display",
+					"controlId": "dispchng",
 					"controlAggregation": "pages",
 					"transition": "slide" //show, flip, fade
 				},
@@ -58,6 +58,11 @@ sap.ui.define([
 					"pattern": "change",
 					"name": "change",
 					"target": "change"
+				},
+				 {
+					"pattern": "dispChng",
+					"name": "DispChng",
+					"target": "DispChng"
 				}],
 				"targets": {
 					"display": {
@@ -71,6 +76,10 @@ sap.ui.define([
 					"change": {
 						"viewName": "ChangeOT",
 						"viewLevel": 2
+					},
+					"dispchng": {
+						"viewName": "CURD_OT",
+						"viewLevel": 3
 					}
 				}
 			},

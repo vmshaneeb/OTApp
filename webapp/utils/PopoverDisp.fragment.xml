@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
 	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Auto">
 		<endButton>
-			<Button text="{i18n>Close}" press="handleCloseButton"/>
+			<Button text="{i18n>Close}" press="handleCloseButtonDisp"/>
 		</endButton>
 		<content>
 			<u:Calendar id="calendarDisp" select="handleCalendarSelect" secondaryCalendarType="Islamic" intervalSelection="flase"
