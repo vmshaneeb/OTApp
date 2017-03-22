@@ -734,15 +734,35 @@ sap.ui.define([
 
 				var ot = [];
 				for (i = 0; i < result.OTDet.length; i++) {
-					ot.push({
-						MilNo: result.OTDet[i].MilNo,
-						Pernr: result.OTDet[i].Pernr,
-						Docno: result.OTDet[i].Docno,
-						Docdate: result.OTDet[i].Docdate,
-						Dates: result.OTDet[i].Dates,
-						Hrs: result.OTDet[i].Hrs,
-						Amt: result.OTDet[i].Amt
-					});
+					var del_ind = "";
+					if (result.AllDates[i].Del === "") {
+						del_ind = " ";
+					} else {
+						del_ind = "X";
+					}
+					if (result.OTDet[i].Hrs === "") {
+						ot.push({
+							MilNo: result.OTDet[i].MilNo,
+							Pernr: result.OTDet[i].Pernr,
+							Docno: result.OTDet[i].Docno,
+							Docdate: result.OTDet[i].Docdate,
+							Dates: result.OTDet[i].Dates,
+							Hrs: "0",
+							Amt: result.OTDet[i].Amt,
+							Del: del_ind
+						});
+					} else {
+						ot.push({
+							MilNo: result.OTDet[i].MilNo,
+							Pernr: result.OTDet[i].Pernr,
+							Docno: result.OTDet[i].Docno,
+							Docdate: result.OTDet[i].Docdate,
+							Dates: result.OTDet[i].Dates,
+							Hrs: result.OTDet[i].Hrs,
+							Amt: result.OTDet[i].Amt,
+							Del: del_ind
+						});
+					}
 				}
 
 				var data = {
@@ -765,10 +785,10 @@ sap.ui.define([
 
 						result.Wids = [];
 
-						for (i = 0; i < result.Employee_dataSet.length; i++) {
+						for (i = 0; i < result.EmpDet.length; i++) {
 							result.Wids.push({
-								"Mid": result.Employee_dataSet[i].Mid,
-								"Wid": result.Employee_dataSet[i].Wid
+								"Mid": result.EmpDet[i].Mid,
+								"Wid": result.EmpDet[i].Wid
 							});
 						}
 
