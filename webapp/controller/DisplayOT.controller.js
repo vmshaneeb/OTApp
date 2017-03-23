@@ -135,7 +135,7 @@ sap.ui.define([
 		 */
 		handleValueHelp: function(oEvent) {
 			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("OTApp.view.User", this);
+				this._oDialog = sap.ui.xmlfragment("OTApp.utils.User", this);
 				this.getView().addDependent(this._oDialog);
 			}
 			this.getView().setModel(jModel);

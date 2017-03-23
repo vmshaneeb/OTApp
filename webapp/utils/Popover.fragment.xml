@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+	<!--<P13nDialog ok="handleOK" cancel="handleCancel" showReset="true" reset="handleReset" initialVisiblePanelType="sort">-->
+	<!--	<panels>-->
+	<!--		<P13nColumnsPanel visible="true" type="custom1">-->
+	<!--<content>-->
+	<!--			<items>-->
+	<!--				<u:Calendar id="calendar" secondaryCalendarType="Islamic" select="handleCalendarSelect" intervalSelection="flase" singleSelection="false"-->
+	<!--					nonWorkingDays="5,6"/>-->
+	<!--				<u:CalendarLegend id="legend1"/>-->
+	<!--			</items>-->
+	<!--</content>-->
+	<!--		</P13nColumnsPanel>-->
+	<!--	</panels>-->
+	<!--</P13nDialog>-->
+	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Auto" modal="true">
+		<beginButton>
+			<Button press="handleRemoveSelection" text="{i18n>RemAll}"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Close}" press="handleCloseButton"/>
+		</endButton>
+		<content>
+			<!--<l:VerticalLayout>-->
+			<u:Calendar id="calendar" select="handleCalendarSelect" secondaryCalendarType="Islamic" intervalSelection="flase" singleSelection="false"
+				nonWorkingDays="5,6"/>
+			<u:CalendarLegend id="legend1"/>
+			<!--items="{/Otdetails}"-->
+			<!--<List id="selectedDatesList" class="labelMarginLeft" noDataText="No Dates Selected" headerText="Selected Dates" >-->
+			<!--	<items>-->
+			<!--		<StandardListItem title="{Mid}"/>-->
+			<!--		<StandardListItem title="{Dates}"/>-->
+			<!--		<CustomListItem>-->
+			<!--			<Input editable="true" width="120px"/>-->
+			<!--		</CustomListItem>-->
+			<!--	</items>-->
+			<!--</List>-->
+			<Table id="popoverTable" inset="false" growing="true" fixedLayout="false" noDataText="No Dates Selected" headerText="Selected Dates"
+				items="{/TempDates}">
+				<columns>
+					<Column visible="false">
+						<Text text="{i18n>MID}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>OTDate}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>OTHrs}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{MilNo}" visible="false"/>
+							<DatePicker dateValue="{Dates}" editable="false" displayFormat="dd.MM.yyyy"/>
+							<Input id="othrs" value="{Hrs}" width="40px" maxLength="2" liveChange="checkOT" valueStateText="{i18n>chkOTHrs}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--</l:VerticalLayout>-->
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

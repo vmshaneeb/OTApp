@@ -14,7 +14,7 @@ sap.ui.define([
 			// manifest: "json"
 			"version": "1.0.0",
 			"rootView": {
-				viewName: "OTApp.view.CURD_OT",
+				viewName: "OTApp.view.DispChng",
 				type: sap.ui.core.mvc.ViewType.XML
 			},
 			"dependencies": {
@@ -78,7 +78,7 @@ sap.ui.define([
 						"viewLevel": 2
 					},
 					"dispchng": {
-						"viewName": "CURD_OT",
+						"viewName": "DispChng",
 						"viewLevel": 3
 					}
 				}
