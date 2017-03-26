@@ -28,7 +28,7 @@
 							<Text text="{MilNo}" visible="false"/>
 							<Text
 								text="{path:'Dates', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
-							<Input id="othrs" value="{Hrs}" type="Number" width="40px" maxLength="2" liveChange="checkOT" valueStateText="{i18n>chkOTHrs}"/>
+							<Input id="othrs" value="{Hrs}" width="40px" maxLength="2" liveChange="checkOT" valueStateText="{i18n>chkOTHrs}"/>
 							<CheckBox id="chck" selected="{Del}"/>
 						</cells>
 					</ColumnListItem>
