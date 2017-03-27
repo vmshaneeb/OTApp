@@ -21,3 +21,42 @@ html.sap-phone .sapUiFormResGridCont {
 .sapUiSizeCompact .sapMTB {
     height: 3rem;
 }
+
+/*Icon Tab Bar*/
+.sapMITBScrollContainer {
+    display: block;
+    margin: 0px 0.5rem;
+    margin-top: -5px;
+    margin-right: 0.5rem;
+    margin-bottom: 0px;
+    margin-left: 0.5rem;
+}
+
+.sapMSplitContainerHideMode>.sapMSplitContainerDetail .sapMITB.sapUiResponsiveContentPadding>.sapMITBContainerContent>.sapMITBContent,
+.sapMITB.sapUiResponsiveContentPadding>.sapMITBContainerContent>.sapMITBContent {
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+}
+
+.sapMPanelContent {
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: normal;
+}
+
+.sapMITBContent {
+    background-color: transparent;
+}
+
+.sapMPanelBGTranslucent {
+    background-color: transparent;
+}
+
+.sapMListNoData {
+    color: #333333;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 8px 1rem!important;
+    height: 3rem;
+}

@@ -1,11 +1,13 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.DispChng">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.DispChng">
 	<App id="dispchng">
 		<NavContainer id="navCon">
 			<pages>
 				<!--*************************-->
 				<!--start of display page-->
 				<!--*************************-->
-				<Page id="idDisp" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn" enableScrolling="true">
+				<Page id="idDisp" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn"
+					enableScrolling="true">
 					<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
 						<f:content>
 							<core:Title text=""/>
@@ -23,32 +25,36 @@
 							</VBox>
 						</f:content>
 					</f:SimpleForm>
-					<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true" growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
+					<!--<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">-->
+					<!--	<items>-->
+					<!--		<IconTabFilter icon="sap-icon://group">-->
+					<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
+						growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
 						<headerToolbar class="sapUiVisibleOnlyOnDesktop">
 							<Toolbar class="sapUiVisibleOnlyOnDesktop">
 								<Title text="{i18n>OT}" level="H2"/>
 							</Toolbar>
 						</headerToolbar>
 						<columns>
-							<Column demandPopin="true">
+							<Column demandPopin="true" mergeDuplicates="true">
 								<Text text="{i18n>MID}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>EmpName}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>Dept}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>Dept2}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>Posn}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>EmpGrp}"/>
 							</Column>
-							<Column minScreenWidth="Tablet">
+							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>EmpSubGrp}"/>
 							</Column>
 							<Column demandPopin="true" hAlign="Center">
@@ -78,7 +84,9 @@
 									<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 									<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 									<Text text="{Docno}" wrapping="false"/>
-									<Text text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}" wrapping="false"/>
+									<Text
+										text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"
+										wrapping="false"/>
 									<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
 										<customData>
 											<core:CustomData key="Mid" value="{Mid}"/>
@@ -102,6 +110,10 @@
 							</Button>
 						</content>
 					</Toolbar>
+					<!--		</IconTabFilter>-->
+					<!--		<IconTabFilter icon="sap-icon://attachment"></IconTabFilter>-->
+					<!--	</items>-->
+					<!--</IconTabBar>-->
 					<footer>
 						<Toolbar>
 							<ToolbarSpacer/>
@@ -134,7 +146,8 @@
 							<Button id="idRefreshRowChng" press="onRefreshBtnChng" type="Emphasized" icon="sap-icon://refresh"/>
 						</content>
 					</Toolbar>
-					<Table id="idOTTableChng" inset="false" growing="true" items="{path: '/EmpDet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
+					<Table id="idOTTableChng" inset="false" growing="true" items="{path: '/EmpDet', sorter : { path : 'Mid', descending : false }}"
+						delete="deleteItem" fixedLayout="false">
 						<columns>
 							<Column demandPopin="true">
 								<Text text="{i18n>MID}"/>
@@ -184,7 +197,8 @@
 									<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 									<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 									<Text text="{Docno}"/>
-									<Text text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
+									<Text
+										text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
 									<Button id="idAddDates" type="Emphasized" icon="sap-icon://edit-outside" press="addDatesChng">
 										<customData>
 											<core:CustomData key="Mid" value="{Mid}"/>

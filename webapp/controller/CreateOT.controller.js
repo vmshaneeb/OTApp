@@ -17,9 +17,10 @@ sap.ui.define([
 	"sap/m/Button",
 	"sap/m/Dialog",
 	"sap/m/List",
-	"sap/m/StandardListItem"
+	"sap/m/StandardListItem",
+	"sap/m/UploadCollectionParameter"
 ], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator, MessageBox, Button, Dialog, List,
-	StandardListItem) {
+	StandardListItem, UploadCollectionParameter) {
 	"use strict";
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
 	//proxy/http/172.16.76.134:50000
@@ -42,6 +43,22 @@ sap.ui.define([
 		 * @memberOf OTApp.view.view.ChangeOT
 		 */
 		onInit: function() {
+			var oDatePicker = this.getView().byId("docdt");
+			oDatePicker.addEventDelegate({
+				onAfterRendering: function() {
+					var oDateInner = this.$().find('.sapMInputBaseInner');
+					var oID = oDateInner[0].id;
+					$('#' + oID).attr("disabled", "disabled");
+				}
+			}, oDatePicker);
+
+			// Sets the text to the label
+			this.getView().byId("UploadCollection").addEventDelegate({
+				onBeforeRendering: function() {
+					// this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
+				}.bind(this)
+			});
+
 			// this.jModel = new sap.ui.model.json.JSONModel();
 			// i18n = this.getView().getModel("i18n");
 			// oModel.setDefaultBindingMode("TwoWay");
@@ -109,7 +126,7 @@ sap.ui.define([
 			this.getView().byId("docno").setValue(null);
 			this.getView().byId("docdt").setValue(null);
 			this.getView().byId("idOTTableChng").getModel().setProperty("/Employee_dataSet", null);
-			
+
 			this.getRouter().getTargets().display("dispchng");
 		},
 		/**
@@ -523,6 +540,114 @@ sap.ui.define([
 		},
 
 		pressDialog: null,
+
+		// upload collection logic
+		onChange: function(oEvent) {
+			var oUploadCollection = oEvent.getSource();
+			// Header Token
+			var oCustomerHeaderToken = new UploadCollectionParameter({
+				name: "x-csrf-token",
+				value: "securityTokenFromModel"
+			});
+			oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
+		},
+
+		onFileDeleted: function(oEvent) {
+			this.deleteItemById(oEvent.getParameter("documentId"));
+			MessageToast.show(i18nModel.getProperty("fildel"));
+		},
+
+		deleteItemById: function(sItemToDeleteId) {
+			var oData = this.getView().byId("UploadCollection").getModel().getData();
+			var aItems = jQuery.extend(true, {}, oData).items;
+			// jQuery.each(aItems, function(index) {
+			// 	if (aItems[index] && aItems[index].documentId === sItemToDeleteId) {
+			// 		aItems.splice(index, 1);
+			// 	};
+			// });
+			this.getView().byId("UploadCollection").getModel().setData({
+				"items": aItems
+			});
+			this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
+		},
+
+		// deleteMultipleItems: function(aItemsToDelete) {
+		// 	var oData = this.getView().byId("UploadCollection").getModel().getData();
+		// 	var nItemsToDelete = aItemsToDelete.length;
+		// 	var aItems = jQuery.extend(true, {}, oData).items;
+		// 	var i = 0;
+		// 	jQuery.each(aItems, function(index) {
+		// 		if (aItems[index]) {
+		// 			for (i = 0; i < nItemsToDelete; i++) {
+		// 				if (aItems[index].documentId === aItemsToDelete[i].getDocumentId()) {
+		// 					aItems.splice(index, 1);
+		// 				}
+		// 			}
+		// 		};
+		// 	});
+		// 	this.getView().byId("UploadCollection").getModel().setData({
+		// 		"items": aItems
+		// 	});
+		// 	this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
+		// },
+
+		onFilenameLengthExceed: function(oEvent) {
+			MessageToast.show(i18nModel.getProperty("filexe"));
+		},
+
+		onFileRenamed: function(oEvent) {
+			var oData = this.getView().byId("UploadCollection").getModel().getData();
+			var aItems = jQuery.extend(true, {}, oData).items;
+			var sDocumentId = oEvent.getParameter("documentId");
+			// jQuery.each(aItems, function(index) {
+			// 	if (aItems[index] && aItems[index].documentId === sDocumentId) {
+			// 		aItems[index].fileName = oEvent.getParameter("item").getFileName();
+			// 	};
+			// });
+			this.getView().byId("UploadCollection").getModel().setData({
+				"items": aItems
+			});
+			MessageToast.show(i18nModel.getProperty("filren"));
+		},
+
+		onFileSizeExceed: function(oEvent) {
+			MessageToast.show(i18nModel.getProperty("filsiz"));
+		},
+
+		onTypeMissmatch: function(oEvent) {
+			MessageToast.show(i18nModel.getProperty("filmis"));
+		},
+
+		onUploadTerminated: function(oEvent) {
+			// get parameter file name
+			var sFileName = oEvent.getParameter("fileName");
+			// get a header parameter (in case no parameter specified, the callback function getHeaderParameter returns all request headers)
+			var oRequestHeaders = oEvent.getParameters().getHeaderParameter();
+		},
+
+		onUploadComplete: function(oEvent) {
+			var oData = this.getView().byId("UploadCollection").getModel().getData();
+			// var aItems = jQuery.extend(true, {}, oData).items;
+			// var oItem = {};
+			var sUploadedFile = oEvent.getParameter("files")[0].fileName;
+			// at the moment parameter fileName is not set in IE9
+			if (!sUploadedFile) {
+				// var aUploadedFile = (oEvent.getParameters().getSource().getProperty("value")).split(/\" "/);
+				// sUploadedFile = aUploadedFile[0];
+			}
+
+			// Sets the text to the label
+			// this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
+			// delay the success message for to notice onChange message
+			setTimeout(function() {
+				MessageToast.show(i18nModel.getProperty("filcom"));
+			}, 4000);
+		},
+
+		getAttachmentTitleText: function() {
+			var aItems = this.getView().byId("UploadCollection").getItems();
+			return "Uploaded (" + aItems.length + ")";
+		},
 
 		/**
 		 *@memberOf OTApp.controller.CreateOT

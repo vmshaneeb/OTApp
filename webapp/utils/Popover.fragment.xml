@@ -34,7 +34,7 @@
 			<!--		</CustomListItem>-->
 			<!--	</items>-->
 			<!--</List>-->
-			<Table id="popoverTable" inset="false" growing="true" fixedLayout="false" noDataText="No Dates Selected" headerText="Selected Dates"
+			<Table id="popoverTable" inset="false" growing="true" fixedLayout="false" noDataText="{i18n>NoDates}" headerText="{i18n>SelDates}"
 				items="{/TempDates}">
 				<columns>
 					<Column visible="false">
