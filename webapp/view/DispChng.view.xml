@@ -42,19 +42,19 @@
 							<Column minScreenWidth="Tablet" mergeDuplicates="true">
 								<Text text="{i18n>EmpName}"/>
 							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
+							<Column minScreenWidth="Tablet">
 								<Text text="{i18n>Dept}"/>
 							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
+							<Column minScreenWidth="Tablet">
 								<Text text="{i18n>Dept2}"/>
 							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
+							<Column minScreenWidth="Tablet">
 								<Text text="{i18n>Posn}"/>
 							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
+							<Column minScreenWidth="Tablet">
 								<Text text="{i18n>EmpGrp}"/>
 							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
+							<Column minScreenWidth="Tablet">
 								<Text text="{i18n>EmpSubGrp}"/>
 							</Column>
 							<Column demandPopin="true" hAlign="Center">

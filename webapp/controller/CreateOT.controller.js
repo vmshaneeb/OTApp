@@ -3,7 +3,11 @@ var result = {},
 	Pernr = "",
 	Mid = "",
 	midSelect = "",
-	i18nModel = i18nModel;
+	i18nModel = i18nModel,
+	CSRF_TOKEN = "",
+	oUploadCollection = "",
+	Ref_no = "";
+
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
@@ -64,17 +68,42 @@ sap.ui.define([
 			// oModel.setDefaultBindingMode("TwoWay");
 			this.getView().setModel(oModel);
 			// oModel.read("/Employee_f4Set", null, null, false, function(oData, oResponse) {
+
 			oModel.read("/Employee_f4Set", {
 				success: function(oData, oResponse) {
 					result.Employee_f4Set = oData.results;
 					jModel.setData(result);
 				},
 				error: function(oError) {
-					// jQuery.sap.log.info("OData Read Error!!!");
-					// MessageToast.show("OData Read Error!!!");
 					MessageToast.show(i18nModel.getProperty("Oderr"));
 				}
 			});
+
+			//get X-CSRF Token
+			var URI = url + "/Employee_f4Set";
+			OData.request({
+					requestUri: URI,
+					method: "GET",
+					headers: {
+						"X-Requested-With": "XMLHttpRequest",
+						"Content-Type": "application/atom+xml",
+						"DataServiceVersion": "2.0",
+						"X-CSRF-Token": "Fetch"
+					}
+				},
+				function(data, response) {
+					CSRF_TOKEN = response.headers['x-csrf-token'];
+					oUploadCollection = me.getView().byId("UploadCollection");
+					// oUploadCollection = me.getView().byId("UploadCollection");
+					// // Header Token
+					// var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
+					// 	name: "x-csrf-token",
+					// 	value: CSRF_TOKEN
+					// });
+					// oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
+				}
+			);
+
 			sap.ui.getCore().attachValidationError(function(oEvent) {
 				oEvent.getParameter("docno").setValueState(sap.ui.core.ValueState.Error);
 			});
@@ -308,6 +337,16 @@ sap.ui.define([
 			}
 			oEvent.getSource().getBinding("items").filter([]);
 			// this._oDialog.destroy();
+
+			if (Ref_no === "") {
+
+				var Ref_URI = "/Ref_NoSet('0')";
+				oModel.read(Ref_URI, null, null, false, function(oData, oResponse) {
+					Ref_no = oData.ReferenceNumber;
+					var uploadUrl = url + "/AttachmentsSet";
+					oUploadCollection.setUploadUrl(uploadUrl);
+				});
+			}
 		},
 		/**
 		 *@memberOf OTApp.controller.CreateOT
@@ -543,13 +582,29 @@ sap.ui.define([
 
 		// upload collection logic
 		onChange: function(oEvent) {
-			var oUploadCollection = oEvent.getSource();
+			// oUploadCollection = oEvent.getSource();
 			// Header Token
 			var oCustomerHeaderToken = new UploadCollectionParameter({
 				name: "x-csrf-token",
-				value: "securityTokenFromModel"
+				value: CSRF_TOKEN
 			});
 			oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
+
+			var docno = this.getView().byId("docno").getValue();
+			var docdt = this.getView().byId("docdt").getDateValue();
+
+			var dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+				pattern: "yyyyMMdd"
+			});
+
+			docdt = dateFormat.format(docdt);
+
+			// Header Slug
+			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
+				name: "slug",
+				value: oEvent.getParameter("files")[0].name + "/" + Ref_no + "/" + docno + "/" + docdt
+			});
+			oUploadCollection.addHeaderParameter(oCustomerHeaderSlug);
 		},
 
 		onFileDeleted: function(oEvent) {
@@ -565,31 +620,11 @@ sap.ui.define([
 			// 		aItems.splice(index, 1);
 			// 	};
 			// });
-			this.getView().byId("UploadCollection").getModel().setData({
-				"items": aItems
-			});
+			// this.getView().byId("UploadCollection").getModel().setData({
+			// 	"items": aItems
+			// });
 			this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
 		},
-
-		// deleteMultipleItems: function(aItemsToDelete) {
-		// 	var oData = this.getView().byId("UploadCollection").getModel().getData();
-		// 	var nItemsToDelete = aItemsToDelete.length;
-		// 	var aItems = jQuery.extend(true, {}, oData).items;
-		// 	var i = 0;
-		// 	jQuery.each(aItems, function(index) {
-		// 		if (aItems[index]) {
-		// 			for (i = 0; i < nItemsToDelete; i++) {
-		// 				if (aItems[index].documentId === aItemsToDelete[i].getDocumentId()) {
-		// 					aItems.splice(index, 1);
-		// 				}
-		// 			}
-		// 		};
-		// 	});
-		// 	this.getView().byId("UploadCollection").getModel().setData({
-		// 		"items": aItems
-		// 	});
-		// 	this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
-		// },
 
 		onFilenameLengthExceed: function(oEvent) {
 			MessageToast.show(i18nModel.getProperty("filexe"));
@@ -604,9 +639,9 @@ sap.ui.define([
 			// 		aItems[index].fileName = oEvent.getParameter("item").getFileName();
 			// 	};
 			// });
-			this.getView().byId("UploadCollection").getModel().setData({
-				"items": aItems
-			});
+			// this.getView().byId("UploadCollection").getModel().setData({
+			// 	"items": aItems
+			// });
 			MessageToast.show(i18nModel.getProperty("filren"));
 		},
 
@@ -625,19 +660,37 @@ sap.ui.define([
 			var oRequestHeaders = oEvent.getParameters().getHeaderParameter();
 		},
 
+		onBeforeUploadStarts: function(oEvent) {
+			var docno = this.getView().byId("docno").getValue();
+			var docdt = this.getView().byId("docdt").getDateValue();
+
+			// Header Slug
+			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
+				name: "slug",
+				// value: oEvent.getParameter("files")[0].name + "/" + Ref_no
+				value: oEvent.getParameter("fileName") + "/" + Ref_no + "/" + docno + "/" + docdt
+			});
+			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
+			// MessageToast.show("BeforeUploadStarts event triggered.");
+		},
+
 		onUploadComplete: function(oEvent) {
-			var oData = this.getView().byId("UploadCollection").getModel().getData();
+			// var oData = this.getView().byId("UploadCollection").getModel().getData();
 			// var aItems = jQuery.extend(true, {}, oData).items;
 			// var oItem = {};
-			var sUploadedFile = oEvent.getParameter("files")[0].fileName;
+			// var sUploadedFile = oEvent.getParameter("fileName");
 			// at the moment parameter fileName is not set in IE9
-			if (!sUploadedFile) {
-				// var aUploadedFile = (oEvent.getParameters().getSource().getProperty("value")).split(/\" "/);
-				// sUploadedFile = aUploadedFile[0];
-			}
+			// if (!sUploadedFile) {
+			// var aUploadedFile = (oEvent.getParameters().getSource().getProperty("value")).split(/\" "/);
+			// sUploadedFile = aUploadedFile[0];
+			// }
 
 			// Sets the text to the label
 			// this.getView().byId("attachmentTitle").setText(this.getAttachmentTitleText());
+
+			// jModel.setData(result);
+			// this.getView().setModel(jModel);
+
 			// delay the success message for to notice onChange message
 			setTimeout(function() {
 				MessageToast.show(i18nModel.getProperty("filcom"));
@@ -656,6 +709,16 @@ sap.ui.define([
 			//This code was generated by the layout editor.
 
 			this.getView().byId("idSubmit_Create").setEnabled(false);
+
+			// if (Ref_no === "") {
+
+			// 	var Ref_URI = "/Ref_NoSet('0')";
+			// 	oModel.read(Ref_URI, null, null, false, function(oData, oResponse) {
+			// 		Ref_no = oData.ReferenceNumber;
+			// 		var uploadUrl = url + "/AttachmentsSet";
+			// 		oUploadCollection.setUploadUrl(uploadUrl);
+			// 	});
+			// }
 
 			var docno = this.getView().byId("docno").getValue();
 			var docdt = this.getView().byId("docdt").getDateValue();
@@ -696,7 +759,8 @@ sap.ui.define([
 						Otamt: result.Employee_dataSet[i].Otamt,
 						Pernr: result.Employee_dataSet[i].Pernr,
 						Plstx: result.Employee_dataSet[i].Plstx,
-						Posn: result.Employee_dataSet[i].Posn
+						Posn: result.Employee_dataSet[i].Posn,
+						RefNo: Ref_no
 					});
 				}
 

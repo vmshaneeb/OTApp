@@ -29,5 +29,6 @@
       "description": "QAG Gateway System"
     }
   ],
-  "sendWelcomeFileRedirect": true
+  "sendWelcomeFileRedirect": true,
+  "headerWhiteList":["slug"]
 }
