@@ -25,95 +25,103 @@
 							</VBox>
 						</f:content>
 					</f:SimpleForm>
-					<!--<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">-->
-					<!--	<items>-->
-					<!--		<IconTabFilter icon="sap-icon://group">-->
-					<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
-						growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
-						<headerToolbar class="sapUiVisibleOnlyOnDesktop">
-							<Toolbar class="sapUiVisibleOnlyOnDesktop">
-								<Title text="{i18n>OT}" level="H2"/>
-							</Toolbar>
-						</headerToolbar>
-						<columns>
-							<Column demandPopin="true" mergeDuplicates="true">
-								<Text text="{i18n>MID}"/>
-							</Column>
-							<Column minScreenWidth="Tablet" mergeDuplicates="true">
-								<Text text="{i18n>EmpName}"/>
-							</Column>
-							<Column minScreenWidth="Tablet">
-								<Text text="{i18n>Dept}"/>
-							</Column>
-							<Column minScreenWidth="Tablet">
-								<Text text="{i18n>Dept2}"/>
-							</Column>
-							<Column minScreenWidth="Tablet">
-								<Text text="{i18n>Posn}"/>
-							</Column>
-							<Column minScreenWidth="Tablet">
-								<Text text="{i18n>EmpGrp}"/>
-							</Column>
-							<Column minScreenWidth="Tablet">
-								<Text text="{i18n>EmpSubGrp}"/>
-							</Column>
-							<Column demandPopin="true" hAlign="Center">
-								<Text text="{i18n>docn}"/>
-							</Column>
-							<Column demandPopin="true" hAlign="Center">
-								<Text text="{i18n>docdt}"/>
-							</Column>
-							<Column demandPopin="true" hAlign="Center">
-								<Text text="{i18n>OTDate}"/>
-							</Column>
-							<Column demandPopin="true" hAlign="Center">
-								<Text text="{i18n>OTHrs}"/>
-							</Column>
-							<Column demandPopin="true" hAlign="Center">
-								<Text text="{i18n>OTAmt}"/>
-							</Column>
-						</columns>
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 						<items>
-							<ColumnListItem>
-								<cells>
-									<Text text="{Mid}"/>
-									<Text text="{Ename}" wrapping="false"/>
-									<Text text="{Orgtx}" textDirection="RTL"/>
-									<Text text="{Orgtx2}" textDirection="RTL"/>
-									<Text text="{Plstx}" textDirection="RTL"/>
-									<Text text="{EmpgrpTxt}" textDirection="RTL"/>
-									<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
-									<Text text="{Docno}" wrapping="false"/>
-									<Text
-										text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"
-										wrapping="false"/>
-									<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
-										<customData>
-											<core:CustomData key="Mid" value="{Mid}"/>
-											<core:CustomData key="Docno" value="{Docno}"/>
-										</customData>
-									</Button>
-									<Text text="{Hrs}"/>
-									<Text text="{Otamt}"/>
-									<!--<u:Currency value="{path:'Otamt', type: 'sap.ui.model.type.Currency', formatOptions :{ sap.ui.util.Formatter.string2Number}}" currency="QAR" useSymbol="true" maxPrecision="2"/>-->
-								</cells>
-							</ColumnListItem>
+							<IconTabFilter icon="sap-icon://group">
+								<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
+									growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
+									<headerToolbar class="sapUiVisibleOnlyOnDesktop">
+										<Toolbar class="sapUiVisibleOnlyOnDesktop">
+											<Title text="{i18n>OT}" level="H2"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column demandPopin="true" mergeDuplicates="true">
+											<Text text="{i18n>MID}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" mergeDuplicates="true">
+											<Text text="{i18n>EmpName}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Dept}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Dept2}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Posn}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>EmpGrp}" wrapping="false"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>EmpSubGrp}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>docn}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>docdt}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTDate}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTHrs}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTAmt}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{Mid}" wrapping="false"/>
+												<Text text="{Ename}" wrapping="false"/>
+												<Text text="{Orgtx}" textDirection="RTL" wrapping="false"/>
+												<Text text="{Orgtx2}" textDirection="RTL" wrapping="false"/>
+												<Text text="{Plstx}" textDirection="RTL" wrapping="false"/>
+												<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+												<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+												<Text text="{Docno}" wrapping="false"/>
+												<Text
+													text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"
+													wrapping="false"/>
+												<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
+													<customData>
+														<core:CustomData key="Mid" value="{Mid}"/>
+														<core:CustomData key="Docno" value="{Docno}"/>
+													</customData>
+												</Button>
+												<Text text="{Hrs}" wrapping="false"/>
+												<Text text="{Otamt}" wrapping="false"/>
+												<!--<u:Currency value="{path:'Otamt', type: 'sap.ui.model.type.Currency', formatOptions :{ sap.ui.util.Formatter.string2Number}}" currency="QAR" useSymbol="true" maxPrecision="2"/>-->
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Toolbar width="100%" id="__toolbar2">
+									<content>
+										<ToolbarSpacer id="__spacer1"/>
+										<Button id="idRemRows" press="RemoveAll" type="Reject" icon="sap-icon://employee-rejections">
+											<customData>
+												<core:CustomData key="multi" value="true"/>
+											</customData>
+										</Button>
+									</content>
+								</Toolbar>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://attachment">
+								<Panel>
+									<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" maximumFilenameLength="55" multiple="true" showSeparators="None"
+										change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted">
+										<UploadCollectionItem fileName="{Filename}" mimeType="{MimeType}" url="{url}" enableDelete="false" enableEdit="false" visibleDelete="false"
+											visibleEdit="false"/>
+									</UploadCollection>
+								</Panel>
+							</IconTabFilter>
 						</items>
-					</Table>
-					<Toolbar width="100%" id="__toolbar2">
-						<content>
-							<ToolbarSpacer id="__spacer1"/>
-							<Button id="idRemRows" press="RemoveAll" type="Reject" icon="sap-icon://employee-rejections">
-								<customData>
-									<core:CustomData key="multi" value="true"/>
-								</customData>
-							</Button>
-						</content>
-					</Toolbar>
-					<!--		</IconTabFilter>-->
-					<!--		<IconTabFilter icon="sap-icon://attachment"></IconTabFilter>-->
-					<!--	</items>-->
-					<!--</IconTabBar>-->
+					</IconTabBar>
 					<footer>
 						<Toolbar>
 							<ToolbarSpacer/>
