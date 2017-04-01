@@ -6,7 +6,8 @@ var result = {},
 	i18nModel = i18nModel,
 	CSRF_TOKEN = "",
 	oUploadCollection = "",
-	Ref_no = "";
+	Ref_no = "",
+	attach_chk = 0;
 
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
@@ -94,6 +95,7 @@ sap.ui.define([
 				function(data, response) {
 					CSRF_TOKEN = response.headers['x-csrf-token'];
 					oUploadCollection = me.getView().byId("UploadCollection");
+					oUploadCollectionbkp = oUploadCollection;
 					// oUploadCollection = me.getView().byId("UploadCollection");
 					// // Header Token
 					// var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
@@ -593,18 +595,24 @@ sap.ui.define([
 			var docno = this.getView().byId("docno").getValue();
 			var docdt = this.getView().byId("docdt").getDateValue();
 
-			var dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-				pattern: "yyyyMMdd"
-			});
+			if (docno === "" || docno === null) {
+				MessageToast.show(i18nModel.getProperty("DocnEmpt"));
+			} else if (docdt === "" || docdt === null) {
+				MessageToast.show(i18nModel.getProperty("DocdtEmpt"));
+			} else {
+				var dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+					pattern: "yyyyMMdd"
+				});
 
-			docdt = dateFormat.format(docdt);
+				docdt = dateFormat.format(docdt);
 
-			// Header Slug
-			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
-				name: "slug",
-				value: oEvent.getParameter("files")[0].name + "/" + Ref_no + "/" + docno + "/" + docdt
-			});
-			oUploadCollection.addHeaderParameter(oCustomerHeaderSlug);
+				// Header Slug
+				var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
+					name: "slug",
+					value: oEvent.getParameter("files")[0].name + "/" + Ref_no + "/" + docno + "/" + docdt
+				});
+				oUploadCollection.addHeaderParameter(oCustomerHeaderSlug);
+			}
 		},
 
 		onFileDeleted: function(oEvent) {
@@ -679,6 +687,7 @@ sap.ui.define([
 			setTimeout(function() {
 				MessageToast.show(i18nModel.getProperty("filcom"));
 			}, 4000);
+			attach_chk += 1;
 		},
 
 		getAttachmentTitleText: function() {
@@ -711,6 +720,9 @@ sap.ui.define([
 				this.getView().byId("idSubmit_Create").setEnabled(true);
 			} else if (result.AllDates === undefined || result.AllDates.length === 0) {
 				MessageToast.show(i18nModel.getProperty("OtEmpt"));
+				this.getView().byId("idSubmit_Create").setEnabled(true);
+			} else if (attach_chk === 0) {
+				MessageToast.show(i18nModel.getProperty("Attach"));
 				this.getView().byId("idSubmit_Create").setEnabled(true);
 			} else {
 				var emp = [];

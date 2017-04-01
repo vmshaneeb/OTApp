@@ -436,6 +436,37 @@ sap.ui.define([
 						bckp_OtdetailsSet = JSON.parse(JSON.stringify(result.OtdetailsSet));
 
 						me.getView().byId("idSearch").setEnabled(true);
+
+						var docnosearch = "";
+
+						for (var iii = 0; iii < result.OtdetailsSet.length; iii++) {
+							if (iii === 0) {
+								docnosearch = result.OtdetailsSet[iii].Docno;
+							} else {
+								docnosearch += "@" + result.OtdetailsSet[iii].Docno;
+							}
+						}
+
+						uri = "/AttachmentsSet?$filter=RefNo eq ('" + docnosearch + "')";
+						oModel.read(uri, {
+							success: function(oData2, oResponse2) {
+								result.AttachmentsSet = oData2.results;
+
+								for (var ii = 0; ii < result.AttachmentsSet.length; ii++) {
+									result.AttachmentsSet[ii].url = url +
+										"/AttachmentsSet(RefNo='" +
+										result.AttachmentsSet[ii].RefNo +
+										"',Seq='" + result.AttachmentsSet[ii].Seq +
+										"')/$value";
+								}
+
+								jModel.setData(result);
+								// me.getView().byId("UploadCollection").setModel(jModel);
+							},
+							error: function(oError2) {
+								MessageToast.show(i18nModel.getProperty("Oderr"));
+							}
+						});
 					},
 					error: function(oError) {
 						MessageToast.show(i18nModel.getProperty("Oderr"));
@@ -445,24 +476,24 @@ sap.ui.define([
 				stmt = "";
 			}
 
-			uri = "/AttachmentsSet?$filter=RefNo eq ('" + docno + "')";
-			oModel.read(uri, {
-				success: function(oData, oResponse) {
-					result.AttachmentsSet = oData.results;
+			// uri = "/AttachmentsSet?$filter=RefNo eq ('" + docno + "')";
+			// oModel.read(uri, {
+			// 	success: function(oData, oResponse) {
+			// 		result.AttachmentsSet = oData.results;
 
-					for (var ii = 0; ii < result.AttachmentsSet.length; ii++) {
-						result.AttachmentsSet[ii].url = url + "/AttachmentsSet(RefNo='" + result.AttachmentsSet[ii].RefNo + "',Seq='" + result.AttachmentsSet[
-								ii].Seq +
-							"')/$value";
-					}
+			// 		for (var ii = 0; ii < result.AttachmentsSet.length; ii++) {
+			// 			result.AttachmentsSet[ii].url = url + "/AttachmentsSet(RefNo='" + result.AttachmentsSet[ii].RefNo + "',Seq='" + result.AttachmentsSet[
+			// 					ii].Seq +
+			// 				"')/$value";
+			// 		}
 
-					jModel.setData(result);
-					// me.getView().byId("UploadCollection").setModel(jModel);
-				},
-				error: function(oError) {
-					MessageToast.show(i18nModel.getProperty("Oderr"));
-				}
-			});
+			// 		jModel.setData(result);
+			// 		// me.getView().byId("UploadCollection").setModel(jModel);
+			// 	},
+			// 	error: function(oError) {
+			// 		MessageToast.show(i18nModel.getProperty("Oderr"));
+			// 	}
+			// });
 
 			// this.getView().byId("idSearch").setEnabled(true);
 		},

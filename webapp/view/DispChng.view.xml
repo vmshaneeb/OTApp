@@ -113,8 +113,8 @@
 							</IconTabFilter>
 							<IconTabFilter icon="sap-icon://attachment">
 								<Panel>
-									<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" maximumFilenameLength="55" multiple="true" showSeparators="None"
-										change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted">
+									<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" uploadEnabled="false" maximumFilenameLength="55" multiple="true"
+										showSeparators="None" change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted">
 										<UploadCollectionItem fileName="{Filename}" mimeType="{MimeType}" url="{url}" enableDelete="false" enableEdit="false" visibleDelete="false"
 											visibleEdit="false"/>
 									</UploadCollection>

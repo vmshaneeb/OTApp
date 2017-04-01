@@ -113,7 +113,7 @@
 						</Toolbar>
 						<!--</ScrollContainer>-->
 					</IconTabFilter>
-					<IconTabFilter icon="sap-icon://attachment" count="0">
+					<IconTabFilter icon="sap-icon://attachment">
 						<Panel>
 							<!--beforeUploadStarts="onBeforeUploadStarts"-->
 							<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" maximumFilenameLength="55" multiple="true" showSeparators="None"
