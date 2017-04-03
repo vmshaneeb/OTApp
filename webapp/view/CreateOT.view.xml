@@ -79,7 +79,7 @@
 										<Text text="{Ename}" wrapping="false"/>
 										<Text text="{Orgtx}" textDirection="RTL"/>
 										<Text text="{Orgtx2}" textDirection="RTL"/>
-										<Text text="{Plstx}" textDirection="RTL"/>
+										<Text text="{Plstx}" textDirection="RTL" wrapping="false"/>
 										<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 										<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
 										<!--<hbox>-->

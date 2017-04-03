@@ -95,7 +95,7 @@ sap.ui.define([
 				function(data, response) {
 					CSRF_TOKEN = response.headers['x-csrf-token'];
 					oUploadCollection = me.getView().byId("UploadCollection");
-					oUploadCollectionbkp = oUploadCollection;
+					// oUploadCollectionbkp = oUploadCollection;
 					// oUploadCollection = me.getView().byId("UploadCollection");
 					// // Header Token
 					// var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
