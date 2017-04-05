@@ -4,7 +4,8 @@
 			<Button text="{i18n>Close}" press="handleCloseButtonChng"/>
 		</endButton>
 		<content>
-			<u:Calendar id="calendarChng" secondaryCalendarType="Islamic" intervalSelection="flase" singleSelection="false" nonWorkingDays="5,6"/>
+			<u:Calendar id="calendarChng" firstDayOfWeek="0" secondaryCalendarType="Islamic" intervalSelection="flase" singleSelection="false"
+				nonWorkingDays="5,6"/>
 			<u:CalendarLegend id="legend1"/>
 			<Table id="popoverTable" inset="false" growing="true" fixedLayout="false" noDataText="{i18n>NoDates}" headerText="{i18n>SelDates}"
 				items="{/TempDates}">

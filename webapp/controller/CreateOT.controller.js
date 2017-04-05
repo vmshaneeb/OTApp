@@ -57,6 +57,9 @@ sap.ui.define([
 				}
 			}, oDatePicker);
 
+			// oDatePicker._oCalendar.setFirstDayOfWeek(0);
+			// oDatePicker._oCalendar.setNonWorkingDays([5,6]);
+
 			// Sets the text to the label
 			this.getView().byId("UploadCollection").addEventDelegate({
 				onBeforeRendering: function() {
@@ -204,6 +207,17 @@ sap.ui.define([
 		 *@memberOf OTApp.controller.ChangeOT
 		 */
 		addItem: function(oEvent) {
+			if (result.Employee_f4Set === undefined || result.Employee_f4Set.length === 0) {
+				oModel.read("/Employee_f4Set", {
+					success: function(oData, oResponse) {
+						result.Employee_f4Set = oData.results;
+						jModel.setData(result);
+					},
+					error: function(oError) {
+						MessageToast.show(i18nModel.getProperty("Oderr"));
+					}
+				});
+			}
 			// var me = this;
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("OTApp.utils.User", this);
@@ -609,7 +623,7 @@ sap.ui.define([
 				// Header Slug
 				var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
 					name: "slug",
-					value: oEvent.getParameter("files")[0].name + "/" + Ref_no + "/" + docno + "/" + docdt
+					value: encodeURIComponent(oEvent.getParameter("files")[0].name + "/" + Ref_no + "/" + docno + "/" + docdt)
 				});
 				oUploadCollection.addHeaderParameter(oCustomerHeaderSlug);
 			}

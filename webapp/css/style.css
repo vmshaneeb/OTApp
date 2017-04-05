@@ -22,7 +22,9 @@ html.sap-phone .sapUiFormResGridCont {
     height: 3rem;
 }
 
+
 /*Icon Tab Bar*/
+
 .sapMITBScrollContainer {
     display: block;
     margin: 0px 0.5rem;
@@ -59,4 +61,24 @@ html.sap-phone .sapUiFormResGridCont {
     border-bottom: 1px solid #e5e5e5;
     padding: 8px 1rem!important;
     height: 3rem;
+}
+
+
+/*Calendar*/
+
+.sapUiCalItemWeekEnd {
+    background-color: #fddb86!important;
+}
+
+.sapUiUnifiedLegendNonWorkingDay>.sapUiUnifiedLegendSquare>.sapUiUnifiedLegendSquareColor {
+    background: #fddb86!important;
+}
+
+.sapUiCalItemSel {
+    background-color: #007cc0!important;
+}
+
+.sapUiCalItemOtherMonth {
+    background-color: transparent!important;
+    color: #808080;
 }

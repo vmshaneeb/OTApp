@@ -137,16 +137,16 @@
 				<!--start of change page-->
 				<!--*************************-->
 				<Page id="idChng" title="{i18n>title3}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange">
-					<f:SimpleForm id="SimpleFormChng" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
-						<f:content>
-							<core:Title text=""/>
-							<Label text="{i18n>docn}" required="true"/>
-							<Input id="docnoChng" editable="true" width="120px" maxLength="20"/>
-							<core:Title text=""/>
-							<Label text="{i18n>docdt}" required="true"/>
-							<DatePicker id="docdtChng" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>
-						</f:content>
-					</f:SimpleForm>
+					<!--<f:SimpleForm id="SimpleFormChng" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">-->
+					<!--	<f:content>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>docn}" required="true"/>-->
+					<!--		<Input id="docnoChng" editable="true" width="120px" maxLength="20"/>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>docdt}" required="true"/>-->
+					<!--		<DatePicker id="docdtChng" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>-->
+					<!--	</f:content>-->
+					<!--</f:SimpleForm>-->
 					<Toolbar class="myCustomHeader">
 						<content>
 							<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop sapUiSmallMargin" titleStyle="H4"/>
