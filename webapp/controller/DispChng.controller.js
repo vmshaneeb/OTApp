@@ -356,6 +356,9 @@ sap.ui.define([
 			this.getView().byId("docno").setValue(null);
 			this.getView().byId("month").setValue(null);
 			this.getView().byId("year").setValue(null);
+			
+			this.getView().byId("empFilter").setCount(0);
+			this.getView().byId("attachFilter").setCount(0);
 
 			jModel.setData(result);
 			this.getView().setModel(jModel);
@@ -436,6 +439,8 @@ sap.ui.define([
 						bckp_OtdetailsSet = JSON.parse(JSON.stringify(result.OtdetailsSet));
 
 						me.getView().byId("idSearch").setEnabled(true);
+						
+						me.getView().byId("empFilter").setCount(result.EmpSet.length);
 
 						var docnosearch = "";
 
@@ -461,6 +466,9 @@ sap.ui.define([
 								}
 
 								jModel.setData(result);
+								
+								var meme = me;
+								meme.getView().byId("attachFilter").setCount(result.AttachmentsSet.length);
 								// me.getView().byId("UploadCollection").setModel(jModel);
 							},
 							error: function(oError2) {

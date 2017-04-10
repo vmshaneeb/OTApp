@@ -27,7 +27,7 @@
 					</f:SimpleForm>
 					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 						<items>
-							<IconTabFilter icon="sap-icon://group">
+							<IconTabFilter id="empFilter" icon="sap-icon://group" count="0">
 								<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
 									growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
 									<headerToolbar class="sapUiVisibleOnlyOnDesktop">
@@ -111,7 +111,7 @@
 									</content>
 								</Toolbar>
 							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://attachment">
+							<IconTabFilter id="attachFilter" icon="sap-icon://attachment" count="0">
 								<Panel>
 									<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" uploadEnabled="false" maximumFilenameLength="55" multiple="true"
 										showSeparators="None" change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted">
