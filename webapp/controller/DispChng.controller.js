@@ -470,7 +470,6 @@ sap.ui.define([
 
 								var meme = me;
 								meme.getView().byId("attachFilter").setCount(result.AttachmentsSet.length);
-								// me.getView().byId("UploadCollection").setModel(jModel);
 							},
 							error: function(oError2) {
 								MessageToast.show(i18nModel.getProperty("Oderr"));
@@ -825,6 +824,8 @@ sap.ui.define([
 					"EmpSet": emp,
 					"OtdetailsSet": ot
 				};
+				
+				otmaxed = 0;
 
 				oModel.create("/DocDetailsSet", data, {
 					success: function(oData, oResponse) {

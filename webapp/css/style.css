@@ -70,6 +70,10 @@ html.sap-phone .sapUiFormResGridCont {
     background-color: #fddb86!important;
 }
 
+.sapUiCalDayWeekEnd {
+    background-color: #fddb86!important;
+}
+
 .sapUiUnifiedLegendNonWorkingDay>.sapUiUnifiedLegendSquare>.sapUiUnifiedLegendSquareColor {
     background: #fddb86!important;
 }
