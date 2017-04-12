@@ -42,7 +42,8 @@ sap.ui.define([
 		idcount = 1,
 		id = "",
 		chng_count = 1,
-		chng_id = "";
+		chng_id = "",
+		otmaxed = 0;
 
 	return Controller.extend("OTApp.controller.DispChng", {
 
@@ -356,7 +357,7 @@ sap.ui.define([
 			this.getView().byId("docno").setValue(null);
 			this.getView().byId("month").setValue(null);
 			this.getView().byId("year").setValue(null);
-			
+
 			this.getView().byId("empFilter").setCount(0);
 			this.getView().byId("attachFilter").setCount(0);
 
@@ -439,7 +440,7 @@ sap.ui.define([
 						bckp_OtdetailsSet = JSON.parse(JSON.stringify(result.OtdetailsSet));
 
 						me.getView().byId("idSearch").setEnabled(true);
-						
+
 						me.getView().byId("empFilter").setCount(result.EmpSet.length);
 
 						var docnosearch = "";
@@ -466,7 +467,7 @@ sap.ui.define([
 								}
 
 								jModel.setData(result);
-								
+
 								var meme = me;
 								meme.getView().byId("attachFilter").setCount(result.AttachmentsSet.length);
 								// me.getView().byId("UploadCollection").setModel(jModel);
@@ -524,6 +525,8 @@ sap.ui.define([
 
 			result.OtdetailsSet = bckp_OtdetailsSet;
 
+			otmaxed = 0;
+
 			// this.getView().byId("docnoChng").setValue(null);
 			// this.getView().byId("docdtChng").setValue(null);
 
@@ -548,6 +551,8 @@ sap.ui.define([
 			}
 
 			result.OtdetailsSet = bckp_OtdetailsSet;
+
+			otmaxed = 0;
 
 			// this.getView().byId("docnoChng").setValue(null);
 			// this.getView().byId("docdtChng").setValue(null);
@@ -762,7 +767,6 @@ sap.ui.define([
 						Empsubgrp: result.EmpDet[i].Empsubgrp,
 						EmpsubgrpTxt: result.EmpDet[i].EmpsubgrpTxt,
 						Ename: result.EmpDet[i].Ename,
-						Endda: result.EmpDet[i].Endda,
 						Mid: result.EmpDet[i].Mid,
 						Orgtx: result.EmpDet[i].Orgtx,
 						Orgunit: result.EmpDet[i].Orgunit,
@@ -828,6 +832,18 @@ sap.ui.define([
 						result.EmpDet = result.DocDetailsSet_Chng.EmpSet.results;
 						result.OTDet = result.DocDetailsSet_Chng.OtdetailsSet.results;
 						jModel.setData(result);
+
+						for (var ii = 0; ii < result.EmpDet.length; ii++) {
+							if (result.EmpDet[ii].Otmaxed === "X") {
+								otmaxed += 1;
+							} else {
+								otmaxed = 0;
+							}
+						}
+
+						if (otmaxed !== 0) {
+							MessageToast.show(i18nModel.getProperty("OTmaxed"));
+						}
 					},
 					error: function(oError) {
 						MessageToast.show(i18nModel.getProperty("Oderr"));
@@ -874,7 +890,6 @@ sap.ui.define([
 						Empsubgrp: result.EmpDet[i].Empsubgrp,
 						EmpsubgrpTxt: result.EmpDet[i].EmpsubgrpTxt,
 						Ename: result.EmpDet[i].Ename,
-						Endda: result.EmpDet[i].Endda,
 						Mid: result.EmpDet[i].Mid,
 						Hrs: result.EmpDet[i].Hrs,
 						Orgtx: result.EmpDet[i].Orgtx,
