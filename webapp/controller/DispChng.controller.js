@@ -94,6 +94,7 @@ sap.ui.define([
 			}, oYearPicker);
 
 			this.getView().setModel(oModel);
+
 			oModel.read("/Employee_f4Set", {
 				success: function(oData, oResponse) {
 					result.Employee_f4Set = oData.results;
@@ -105,6 +106,17 @@ sap.ui.define([
 			});
 
 			me = this;
+
+			oModel.read("/AccessControlSet('')", {
+				success: function(oData, oResponse) {
+					if (oData.Change !== "X") {
+						me.getView().byId("idChange").setVisible(false);
+					}
+				},
+				error: function(oError) {
+					// MessageToast.show(i18nModel.getProperty("Oderr"));
+				}
+			});
 		},
 		/**
 		 *@memberOf OTApp.controller.DisplayOT
@@ -169,6 +181,11 @@ sap.ui.define([
 
 				result.EmpDet = selItemChng;
 				result.OTDet = selItemChngOT;
+
+				for (var k = 0; k < result.OTDet.length; k++) {
+					result.OTDet[k].Hrs = parseInt(result.OTDet[k].Hrs, 10);
+				}
+
 				jModel.setData(result);
 				this.getView().setModel(jModel);
 
@@ -202,6 +219,9 @@ sap.ui.define([
 			if (this._oPopover) {
 				this._oPopover.destroy();
 			}
+		},
+		convertToInt: function(n) {
+			return parseInt(n, 10);
 		},
 		//  For User Search help
 		/**
@@ -352,6 +372,7 @@ sap.ui.define([
 			result.Employee_DispSet = [];
 			result.EmpSet = [];
 			result.OtdetailsSet = [];
+			result.AttachmentsSet = [];
 
 			this.getView().byId("multiinput1").removeAllTokens();
 			this.getView().byId("docno").setValue(null);
@@ -437,7 +458,17 @@ sap.ui.define([
 						jModel.setData(result);
 						me.getView().setModel(jModel);
 
-						bckp_OtdetailsSet = JSON.parse(JSON.stringify(result.OtdetailsSet));
+						// bckp_OtdetailsSet = JSON.parse(JSON.stringify(result.OtdetailsSet));
+						for (var k = 0; k < result.OtdetailsSet.length; k++) {
+							bckp_OtdetailsSet.Amt = result.OtdetailsSet[k].Amt;
+							bckp_OtdetailsSet.Dates = result.OtdetailsSet[k].Dates;
+							bckp_OtdetailsSet.Del = result.OtdetailsSet[k].Del;
+							bckp_OtdetailsSet.Docdate = result.OtdetailsSet[k].Docdate;
+							bckp_OtdetailsSet.Docno = result.OtdetailsSet[k].Docno;
+							bckp_OtdetailsSet.Hrs = result.OtdetailsSet[k].Hrs;
+							bckp_OtdetailsSet.MilNo = result.OtdetailsSet[k].MilNo;
+							bckp_OtdetailsSet.Pernr = result.OtdetailsSet[k].Pernr;
+						}
 
 						me.getView().byId("idSearch").setEnabled(true);
 
@@ -522,7 +553,17 @@ sap.ui.define([
 				result.TempDates = [];
 			}
 
-			result.OtdetailsSet = bckp_OtdetailsSet;
+			// result.OtdetailsSet = bckp_OtdetailsSet;
+			for (var k = 0; k < bckp_OtdetailsSet.length; k++) {
+				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet.Amt;
+				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet.Dates;
+				result.OtdetailsSet[k].Del = bckp_OtdetailsSet.Del;
+				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet.Docdate;
+				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet.Docno;
+				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet.Hrs;
+				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet.MilNo;
+				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet.Pernr;
+			}
 
 			otmaxed = 0;
 
@@ -549,7 +590,17 @@ sap.ui.define([
 				result.TempDates = [];
 			}
 
-			result.OtdetailsSet = bckp_OtdetailsSet;
+			// result.OtdetailsSet = bckp_OtdetailsSet;
+			for (var k = 0; k < bckp_OtdetailsSet.length; k++) {
+				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet.Amt;
+				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet.Dates;
+				result.OtdetailsSet[k].Del = bckp_OtdetailsSet.Del;
+				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet.Docdate;
+				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet.Docno;
+				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet.Hrs;
+				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet.MilNo;
+				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet.Pernr;
+			}
 
 			otmaxed = 0;
 
@@ -824,7 +875,7 @@ sap.ui.define([
 					"EmpSet": emp,
 					"OtdetailsSet": ot
 				};
-				
+
 				otmaxed = 0;
 
 				oModel.create("/DocDetailsSet", data, {
