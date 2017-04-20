@@ -1,5 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog title="{i18n>usrlist}" class="sapUiPopupWithPadding" items="{path: '/Employee_f4Set', sorter : { path : 'Pernr', descending : false }}" liveChange="_handleValueHelpSearch"
+	<SelectDialog title="{i18n>usrlist}" class="sapUiPopupWithPadding"
+		items="{path: '/Employee_f4Set', sorter : { path : 'Pernr', descending : false }}" liveChange="_handleValueHelpSearch"
 		search="_handleValueHelpSearch" confirm="_handleValueHelpClose" cancel="_handleValueHelpClose">
 		<ObjectListItem title="{Pernr}" type="Active">
 			<firstStatus>

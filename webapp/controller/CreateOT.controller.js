@@ -34,18 +34,11 @@ sap.ui.define([
 	StandardListItem, UploadCollectionParameter) {
 	"use strict";
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
-	//proxy/http/172.16.76.134:50000
 	var oModel = new sap.ui.model.odata.ODataModel(url, true);
 	// var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
 	// 	useBatch: false
 	// });
-	// var oModel = new ODataModel(url, true);
-	// var jModel = new JSONModel();
-	// var result = {},
-	// 	Pernr = "",
-	// 	Mid = "",
-	// 	midSelect = "";
-	// var i18nModel = sap.ui.getCore().getView().getModel("i18n");
+
 	var me = this;
 	return Controller.extend("OTApp.controller.CreateOT", {
 		/**
@@ -73,9 +66,6 @@ sap.ui.define([
 				}.bind(this)
 			});
 
-			// this.jModel = new sap.ui.model.json.JSONModel();
-			// i18n = this.getView().getModel("i18n");
-			// oModel.setDefaultBindingMode("TwoWay");
 			this.getView().setModel(oModel);
 			// oModel.read("/Employee_f4Set", null, null, false, function(oData, oResponse) {
 
@@ -104,14 +94,6 @@ sap.ui.define([
 				function(data, response) {
 					CSRF_TOKEN = response.headers['x-csrf-token'];
 					oUploadCollection = me.getView().byId("UploadCollection");
-					// oUploadCollectionbkp = oUploadCollection;
-					// oUploadCollection = me.getView().byId("UploadCollection");
-					// // Header Token
-					// var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
-					// 	name: "x-csrf-token",
-					// 	value: CSRF_TOKEN
-					// });
-					// oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
 				}
 			);
 
@@ -123,7 +105,6 @@ sap.ui.define([
 			});
 			me = this;
 
-			// this.byId("docdt").setDateValue(new Date());
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -168,7 +149,7 @@ sap.ui.define([
 			this.getView().byId("idSubmit_Create").setEnabled(true);
 			this.getView().byId("docno").setValue(null);
 			this.getView().byId("docdt").setValue(null);
-			this.getView().byId("idOTTableChng").getModel().setProperty("/Employee_dataSet", null);
+			this.getView().byId("idOTTableNew").getModel().setProperty("/Employee_dataSet", null);
 
 			this.getRouter().getTargets().display("dispchng");
 		},
@@ -184,7 +165,7 @@ sap.ui.define([
 			this.getView().byId("idSubmit_Create").setEnabled(true);
 			this.getView().byId("docno").setValue(null);
 			this.getView().byId("docdt").setValue(null);
-			this.getView().byId("idOTTableChng").getModel().setProperty("/Employee_dataSet", null);
+			this.getView().byId("idOTTableNew").getModel().setProperty("/Employee_dataSet", null);
 
 			this.getRouter().getTargets().display("dispchng");
 		},
@@ -233,9 +214,9 @@ sap.ui.define([
 			// var me = this;
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("OTApp.utils.User", this);
-				// this._oDialog.setModel(this.getView().getModel());
+
 				this._oDialog.setModel(jModel);
-				// this._oDialog.setModel(i18nModel);
+
 				this.getView().addDependent(this._oDialog);
 			}
 			// Multi-select if required
@@ -246,9 +227,8 @@ sap.ui.define([
 			this._oDialog.setRememberSelections(bRemember);
 			// clear the old search filter
 			this._oDialog.getBinding("items").filter([]);
-			// toggle compact style
-			// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-			this._oDialog.open(); // addIcon.setBusy(false);
+
+			this._oDialog.open();
 		},
 		/**
 		 *@memberOf OTApp.controller.ChangeOT
@@ -260,9 +240,9 @@ sap.ui.define([
 			var path = oEvent.getParameter("listItem").getBindingContext().getPath();
 			var index = parseInt(path.substring(path.lastIndexOf("/") + 1), 10);
 			//any other value than hex and oct, the radix is 10 (decimal)
-			// var model = this.getView().getModel();
+
 			var model = tbl.getModel();
-			// var data = model.getData();
+
 			if (result.AllDates !== undefined) {
 				for (var j = result.AllDates.length - 1; j >= 0; j--) {
 					if (result.AllDates[j].MilNo === result.Employee_dataSet[index].Mid) {
@@ -280,9 +260,7 @@ sap.ui.define([
 
 			var data = model.getProperty("/Employee_dataSet");
 			data.splice(index, 1);
-			model.setProperty("/Employee_dataSet", data); // model.setData(data);
-			// refresh the model
-			// oModel.refresh();
+			model.setProperty("/Employee_dataSet", data);
 		},
 		_handleValueHelpSearch: function(oEvent) {
 			var sValue = oEvent.getParameter("value");
@@ -305,7 +283,7 @@ sap.ui.define([
 					var item = oSelectedItems[i],
 						context = item.getBindingContext(),
 						obj = context.getProperty(null, context);
-					// console.log(obj.Mid);
+
 					var OTemp = $(result.Employee_dataSet).filter(function(i, n) {
 						return n.Mid === obj.Mid;
 					});
@@ -313,12 +291,11 @@ sap.ui.define([
 						if (i === 0) {
 							stmt = obj.Mid;
 						} else {
-							// stmt += " and " + obj.Mid; // console.log(stmt);
 							stmt += "@" + obj.Mid;
 						}
 					}
 				}
-				// console.log(stmt);
+
 				if (stmt.length) {
 					uri = "/Employee_dataSet?$filter=Mid eq '" + stmt + "'";
 					oModel.read(uri, {
@@ -334,37 +311,18 @@ sap.ui.define([
 								}
 							}
 							jModel.setData(result);
-							me.getView().setModel(jModel); // me.getView().byId("idOTTableChng").getModel().updateBindings();
-							// this.getView().byId("idOTTableChng").setModel(jModel);
-							// this.getView().byId("idOTTableChng").getModel().refresh(true);
+							me.getView().setModel(jModel);
 						},
 						error: function(oError) {
-							// jQuery.sap.log.info("OData Read Error!!!");
-							// console.log("OData Read Error!!!");
 							MessageToast.show(i18nModel.getProperty("Oderr"));
 						}
 					});
-				} // var oFilter = new Filter("Mid", "EQ", "6014");
-				// oModel.read("/Employee_dataSet", {
-				// 	filter: oFilter,
-				// 	success: function(oData, oResponse) {
-				// 		result.Employee_dataSet = oData.results;
-				// 		// jModel.setData(result);
-				// 	},
-				// 	error: function(oError) {
-				// 		// jQuery.sap.log.info("OData Read Error!!!");
-				// 		// console.log("OData Read Error!!!");
-				// 		MessageToast.show(i18nModel.getProperty('Oderr'));
-				// 	}
-				// });
+				}
 			} else {
 				var msg = i18nModel.getProperty("SelEmp");
-				// var msg = i18n.getProperty("SelEmp");
-				// MessageToast.show(i18n.getProperty('SelEmp'));
-				MessageToast.show(msg); // MessageToast.show("!!! Pls select an employee first !!!");
+				MessageToast.show(msg);
 			}
 			oEvent.getSource().getBinding("items").filter([]);
-			// this._oDialog.destroy();
 
 			if (Ref_no === "") {
 
@@ -416,7 +374,6 @@ sap.ui.define([
 
 				if (OTemp && OTemp.length > 0) {
 					result.TempDates = [];
-					// sap.ui.getCore().byId("calendar").removeAllSelectedDates();
 
 					if (cal) {
 						cal.removeAllSelectedDates();
@@ -444,9 +401,7 @@ sap.ui.define([
 			var tmp = [],
 				list = [],
 				OTemp = [];
-			// if (aSelectedDates.length !== result.TempDates.length) {
-			// 	result.TempDates = [];
-			// }
+
 			if (aSelectedDates && aSelectedDates.length > 0) {
 				tmp = result.TempDates;
 				result.TempDates = [];
@@ -506,7 +461,7 @@ sap.ui.define([
 						result.AllDates.push(OTemp[i]);
 					}
 					result.TempDates = [];
-					// sap.ui.getCore().byId("calendar").removeAllSelectedDates();
+
 					if (cal) {
 						cal.removeAllSelectedDates();
 					}
@@ -514,7 +469,6 @@ sap.ui.define([
 					this.getView().setModel(jModel);
 				}
 				this._oPopover.close();
-				// this._oPopover.destroy();
 			} else {
 				MessageToast.show(i18nModel.getProperty("chkOTHrs"));
 			}
@@ -527,7 +481,7 @@ sap.ui.define([
 					result.AllDates.splice(j, 1);
 				}
 			}
-			// sap.ui.getCore().byId("calendar").removeAllSelectedDates();
+
 			if (cal) {
 				cal.removeAllSelectedDates();
 			}
@@ -563,6 +517,10 @@ sap.ui.define([
 			} else if (result.AllDates === undefined || result.AllDates.length === 0) {
 				MessageToast.show(i18nModel.getProperty("OtEmpt"));
 			} else {
+				// this.getView().byId("idOTTableNew").setBusy(true);
+
+				// var me = this;
+
 				var emp = [];
 				for (var i = 0; i < result.Employee_dataSet.length; i++) {
 					emp.push({
@@ -617,6 +575,9 @@ sap.ui.define([
 						result.DocDetailsSet = oResponse.data;
 						result.Employee_dataSet = result.DocDetailsSet.EmpSet.results;
 						result.OtdetailsSet = result.DocDetailsSet.OtdetailsSet.results;
+
+						// me.getView().byId("idOTTableNew").setBusy(false);
+
 						jModel.setData(result);
 
 						for (var ii = 0; ii < result.Employee_dataSet.length; ii++) {
@@ -647,9 +608,8 @@ sap.ui.define([
 						}
 					},
 					error: function(oError) {
-						// jQuery.sap.log.info("OData Read Error!!!");
-						// MessageToast.show("OData Read Error!!!");
 						MessageToast.show(i18nModel.getProperty("Oderr"));
+						// me.getView().byId("idOTTableNew").setBusy(false);
 					}
 				});
 			}
@@ -659,7 +619,6 @@ sap.ui.define([
 
 		// upload collection logic
 		onChange: function(oEvent) {
-			// oUploadCollection = oEvent.getSource();
 			// Header Token
 			var oCustomerHeaderToken = new UploadCollectionParameter({
 				name: "x-csrf-token",
@@ -750,11 +709,9 @@ sap.ui.define([
 			// Header Slug
 			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
 				name: "slug",
-				// value: oEvent.getParameter("files")[0].name + "/" + Ref_no
 				value: oEvent.getParameter("fileName") + "/" + Ref_no + "/" + docno + "/" + docdt
 			});
 			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
-			// MessageToast.show("BeforeUploadStarts event triggered.");
 		},
 
 		onUploadComplete: function(oEvent) {

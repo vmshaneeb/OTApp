@@ -8,17 +8,11 @@
 					<core:Title text=""/>
 					<Label text="{i18n>docn}" required="true"/>
 					<Input id="docno" editable="true" width="120px" maxLength="20"/>
-					<!--change="onDocChange"-->
-					<!--value="{type : 'sap.ui.model.type.String', path: '/text', constraints : { minLength : 1 }}"/>-->
 					<core:Title text=""/>
 					<Label text="{i18n>docdt}" required="true"/>
 					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>
-					<!--change="onDocdtChange"-->
-					<!--value="{type : 'sap.ui.model.type.Date', path: '/date', formatOptions : { source: { pattern: 'dd.MM.yyyy' }, pattern: 'dd.MM.yyyy' }, constraints : { minimum : '01.01.2016' }}"/>-->
 				</f:content>
 			</f:SimpleForm>
-			<!--<ScrollContainer horizontal="true" vertical="true" focusable="true" height="525px">-->
-			<!--growingThreshold="100" growingScrollToLoad="true" -->
 			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" applyContentPadding="false">
 				<items>
 					<IconTabFilter icon="sap-icon://group">
@@ -29,13 +23,8 @@
 								<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 							</content>
 						</Toolbar>
-						<Table id="idOTTableChng" inset="false" growing="true" mode="Delete"
+						<Table id="idOTTableNew" inset="false" growing="true" mode="Delete"
 							items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
-							<!--<headerToolbar class="sapUiVisibleOnlyOnDesktop">-->
-							<!--	<Title text="{i18n>OT}" level="H2"/>-->
-							<!--	<ToolbarSpacer id="__spacer2"/>-->
-							<!--	<Button id="idRefreshRow" press="refreshItem" type="Emphasized" icon="sap-icon://add"/>-->
-							<!--</headerToolbar>-->
 							<columns>
 								<Column demandPopin="true">
 									<Text text="{i18n>MID}"/>
@@ -53,7 +42,7 @@
 									<Text text="{i18n>Posn}"/>
 								</Column>
 								<Column minScreenWidth="Tablet">
-									<Text text="{i18n>EmpGrp}"/>
+									<Text text="{i18n>EmpGrp}" wrapping="false"/>
 								</Column>
 								<Column minScreenWidth="Tablet">
 									<Text text="{i18n>EmpSubGrp}"/>
@@ -61,20 +50,19 @@
 								<Column demandPopin="true" hAlign="Center">
 									<Text text="{i18n>OTDate}"/>
 								</Column>
-								<!--<Column minScreenWidth="Tablet">-->
-								<!--<Text text="{i18n>Hrate}"/>-->
-								<!--</Column>-->
 								<Column demandPopin="true" hAlign="Center">
 									<Text text="{i18n>OTHrs}"/>
 								</Column>
 								<Column demandPopin="true" hAlign="Center">
 									<Text text="{i18n>OTAmt}"/>
 								</Column>
+								<Column demandPopin="true" hAlign="Center">
+									<Text text="{i18n>PayTyp}"/>
+								</Column>
 							</columns>
 							<items>
 								<ColumnListItem>
 									<cells>
-										<!--<Input showValueHelp="true" valueLiveUpdate="true" value="{milno}"/>-->
 										<Text text="{Mid}"/>
 										<Text text="{Ename}" wrapping="false"/>
 										<Text text="{Orgtx}" textDirection="RTL"/>
@@ -82,36 +70,31 @@
 										<Text text="{Plstx}" textDirection="RTL"/>
 										<Text text="{EmpgrpTxt}" textDirection="RTL"/>
 										<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
-										<!--<hbox>-->
 										<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates">
 											<customData>
 												<core:CustomData key="Mid" value="{Mid}"/>
 											</customData>
 										</Button>
 										<Text text="{Hrs}"/>
-										<!--</hbox>-->
-										<!--<DatePicker editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" width="120px"/>-->
-										<!--<u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false"/>-->
-										<!--<Text text="{hrate}"/>-->
-										<!--<Text id="days" text="{Otdays}"/>-->
 										<Text text="{Otamt}"/>
+										<Select textAlign="Center" selectedKey="salary">
+											<core:Item key="salary" text="{i18n>Sal}"/>
+											<core:Item key="cheque" text="{i18n>Cheq}"/>
+										</Select>
 									</cells>
 								</ColumnListItem>
 							</items>
 						</Table>
-						<!--</ScrollContainer>-->
 						<Toolbar width="100%" id="__toolbar2">
 							<content>
 								<ToolbarSpacer id="__spacer1"/>
 								<Button id="idAddRow" press="addItem" type="Emphasized" icon="sap-icon://add">
 									<customData>
 										<core:CustomData key="multi" value="true"/>
-										<!--<core:CustomData key="remember" value="true"/>-->
 									</customData>
 								</Button>
 							</content>
 						</Toolbar>
-						<!--</ScrollContainer>-->
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://attachment">
 						<Panel>
