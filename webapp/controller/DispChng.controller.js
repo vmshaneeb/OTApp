@@ -774,9 +774,9 @@ sap.ui.define([
 			} else if (result.AllDates === undefined || result.AllDates.length === 0) {
 				MessageToast.show(i18nModel.getProperty("OtEmpt"));
 			} else {
-				// this.getView().byId("idOTTableChng").setBusy(true);
+				this.getView().byId("idOTTableChng").setBusy(true);
 
-				// var me = this;
+				var me = this;
 
 				var emp = [];
 				for (var i = 0; i < result.EmpDet.length; i++) {
@@ -855,7 +855,7 @@ sap.ui.define([
 						result.EmpDet = result.DocDetailsSet_Chng.EmpSet.results;
 						result.OTDet = result.DocDetailsSet_Chng.OtdetailsSet.results;
 
-						// me.getView().byId("idOTTableChng").setBusy(false);
+						me.getView().byId("idOTTableChng").setBusy(false);
 
 						jModel.setData(result);
 
@@ -873,7 +873,7 @@ sap.ui.define([
 					},
 					error: function(oError) {
 						MessageToast.show(i18nModel.getProperty("Oderr"));
-						// me.getView().byId("idOTTableChng").setBusy(false);
+						me.getView().byId("idOTTableChng").setBusy(false);
 					}
 				});
 			}

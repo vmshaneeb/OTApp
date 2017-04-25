@@ -22,7 +22,7 @@ sap.ui.define([
 	"jquery.sap.global",
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
-	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/model/odata/ODataModel",
 	"OTApp/utils/Validator",
 	"sap/m/MessageBox",
 	"sap/m/Button",
@@ -33,8 +33,12 @@ sap.ui.define([
 ], function(Controller, JSONModel, Fragment, Filter, MessageToast, ODataModel, jQuery, Validator, MessageBox, Button, Dialog, List,
 	StandardListItem, UploadCollectionParameter) {
 	"use strict";
+
 	var url = "/sap/opu/odata/sap/ZHCM_OTAPP_SRV";
+	// var oModel = new ODataModel(url);
+
 	var oModel = new sap.ui.model.odata.ODataModel(url, true);
+
 	// var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
 	// 	useBatch: false
 	// });
@@ -200,16 +204,23 @@ sap.ui.define([
 		 *@memberOf OTApp.controller.ChangeOT
 		 */
 		addItem: function(oEvent) {
+			var bDialog = sap.ui.xmlfragment("OTApp.utils.BusyDialog", this);
+			bDialog.open();
+
 			if (result.Employee_f4Set === undefined || result.Employee_f4Set.length === 0) {
 				oModel.read("/Employee_f4Set", {
 					success: function(oData, oResponse) {
 						result.Employee_f4Set = oData.results;
 						jModel.setData(result);
+						bDialog.close();
 					},
 					error: function(oError) {
 						MessageToast.show(i18nModel.getProperty("Oderr"));
+						bDialog.close();
 					}
 				});
+			} else {
+				bDialog.close();
 			}
 			// var me = this;
 			if (!this._oDialog) {
