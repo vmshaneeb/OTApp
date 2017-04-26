@@ -354,7 +354,7 @@ sap.ui.define([
 			idc = "PopoverNew" + idccount;
 			// this._oPopover = sap.ui.xmlfragment("OTApp.utils.Popover", this);
 			this._oPopover = sap.ui.xmlfragment(idc, "OTApp.utils.Popover", this);
-			// this._oPopover.bindElement("/ProductCollection/0");
+			
 			this.getView().addDependent(this._oPopover);
 			idccount += 1;
 			// }
