@@ -74,6 +74,26 @@ html.sap-phone .sapUiFormResGridCont {
     background-color: #fddb86!important;
 }
 
+.sapUiCalDayOtherMonth {
+    background-color: transparent!important;
+    color: #808080!important;
+}
+
+.sapUiCalDaySel,
+.sapUiCalMonthSel,
+.sapUiCalYearSel {
+    color: #ffffff!important;
+    background-color: #007cc0!important;
+}
+
+.sapUiCalDaySel.sapUiCalDayOtherMonth {
+    background-color: #007cc0!important;
+}
+
+.sapUiCalItemSel.sapUiCalItemOtherMonth {
+    background-color: #007cc0!important;
+}
+
 .sapUiUnifiedLegendNonWorkingDay>.sapUiUnifiedLegendSquare>.sapUiUnifiedLegendSquareColor {
     background: #fddb86!important;
 }
@@ -90,12 +110,29 @@ html.sap-phone .sapUiFormResGridCont {
 
 /*Icon Tabbar*/
 
+
 /*.sapMITBFilter .sapMITBCount {*/
+
+
 /*    background-color: green;*/
+
+
 /*    border-radius: 100%;*/
+
+
 /*    width: 30px;*/
+
+
 /*    padding-top: 5px;*/
+
+
 /*    padding-bottom: 5px;*/
+
+
 /*    color: #FFFFFF;*/
+
+
 /*    text-shadow: 1px 0px 0px #333333*/
+
+
 /*}*/

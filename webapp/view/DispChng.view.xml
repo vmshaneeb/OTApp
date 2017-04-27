@@ -155,7 +155,7 @@
 						</content>
 					</Toolbar>
 					<Table id="idOTTableChng" inset="false" growing="true" items="{path: '/EmpDet', sorter : { path : 'Mid', descending : false }}"
-						delete="deleteItem" fixedLayout="false">
+						delete="deleteItem" fixedLayout="false" enableBusyIndicator="true">
 						<columns>
 							<Column demandPopin="true">
 								<Text text="{i18n>MID}"/>

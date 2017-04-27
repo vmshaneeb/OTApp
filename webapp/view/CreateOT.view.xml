@@ -23,7 +23,7 @@
 								<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
 							</content>
 						</Toolbar>
-						<Table id="idOTTableNew" inset="false" growing="true" mode="Delete"
+						<Table id="idOTTableNew" inset="false" growing="true" mode="Delete" enableBusyIndicator="true"
 							items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
 							<columns>
 								<Column demandPopin="true">
