@@ -51,6 +51,10 @@ html.sap-phone .sapUiFormResGridCont {
     background-color: transparent;
 }
 
+.sapMITBSelected > .sapMITBContentArrow {
+    border-bottom-color: #009de0!important;
+}
+
 .sapMPanelBGTranslucent {
     background-color: transparent;
 }
