@@ -453,18 +453,30 @@ sap.ui.define([
 
 						me.getView().byId("idOTTable").setBusy(false);
 
+						for (var kk = 0; kk < result.EmpSet.length; kk++) {
+							if (result.EmpSet[kk].Paymode === "S") {
+								result.EmpSet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.EmpSet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
+
 						jModel.setData(result);
 						me.getView().setModel(jModel);
 
+						bckp_OtdetailsSet = [];
+
 						for (var k = 0; k < result.OtdetailsSet.length; k++) {
-							bckp_OtdetailsSet.Amt = result.OtdetailsSet[k].Amt;
-							bckp_OtdetailsSet.Dates = result.OtdetailsSet[k].Dates;
-							bckp_OtdetailsSet.Del = result.OtdetailsSet[k].Del;
-							bckp_OtdetailsSet.Docdate = result.OtdetailsSet[k].Docdate;
-							bckp_OtdetailsSet.Docno = result.OtdetailsSet[k].Docno;
-							bckp_OtdetailsSet.Hrs = result.OtdetailsSet[k].Hrs;
-							bckp_OtdetailsSet.MilNo = result.OtdetailsSet[k].MilNo;
-							bckp_OtdetailsSet.Pernr = result.OtdetailsSet[k].Pernr;
+							bckp_OtdetailsSet.push({
+								Amt: result.OtdetailsSet[k].Amt,
+								Dates: result.OtdetailsSet[k].Dates,
+								Del: result.OtdetailsSet[k].Del,
+								Docdate: result.OtdetailsSet[k].Docdate,
+								Docno: result.OtdetailsSet[k].Docno,
+								Hrs: result.OtdetailsSet[k].Hrs,
+								MilNo: result.OtdetailsSet[k].MilNo,
+								Pernr: result.OtdetailsSet[k].Pernr
+							});
 						}
 
 						me.getView().byId("idSearch").setEnabled(true);
@@ -531,14 +543,14 @@ sap.ui.define([
 			}
 
 			for (var k = 0; k < bckp_OtdetailsSet.length; k++) {
-				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet.Amt;
-				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet.Dates;
-				result.OtdetailsSet[k].Del = bckp_OtdetailsSet.Del;
-				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet.Docdate;
-				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet.Docno;
-				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet.Hrs;
-				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet.MilNo;
-				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet.Pernr;
+				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet[k].Amt;
+				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet[k].Dates;
+				result.OtdetailsSet[k].Del = bckp_OtdetailsSet[k].Del;
+				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet[k].Docdate;
+				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet[k].Docno;
+				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet[k].Hrs;
+				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet[k].MilNo;
+				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet[k].Pernr;
 			}
 
 			otmaxed = 0;
@@ -566,14 +578,14 @@ sap.ui.define([
 			}
 
 			for (var k = 0; k < bckp_OtdetailsSet.length; k++) {
-				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet.Amt;
-				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet.Dates;
-				result.OtdetailsSet[k].Del = bckp_OtdetailsSet.Del;
-				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet.Docdate;
-				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet.Docno;
-				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet.Hrs;
-				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet.MilNo;
-				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet.Pernr;
+				result.OtdetailsSet[k].Amt = bckp_OtdetailsSet[k].Amt;
+				result.OtdetailsSet[k].Dates = bckp_OtdetailsSet[k].Dates;
+				result.OtdetailsSet[k].Del = bckp_OtdetailsSet[k].Del;
+				result.OtdetailsSet[k].Docdate = bckp_OtdetailsSet[k].Docdate;
+				result.OtdetailsSet[k].Docno = bckp_OtdetailsSet[k].Docno;
+				result.OtdetailsSet[k].Hrs = bckp_OtdetailsSet[k].Hrs;
+				result.OtdetailsSet[k].MilNo = bckp_OtdetailsSet[k].MilNo;
+				result.OtdetailsSet[k].Pernr = bckp_OtdetailsSet[k].Pernr;
 			}
 
 			otmaxed = 0;
@@ -800,6 +812,14 @@ sap.ui.define([
 					});
 				}
 
+				for (var kkk = 0; kkk < emp.length; kkk++) {
+					if (result.EmpDet[kkk].Paymode === i18nModel.getProperty("Sal")) {
+						emp[kkk].Paymode = "S";
+					} else {
+						emp[kkk].Paymode = "C";
+					}
+				}
+
 				var ot = [];
 				for (i = 0; i < result.AllDates.length; i++) {
 					var del_ind = "";
@@ -856,6 +876,14 @@ sap.ui.define([
 						result.OTDet = result.DocDetailsSet_Chng.OtdetailsSet.results;
 
 						me.getView().byId("idOTTableChng").setBusy(false);
+
+						for (var kk = 0; kk < result.EmpDet.length; kk++) {
+							if (result.EmpDet[kk].Paymode === "S") {
+								result.EmpDet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.EmpDet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
 
 						jModel.setData(result);
 

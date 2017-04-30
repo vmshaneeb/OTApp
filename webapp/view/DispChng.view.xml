@@ -72,6 +72,9 @@
 										<Column demandPopin="true" hAlign="Center">
 											<Text text="{i18n>OTAmt}"/>
 										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>PayTyp}"/>
+										</Column>
 									</columns>
 									<items>
 										<ColumnListItem>
@@ -96,6 +99,7 @@
 												<Text text="{Hrs}" wrapping="false"/>
 												<Text text="{Otamt}" wrapping="false"/>
 												<!--<u:Currency value="{path:'Otamt', type: 'sap.ui.model.type.Currency', formatOptions :{ sap.ui.util.Formatter.string2Number}}" currency="QAR" useSymbol="true" maxPrecision="2"/>-->
+												<Text text="{Paymode}" wrapping="false"/>
 											</cells>
 										</ColumnListItem>
 									</items>
@@ -193,6 +197,9 @@
 							<Column demandPopin="true" hAlign="Center">
 								<Text text="{i18n>OTAmt}"/>
 							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>PayTyp}"/>
+							</Column>
 						</columns>
 						<items>
 							<ColumnListItem>
@@ -215,6 +222,7 @@
 									</Button>
 									<Text text="{Hrs}"/>
 									<Text text="{Otamt}"/>
+									<Text text="{Paymode}"/>
 								</cells>
 							</ColumnListItem>
 						</items>

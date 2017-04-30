@@ -165,6 +165,7 @@ sap.ui.define([
 					}
 				}
 			}
+			
 			if (result.TempDates !== undefined) {
 				result.TempDates = [];
 			}
@@ -187,11 +188,14 @@ sap.ui.define([
 				this._oPopover = sap.ui.xmlfragment("OTApp.utils.Popover", this);
 				this.getView().addDependent(this._oPopover);
 			}
+			
 			midSelect = oEvent.getSource().data("Mid");
+			
 			if (result.AllDates === undefined) {
 				result.AllDates = [];
 				result.TempDates = [];
 			}
+			
 			if (result.AllDates.length > 0) {
 				var OTemp = $(result.AllDates).filter(function(i, n) {
 					return n.MilNo === midSelect;
