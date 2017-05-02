@@ -354,7 +354,7 @@ sap.ui.define([
 			idc = "PopoverNew" + idccount;
 			// this._oPopover = sap.ui.xmlfragment("OTApp.utils.Popover", this);
 			this._oPopover = sap.ui.xmlfragment(idc, "OTApp.utils.Popover", this);
-			
+
 			this.getView().addDependent(this._oPopover);
 			idccount += 1;
 			// }
@@ -550,8 +550,15 @@ sap.ui.define([
 						Otamt: result.Employee_dataSet[i].Otamt,
 						Pernr: result.Employee_dataSet[i].Pernr,
 						Plstx: result.Employee_dataSet[i].Plstx,
-						Posn: result.Employee_dataSet[i].Posn
+						Posn: result.Employee_dataSet[i].Posn,
+						Paymode: result.Employee_dataSet[i].Paymode
 					});
+				}
+
+				for (var kk = 0; kk < emp.length; kk++) {
+					if (emp[kk].Paymode === "" || emp[kk].Paymode === undefined) {
+						emp[kk].Paymode = "S";
+					}
 				}
 
 				var ot = [];
@@ -791,8 +798,15 @@ sap.ui.define([
 						Pernr: result.Employee_dataSet[i].Pernr,
 						Plstx: result.Employee_dataSet[i].Plstx,
 						Posn: result.Employee_dataSet[i].Posn,
-						RefNo: Ref_no
+						RefNo: Ref_no,
+						Paymode: result.Employee_dataSet[i].Paymode
 					});
+				}
+
+				for (var kk = 0; kk < emp.length; kk++) {
+					if (emp[kk].Paymode === ""|| emp[kk].Paymode === undefined) {
+						emp[kk].Paymode = "S";
+					}
 				}
 
 				var ot = [];

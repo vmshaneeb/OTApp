@@ -958,6 +958,14 @@ sap.ui.define([
 					});
 				}
 
+				for (var kkk = 0; kkk < emp.length; kkk++) {
+					if (result.EmpDet[kkk].Paymode === i18nModel.getProperty("Sal")) {
+						emp[kkk].Paymode = "S";
+					} else {
+						emp[kkk].Paymode = "C";
+					}
+				}
+
 				var ot = [];
 				for (i = 0; i < result.OTDet.length; i++) {
 					var del_ind = "";
@@ -1015,6 +1023,15 @@ sap.ui.define([
 						result.DocDetailsSet = oResponse.data;
 						result.EmpDet = result.DocDetailsSet.EmpSet.results;
 						result.OTDet = result.DocDetailsSet.OtdetailsSet.results;
+
+						for (var kk = 0; kk < result.EmpDet.length; kk++) {
+							if (result.EmpDet[kk].Paymode === "S") {
+								result.EmpDet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.EmpDet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
+
 						jModel.setData(result);
 
 						result.Wids = [];

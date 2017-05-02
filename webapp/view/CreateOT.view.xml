@@ -77,9 +77,10 @@
 										</Button>
 										<Text text="{Hrs}"/>
 										<Text text="{Otamt}"/>
-										<Select textAlign="Center" selectedKey="salary">
-											<core:Item key="salary" text="{i18n>Sal}"/>
-											<core:Item key="cheque" text="{i18n>Cheq}"/>
+										<!--selectedKey="salary"-->
+										<Select textAlign="Center" selectedKey="{Paymode}">
+											<core:Item key="S" text="{i18n>Sal}"/>
+											<core:Item key="C" text="{i18n>Cheq}"/>
 										</Select>
 									</cells>
 								</ColumnListItem>
