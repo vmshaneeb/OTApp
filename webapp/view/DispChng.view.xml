@@ -94,6 +94,7 @@
 													<customData>
 														<core:CustomData key="Mid" value="{Mid}"/>
 														<core:CustomData key="Docno" value="{Docno}"/>
+														<core:CustomData key="Paymode" value="{Paymode}"/>
 													</customData>
 												</Button>
 												<Text text="{Hrs}" wrapping="false"/>
@@ -218,6 +219,7 @@
 										<customData>
 											<core:CustomData key="Mid" value="{Mid}"/>
 											<core:CustomData key="Docno" value="{Docno}"/>
+											<core:CustomData key="Paymode" value="{Paymode}"/>
 										</customData>
 									</Button>
 									<Text text="{Hrs}"/>

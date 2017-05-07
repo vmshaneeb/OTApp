@@ -31,6 +31,7 @@ sap.ui.define([
 		Mid = "",
 		midSelect = "",
 		docSelect = "",
+		paySelect = "",
 		// i18nModel = i18nModel,
 		stmt = "",
 		uri = "",
@@ -314,10 +315,12 @@ sap.ui.define([
 			// }
 			midSelect = oEvent.getSource().data("Mid");
 			docSelect = oEvent.getSource().data("Docno");
+			paySelect = oEvent.getSource().data("Paymode");
+
 			if (result.OtdetailsSet.length > 0) {
 				result.TempDates = [];
 				var OTemp = $(result.OtdetailsSet).filter(function(i, n) {
-					return n.MilNo === midSelect && n.Docno === docSelect;
+					return n.MilNo === midSelect && n.Docno === docSelect && n.Paymode === paySelect;
 				});
 
 				var calid = id + "--calendarDisp";
@@ -458,6 +461,14 @@ sap.ui.define([
 								result.EmpSet[kk].Paymode = i18nModel.getProperty("Sal");
 							} else {
 								result.EmpSet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
+
+						for (kk = 0; kk < result.OtdetailsSet.length; kk++) {
+							if (result.OtdetailsSet[kk].Paymode === "S") {
+								result.OtdetailsSet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.OtdetailsSet[kk].Paymode = i18nModel.getProperty("Cheq");
 							}
 						}
 
@@ -620,6 +631,7 @@ sap.ui.define([
 			// }
 			midSelect = oEvent.getSource().data("Mid");
 			docSelect = oEvent.getSource().data("Docno");
+			paySelect = oEvent.getSource().data("Paymode");
 
 			if (result.AllDates === undefined) {
 				result.AllDates = [];
@@ -633,7 +645,7 @@ sap.ui.define([
 			if (result.AllDates.length > 0) {
 
 				var OTemp = $(result.AllDates).filter(function(i, n) {
-					return n.MilNo === midSelect && n.Docno === docSelect;
+					return n.MilNo === midSelect && n.Docno === docSelect && n.Paymode === paySelect;
 				});
 
 				var calid = chng_id + "--calendarChng";
@@ -846,8 +858,17 @@ sap.ui.define([
 							Docdate: result.AllDates[i].Docdate,
 							Dates: result.AllDates[i].Dates,
 							Hrs: result.AllDates[i].Hrs,
+							Paymode: result.AllDates[i].Paymode,
 							Del: del_ind
 						});
+					}
+				}
+
+				for (kkk = 0; kkk < ot.length; kkk++) {
+					if (result.AllDates[kkk].Paymode === i18nModel.getProperty("Sal")) {
+						ot[kkk].Paymode = "S";
+					} else {
+						ot[kkk].Paymode = "C";
 					}
 				}
 
@@ -882,6 +903,14 @@ sap.ui.define([
 								result.EmpDet[kk].Paymode = i18nModel.getProperty("Sal");
 							} else {
 								result.EmpDet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
+
+						for (kk = 0; kk < result.OTDet.length; kk++) {
+							if (result.OTDet[kk].Paymode === "S") {
+								result.OTDet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.OTDet[kk].Paymode = i18nModel.getProperty("Cheq");
 							}
 						}
 
@@ -983,6 +1012,7 @@ sap.ui.define([
 							Dates: result.OTDet[i].Dates,
 							Hrs: "0",
 							Amt: result.OTDet[i].Amt,
+							Paymode: result.AllDates[i].Paymode,
 							Del: del_ind
 						});
 					} else {
@@ -994,8 +1024,17 @@ sap.ui.define([
 							Dates: result.OTDet[i].Dates,
 							Hrs: result.OTDet[i].Hrs,
 							Amt: result.OTDet[i].Amt,
+							Paymode: result.AllDates[i].Paymode,
 							Del: del_ind
 						});
+					}
+				}
+
+				for (kkk = 0; kkk < ot.length; kkk++) {
+					if (result.AllDates[kkk].Paymode === i18nModel.getProperty("Sal")) {
+						ot[kkk].Paymode = "S";
+					} else {
+						ot[kkk].Paymode = "C";
 					}
 				}
 
@@ -1029,6 +1068,14 @@ sap.ui.define([
 								result.EmpDet[kk].Paymode = i18nModel.getProperty("Sal");
 							} else {
 								result.EmpDet[kk].Paymode = i18nModel.getProperty("Cheq");
+							}
+						}
+
+						for (kk = 0; kk < result.OTDet.length; kk++) {
+							if (result.OTDet[kk].Paymode === "S") {
+								result.OTDet[kk].Paymode = i18nModel.getProperty("Sal");
+							} else {
+								result.OTDet[kk].Paymode = i18nModel.getProperty("Cheq");
 							}
 						}
 
