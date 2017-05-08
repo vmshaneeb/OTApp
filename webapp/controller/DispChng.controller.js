@@ -159,8 +159,10 @@ sap.ui.define([
 				for (i = 0; i < selItemChng.length; i++) {
 					var Milno = selItemChng[i].Mid;
 					var docno = selItemChng[i].Docno;
-					var OTemp = $(result.OtdetailsSet).filter(function(i, n) {
-						return n.MilNo === Milno && n.Docno === docno;
+					var paymod = selItemChng[i].Paymode;
+
+					var OTemp = $(result.OtdetailsSet).filter(function(k, n) {
+						return n.MilNo === Milno && n.Docno === docno && n.Paymode === paymod;
 					});
 					if (OTemp && OTemp.length) {
 						for (var j = 0; j < OTemp.length; j++) {
@@ -633,18 +635,31 @@ sap.ui.define([
 			docSelect = oEvent.getSource().data("Docno");
 			paySelect = oEvent.getSource().data("Paymode");
 
-			if (result.AllDates === undefined) {
+			if (result.AllDates === undefined || result.AllDates.length) {
 				result.AllDates = [];
 				result.TempDates = [];
 			}
 
 			if ((result.OTDet && result.OTDet.length) && result.AllDates.length === 0) {
-				result.AllDates = result.OTDet;
+				// result.AllDates = result.OTDet;
+				for (var k = 0; k < result.OTDet.length; k++) {
+					result.AllDates.push({
+						Amt: result.OTDet[k].Amt,
+						Dates: result.OTDet[k].Dates,
+						Del: result.OTDet[k].Del,
+						Docdate: result.OTDet[k].Docdate,
+						Docno: result.OTDet[k].Docno,
+						Hrs: result.OTDet[k].Hrs,
+						MilNo: result.OTDet[k].MilNo,
+						Paymode: result.OTDet[k].Paymode,
+						Pernr: result.OTDet[k].Pernr
+					});
+				}
 			}
 
 			if (result.AllDates.length > 0) {
 
-				var OTemp = $(result.AllDates).filter(function(i, n) {
+				var OTemp = $(result.OTDet).filter(function(i, n) {
 					return n.MilNo === midSelect && n.Docno === docSelect && n.Paymode === paySelect;
 				});
 
@@ -833,39 +848,39 @@ sap.ui.define([
 				}
 
 				var ot = [];
-				for (i = 0; i < result.AllDates.length; i++) {
+				for (i = 0; i < result.OTDet.length; i++) {
 					var del_ind = "";
-					if (result.AllDates[i].Del === "") {
+					if (result.OTDet[i].Del === "") {
 						del_ind = " ";
 					} else {
 						del_ind = "X";
 					}
-					if (result.AllDates[i].Hrs === "") {
+					if (result.OTDet[i].Hrs === "") {
 						ot.push({
-							MilNo: result.AllDates[i].MilNo,
-							Pernr: result.AllDates[i].Pernr,
-							Docno: result.AllDates[i].Docno,
-							Docdate: result.AllDates[i].Docdate,
-							Dates: result.AllDates[i].Dates,
+							MilNo: result.OTDet[i].MilNo,
+							Pernr: result.OTDet[i].Pernr,
+							Docno: result.OTDet[i].Docno,
+							Docdate: result.OTDet[i].Docdate,
+							Dates: result.OTDet[i].Dates,
 							Hrs: "0",
 							Del: del_ind
 						});
 					} else {
 						ot.push({
-							MilNo: result.AllDates[i].MilNo,
-							Pernr: result.AllDates[i].Pernr,
-							Docno: result.AllDates[i].Docno,
-							Docdate: result.AllDates[i].Docdate,
-							Dates: result.AllDates[i].Dates,
-							Hrs: result.AllDates[i].Hrs,
-							Paymode: result.AllDates[i].Paymode,
+							MilNo: result.OTDet[i].MilNo,
+							Pernr: result.OTDet[i].Pernr,
+							Docno: result.OTDet[i].Docno,
+							Docdate: result.OTDet[i].Docdate,
+							Dates: result.OTDet[i].Dates,
+							Hrs: result.OTDet[i].Hrs,
+							Paymode: result.OTDet[i].Paymode,
 							Del: del_ind
 						});
 					}
 				}
 
 				for (kkk = 0; kkk < ot.length; kkk++) {
-					if (result.AllDates[kkk].Paymode === i18nModel.getProperty("Sal")) {
+					if (result.OTDet[kkk].Paymode === i18nModel.getProperty("Sal")) {
 						ot[kkk].Paymode = "S";
 					} else {
 						ot[kkk].Paymode = "C";
