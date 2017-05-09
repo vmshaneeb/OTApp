@@ -734,9 +734,40 @@ sap.ui.define([
 
 		onUploadComplete: function(oEvent) {
 			// delay the success message for to notice onChange message
-			setTimeout(function() {
+			// setTimeout(function() {
+			// 	MessageToast.show(i18nModel.getProperty("filcom"));
+			// }, 4000);
+
+			var resp = oEvent.getParameters("response"),
+				uri = "";
+
+			if (resp) {
 				MessageToast.show(i18nModel.getProperty("filcom"));
-			}, 4000);
+			}
+
+			uri = "/AttachDispSet?$filter=RefNo eq ('" + Ref_no + "')";
+			oModel.read(uri, {
+				success: function(oData2, oResponse2) {
+					result.AttachmentsSet = oData2.results;
+
+					for (var ii = 0; ii < result.AttachmentsSet.length; ii++) {
+						result.AttachmentsSet[ii].url = url +
+							"/AttachmentsSet(RefNo='" +
+							result.AttachmentsSet[ii].RefNo +
+							"',Seq='" + result.AttachmentsSet[ii].Seq +
+							"')/$value";
+					}
+
+					jModel.setData(result);
+
+					var meme = me;
+					meme.getView().byId("attachFilter").setCount(result.AttachmentsSet.length);
+				},
+				error: function(oError2) {
+					// MessageToast.show(i18nModel.getProperty("Oderr"));
+				}
+			});
+
 			attach_chk += 1;
 		},
 
@@ -804,7 +835,7 @@ sap.ui.define([
 				}
 
 				for (var kk = 0; kk < emp.length; kk++) {
-					if (emp[kk].Paymode === ""|| emp[kk].Paymode === undefined) {
+					if (emp[kk].Paymode === "" || emp[kk].Paymode === undefined) {
 						emp[kk].Paymode = "S";
 					}
 				}
