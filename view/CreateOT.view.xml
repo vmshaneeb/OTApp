@@ -1,0 +1,124 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.CreateOT">
+	<App id="change">
+		<Page id="idCreate" showHeader="true" title="{i18n>title2}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange"
+			enableScrolling="true">
+			<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="{i18n>docn}" required="true"/>
+					<Input id="docno" editable="true" width="120px" maxLength="20"/>
+					<core:Title text=""/>
+					<Label text="{i18n>docdt}" required="true"/>
+					<DatePicker id="docdt" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>
+				</f:content>
+			</f:SimpleForm>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" applyContentPadding="false">
+				<items>
+					<IconTabFilter icon="sap-icon://group">
+						<Toolbar class="myCustomHeader">
+							<content>
+								<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop sapUiSmallMargin" titleStyle="H4"/>
+								<ToolbarSpacer id="__spacer2" class="myCustomHeader"/>
+								<Button id="idRefreshRow" press="onRefreshBtn" type="Emphasized" icon="sap-icon://refresh"/>
+							</content>
+						</Toolbar>
+						<Table id="idOTTableNew" inset="false" growing="true" mode="Delete" enableBusyIndicator="true"
+							items="{path: '/Employee_dataSet', sorter : { path : 'Mid', descending : false }}" delete="deleteItem" fixedLayout="false">
+							<columns>
+								<Column demandPopin="true">
+									<Text text="{i18n>MID}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>EmpName}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>Dept}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>Dept2}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>Posn}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>EmpGrp}" wrapping="false"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>EmpSubGrp}"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Center">
+									<Text text="{i18n>OTDate}"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Center">
+									<Text text="{i18n>OTHrs}"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Center">
+									<Text text="{i18n>OTAmt}"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Center">
+									<Text text="{i18n>PayTyp}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Mid}"/>
+										<Text text="{Ename}" wrapping="false"/>
+										<Text text="{Orgtx}" textDirection="RTL"/>
+										<Text text="{Orgtx2}" textDirection="RTL"/>
+										<Text text="{Plstx}" textDirection="RTL"/>
+										<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+										<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+										<Button id="idAddDates" type="Emphasized" icon="sap-icon://add" press="addDates">
+											<customData>
+												<core:CustomData key="Mid" value="{Mid}"/>
+											</customData>
+										</Button>
+										<Text text="{Hrs}"/>
+										<Text text="{Otamt}"/>
+										<!--selectedKey="salary"-->
+										<Select textAlign="Center" selectedKey="{Paymode}">
+											<core:Item key="S" text="{i18n>Sal}"/>
+											<core:Item key="C" text="{i18n>Cheq}"/>
+										</Select>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<Toolbar width="100%" id="__toolbar2">
+							<content>
+								<ToolbarSpacer id="__spacer1"/>
+								<Button id="idAddRow" press="addItem" type="Emphasized" icon="sap-icon://add">
+									<customData>
+										<core:CustomData key="multi" value="true"/>
+									</customData>
+								</Button>
+							</content>
+						</Toolbar>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://attachment">
+						<Panel>
+							<!--beforeUploadStarts="onBeforeUploadStarts"-->
+							<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" maximumFilenameLength="55" multiple="true" showSeparators="None"
+								change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted" uploadComplete="onUploadComplete"
+								uploadTerminated="onUploadTerminated" typeMissmatch="onTypeMissmatch" fileSizeExceed="onFileSizeExceed"
+								filenameLengthExceed="onFilenameLengthExceed">
+								<UploadCollectionItem fileName="{Filename}" mimeType="{MimeType}" url="{url}"/>
+							</UploadCollection>
+						</Panel>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<footer>
+				<Toolbar press="onSubmitBtn">
+					<ToolbarSpacer/>
+					<Button id="idSubmit_Create" text="{i18n>Submit}" press="onSubmitBtn" type="Accept" icon="sap-icon://accept"/>
+					<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
+					<content/>
+				</Toolbar>
+			</footer>
+			<!--<content/>-->
+		</Page>
+	</App>
+</mvc:View>

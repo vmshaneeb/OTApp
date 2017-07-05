@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+	<ResponsivePopover title="{i18n>SelOTDates}" class="sapUiPopupWithPadding" placement="Auto" modal="true">
+		<endButton>
+			<Button text="{i18n>Close}" press="handleCloseButtonChng"/>
+		</endButton>
+		<content>
+			<u:Calendar id="calendarChng" firstDayOfWeek="0" secondaryCalendarType="Islamic" intervalSelection="flase" singleSelection="false"
+				nonWorkingDays="5,6"/>
+			<u:CalendarLegend id="legend1"/>
+			<Table id="popoverTable" inset="false" growing="true" fixedLayout="false" noDataText="{i18n>NoDates}" headerText="{i18n>SelDates}"
+				items="{/TempDates}">
+				<columns>
+					<Column visible="false">
+						<Text text="{i18n>MID}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>OTDate}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>OTHrs}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>MarkDel}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{MilNo}" visible="false"/>
+							<Text
+								text="{path:'Dates', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
+							<Input id="othrs" value="{Hrs}" width="40px" maxLength="2" liveChange="checkOT" valueStateText="{i18n>chkOTHrs}"/>
+							<!--<Input id="othrs" value="{path:'Hrs', formatter : '.convertToInt'}" width="40px" maxLength="2" liveChange="checkOT" valueStateText="{i18n>chkOTHrs}"/>-->
+							<CheckBox id="chck" selected="{Del}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

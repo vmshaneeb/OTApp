@@ -1,0 +1,244 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="OTApp.controller.DispChng">
+	<App id="dispchng">
+		<NavContainer id="navCon">
+			<pages>
+				<!--*************************-->
+				<!--start of display page-->
+				<!--*************************-->
+				<Page id="idDisp" showHeader="true" title="{i18n>title}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onNavBackBtn"
+					enableScrolling="true">
+					<f:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">
+						<f:content>
+							<core:Title text=""/>
+							<Label text="{i18n>MID}"/>
+							<MultiInput id="multiinput1" width="120px" enableMultiLineMode="true" valueHelpRequest="handleValueHelp"/>
+							<Label text="{i18n>docn}"/>
+							<Input id="docno" editable="true" width="120px"/>
+							<core:Title text=""/>
+							<Label text="{i18n>Month}"/>
+							<DatePicker id="month" editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="MM" width="100px"/>
+							<Label text="{i18n>Year}"/>
+							<VBox>
+								<DatePicker id="year" editable="true" secondaryCalendarType="Islamic" valueFormat="dd.MM.yyyy" displayFormat="yyyy" width="100px"/>
+								<Button id="idSearch" text="{i18n>Search}" press="OnPressSearch" icon="sap-icon://search" width="100px" type="Emphasized"/>
+							</VBox>
+						</f:content>
+					</f:SimpleForm>
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter id="empFilter" icon="sap-icon://group" count="0">
+								<Table id="idOTTable" inset="false" items="{path: '/EmpSet', sorter : { path : 'Mid', descending : false }}" growing="true"
+									growingScrollToLoad="true" mode="MultiSelect" fixedLayout="false" enableBusyIndicator="true">
+									<headerToolbar class="sapUiVisibleOnlyOnDesktop">
+										<Toolbar class="sapUiVisibleOnlyOnDesktop">
+											<Title text="{i18n>OT}" level="H2"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column demandPopin="true" mergeDuplicates="true">
+											<Text text="{i18n>MID}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" mergeDuplicates="true">
+											<Text text="{i18n>EmpName}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Dept}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Dept2}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>Posn}"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>EmpGrp}" wrapping="false"/>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>EmpSubGrp}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>docn}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>docdt}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTDate}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTHrs}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>OTAmt}"/>
+										</Column>
+										<Column demandPopin="true" hAlign="Center">
+											<Text text="{i18n>PayTyp}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{Mid}" wrapping="false"/>
+												<Text text="{Ename}" wrapping="false"/>
+												<Text text="{Orgtx}" textDirection="RTL" wrapping="false"/>
+												<Text text="{Orgtx2}" textDirection="RTL" wrapping="false"/>
+												<Text text="{Plstx}" textDirection="RTL" wrapping="false"/>
+												<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+												<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+												<Text text="{Docno}" wrapping="false"/>
+												<Text
+													text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"
+													wrapping="false"/>
+												<Button id="idShowDates" type="Emphasized" icon="sap-icon://display" press="showDates">
+													<customData>
+														<core:CustomData key="Mid" value="{Mid}"/>
+														<core:CustomData key="Docno" value="{Docno}"/>
+														<core:CustomData key="Paymode" value="{Paymode}"/>
+													</customData>
+												</Button>
+												<Text text="{Hrs}" wrapping="false"/>
+												<Text text="{Otamt}" wrapping="false"/>
+												<!--<u:Currency value="{path:'Otamt', type: 'sap.ui.model.type.Currency', formatOptions :{ sap.ui.util.Formatter.string2Number}}" currency="QAR" useSymbol="true" maxPrecision="2"/>-->
+												<Text text="{Paymode}" wrapping="false"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Toolbar width="100%" id="__toolbar2">
+									<content>
+										<ToolbarSpacer id="__spacer1"/>
+										<Button id="idRemRows" press="RemoveAll" type="Reject" icon="sap-icon://employee-rejections">
+											<customData>
+												<core:CustomData key="multi" value="true"/>
+											</customData>
+										</Button>
+									</content>
+								</Toolbar>
+							</IconTabFilter>
+							<IconTabFilter id="attachFilter" icon="sap-icon://attachment" count="0">
+								<Panel>
+									<UploadCollection id="UploadCollection" items="{/AttachmentsSet}" uploadEnabled="false" maximumFilenameLength="55" multiple="true"
+										showSeparators="None" change="onChange" fileRenamed="onFileRenamed" fileDeleted="onFileDeleted">
+										<UploadCollectionItem fileName="{Filename}" mimeType="{MimeType}" url="{url}" enableDelete="false" enableEdit="false" visibleDelete="false"
+											visibleEdit="false"/>
+									</UploadCollection>
+								</Panel>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<footer>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Button id="idNew" text="{i18n>NewRequest}" press="onChngBtn" type="Accept" icon="sap-icon://create"/>
+							<Button id="idChange" text="{i18n>change}" press="onEditBtn" type="Emphasized" icon="sap-icon://edit"/>
+							<Button text="{i18n>Cancel}" press="OnPressCancel" type="Transparent" icon="sap-icon://sys-cancel"/>
+							<content/>
+						</Toolbar>
+					</footer>
+					<content/>
+				</Page>
+				<!--*************************-->
+				<!--start of change page-->
+				<!--*************************-->
+				<Page id="idChng" title="{i18n>title3}" class="sapUiSizeCompact" showNavButton="true" navButtonPress="onBackBtnChange">
+					<!--<f:SimpleForm id="SimpleFormChng" editable="true" layout="ResponsiveGridLayout" columnsM="3" minWidth="1" labelSpanM="8" labelSpanS="4">-->
+					<!--	<f:content>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>docn}" required="true"/>-->
+					<!--		<Input id="docnoChng" editable="true" width="120px" maxLength="20"/>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>docdt}" required="true"/>-->
+					<!--		<DatePicker id="docdtChng" editable="true" secondaryCalendarType="Islamic" displayFormat="dd.MM.yyyy" width="120px"/>-->
+					<!--	</f:content>-->
+					<!--</f:SimpleForm>-->
+					<Toolbar class="myCustomHeader">
+						<content>
+							<Title text="{i18n>OT}" level="H2" class="sapUiVisibleOnlyOnDesktop sapUiSmallMargin" titleStyle="H4"/>
+							<ToolbarSpacer id="__spacer2Chng" class="myCustomHeader"/>
+							<Button id="idRefreshRowChng" press="onRefreshBtnChng" type="Emphasized" icon="sap-icon://refresh"/>
+						</content>
+					</Toolbar>
+					<Table id="idOTTableChng" inset="false" growing="true" items="{path: '/EmpDet', sorter : { path : 'Mid', descending : false }}"
+						delete="deleteItem" fixedLayout="false" enableBusyIndicator="true">
+						<columns>
+							<Column demandPopin="true">
+								<Text text="{i18n>MID}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>EmpName}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>Dept}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>Dept2}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>Posn}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>EmpGrp}"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="{i18n>EmpSubGrp}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>docn}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>docdt}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>OTDate}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>OTHrs}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>OTAmt}"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center">
+								<Text text="{i18n>PayTyp}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Mid}"/>
+									<Text text="{Ename}" wrapping="false"/>
+									<Text text="{Orgtx}" textDirection="RTL"/>
+									<Text text="{Orgtx2}" textDirection="RTL"/>
+									<Text text="{Plstx}" textDirection="RTL"/>
+									<Text text="{EmpgrpTxt}" textDirection="RTL"/>
+									<Text text="{EmpsubgrpTxt}" textDirection="RTL"/>
+									<Text text="{Docno}"/>
+									<Text
+										text="{path:'Docdate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTKK:mm:ss' },pattern: 'dd.MM.yyyy' }}"/>
+									<Button id="idAddDates" type="Emphasized" icon="sap-icon://edit-outside" press="addDatesChng">
+										<customData>
+											<core:CustomData key="Mid" value="{Mid}"/>
+											<core:CustomData key="Docno" value="{Docno}"/>
+											<core:CustomData key="Paymode" value="{Paymode}"/>
+										</customData>
+									</Button>
+									<Text text="{Hrs}"/>
+									<Text text="{Otamt}"/>
+									<Text text="{Paymode}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<footer>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Button id="idSubmitChng" text="{i18n>Submit}" press="OnPressSubmitChng" type="Accept" icon="sap-icon://accept"/>
+							<Button text="{i18n>Cancel}" press="onCancelBtnChange" type="Transparent" icon="sap-icon://sys-cancel"/>
+							<content/>
+						</Toolbar>
+					</footer>
+				</Page>
+			</pages>
+		</NavContainer>
+	</App>
+</mvc:View>

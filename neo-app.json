@@ -1,6 +1,24 @@
 {
-  "welcomeFile": "/webapp/index.html",
+  "welcomeFile": "index.html",
   "routes": [
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "GWD",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "GWD"
+    },
+    {
+      "path": "/sap/bc/ui5_ui5",
+      "target": {
+        "type": "destination",
+        "name": "GWD",
+        "entryPath": "/sap/bc/ui5_ui5"
+      },
+      "description": "GWD"
+    },
     {
       "path": "/resources",
       "target": {
@@ -18,17 +36,6 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
-    },
-    {
-      "path": "/sap/opu/odata",
-      "target": {
-        "type": "destination",
-        "name": "GWD",
-        "entryPath": "/sap/opu/odata"
-      },
-      "description": "QAG Gateway System"
     }
-  ],
-  "sendWelcomeFileRedirect": true,
-  "headerWhiteList":["slug"]
+  ]
 }

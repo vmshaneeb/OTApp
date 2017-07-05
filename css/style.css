@@ -1,0 +1,142 @@
+/* Enter your custom styles here */
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0.1rem;
+    line-height: 0.1rem;
+}
+
+.sapUiFormResGrid>div {
+    padding: 0.1rem 0.75rem;
+    /*box-sizing: border-box;*/
+}
+
+html.sap-phone .sapUiFormResGridCont {
+    padding-bottom: .1rem;
+}
+
+.myCustomHeader .sapUiSizeCompact .sapMTB {
+    height: 3rem;
+}
+
+.sapUiSizeCompact .sapMTB {
+    height: 3rem;
+}
+
+
+/*Icon Tab Bar*/
+
+.sapMITBScrollContainer {
+    display: block;
+    margin: 0px 0.5rem;
+    margin-top: -5px;
+    margin-right: 0.5rem;
+    margin-bottom: 0px;
+    margin-left: 0.5rem;
+}
+
+.sapMSplitContainerHideMode>.sapMSplitContainerDetail .sapMITB.sapUiResponsiveContentPadding>.sapMITBContainerContent>.sapMITBContent,
+.sapMITB.sapUiResponsiveContentPadding>.sapMITBContainerContent>.sapMITBContent {
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+}
+
+.sapMPanelContent {
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: normal;
+}
+
+.sapMITBContent {
+    background-color: transparent;
+}
+
+.sapMITBSelected > .sapMITBContentArrow {
+    border-bottom-color: #009de0!important;
+}
+
+.sapMPanelBGTranslucent {
+    background-color: transparent;
+}
+
+.sapMListNoData {
+    color: #333333;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 8px 1rem!important;
+    height: 3rem;
+}
+
+
+/*Calendar*/
+
+.sapUiCalItemWeekEnd {
+    background-color: #fddb86!important;
+}
+
+.sapUiCalDayWeekEnd {
+    background-color: #fddb86!important;
+}
+
+.sapUiCalDayOtherMonth {
+    background-color: transparent!important;
+    color: #808080!important;
+}
+
+.sapUiCalDaySel,
+.sapUiCalMonthSel,
+.sapUiCalYearSel {
+    color: #ffffff!important;
+    background-color: #007cc0!important;
+}
+
+.sapUiCalDaySel.sapUiCalDayOtherMonth {
+    background-color: #007cc0!important;
+}
+
+.sapUiCalItemSel.sapUiCalItemOtherMonth {
+    background-color: #007cc0!important;
+}
+
+.sapUiUnifiedLegendNonWorkingDay>.sapUiUnifiedLegendSquare>.sapUiUnifiedLegendSquareColor {
+    background: #fddb86!important;
+}
+
+.sapUiCalItemSel {
+    background-color: #007cc0!important;
+}
+
+.sapUiCalItemOtherMonth {
+    background-color: transparent!important;
+    color: #808080;
+}
+
+
+/*Icon Tabbar*/
+
+
+/*.sapMITBFilter .sapMITBCount {*/
+
+
+/*    background-color: green;*/
+
+
+/*    border-radius: 100%;*/
+
+
+/*    width: 30px;*/
+
+
+/*    padding-top: 5px;*/
+
+
+/*    padding-bottom: 5px;*/
+
+
+/*    color: #FFFFFF;*/
+
+
+/*    text-shadow: 1px 0px 0px #333333*/
+
+
+/*}*/
